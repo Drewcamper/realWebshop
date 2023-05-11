@@ -1,0 +1,49 @@
+body {
+  justify-content: left;
+  padding: 0;
+  margin: 0;
+}
+
+.tileWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+  margin: 100px 0% 0px 10%;
+  padding: 0;
+}
+.product-template {
+  height: 100%;
+  width: calc(33.33%);
+  background-color: aqua;
+  padding: 0;
+  margin: 0;
+}
+.quantitySetter {
+  background-color: bisque;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-width: 40px;
+  max-height: 70px;
+  height: 4vh;
+}
+input {
+  width: 20%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+.inputButtonMinus {
+  width: 15%;
+  height: 100%;
+  padding: 0;
+  margin: 0 0 0 25%;
+  /* background-color: transparent}}; */
+}
+.inputButtonPlus {
+  width: 15%;
+  height: 100%;
+  padding: 0;
+  margin: 0 20% 0 0%;
+}
