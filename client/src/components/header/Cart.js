@@ -1,26 +1,52 @@
 import React, { useContext, useEffect } from "react";
 import "../../style/productsPage/products.css";
-import { WebshopContext, WebshopProvider } from "../../context/context";
+import { WebshopContext } from "../../context/context";
+import Cookies from "universal-cookie";
+import { Link } from "react-router-dom";
 
 function Cart() {
   const { cart, setCart } = useContext(WebshopContext);
+  const cookies = new Cookies();
+
   useEffect(() => {
-    if (!cart) {
-      console.log("undefined");
-    } else {
-      console.log(cart);
+    const savedCart = localStorage.getItem("cart") || []; //setCart is async --> [] ensures the state is correctly updated even if there is a delay.
+    const updatedCart = savedCart ? JSON.parse(savedCart) : [];
+    if (updatedCart) {
+      setCart(updatedCart);
     }
-  }, [cart]);
+  }, []);
 
   return (
     <div>
-      {cart.map((cart) => (
-        <div key={cart.id} className="product-template">
-          <h3>{cart.name}</h3>
-          <p>Price: ${cart.price}</p>
-        </div>
-      ))}
+      {cart.length ? (
+        cart.map((item) => (
+          <div key={item.id} className="product-template">
+            <h3>{item.name}</h3>
+            <p>Price: ${item.price}</p>
+            <p>Quantity: {item.quantity}</p>
+          </div>
+        ))
+      ) : (
+        <div>The cart is empty.</div>
+      )}
       cart
+      <button
+        onClick={() => {
+          console.log(cart);
+        }}
+      >
+        check cart
+      </button>
+      <button>
+        <Link to="/" className="cartButton">
+          back to products
+        </Link>
+      </button>
+      <button>
+        <Link to="/payment" className="cartButton">
+          purchase
+        </Link>
+      </button>
     </div>
   );
 }

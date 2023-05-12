@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 // import { useNavigate } from "react-router";
-import { WebshopProvider } from "../context/context";
+import { WebshopProvider, WebshopContext } from "../context/context";
 import ProductsPage from "./products/productsPage";
 import Auth from "./header/Auth";
 import { Link } from "react-router-dom";
