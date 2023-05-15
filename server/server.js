@@ -21,43 +21,11 @@ app.get("/config", (req, res) => {
   });
 });
 
-// app.post("/create-payment-intent", async (req, res) => {
-//   try {
-//     const paymentIntent = await stripe.paymentIntents.create({
-//       currency: "EUR",
-//       amount: 1999,
-//       automatic_payment_methods: { enabled: true },
-//     });
-
-//     // Send publishable key and PaymentIntent details to client
-//     res.send({
-//       clientSecret: paymentIntent.client_secret,
-//     });
-//   } catch (e) {
-//     return res.status(400).send({
-//       error: {
-//         message: e.message,
-//       },
-//     });
-//   }
-// });
-
-
 app.post("/create-payment-intent", async (req, res) => {
-  const { items } = req.body;
-  const calculateOrderAmount = () => {
-    // Calculate the total amount based on the items and quantities
-    let totalAmount = 0;
-    items.forEach((item) => {
-      totalAmount += item.price * item.quantity;
-    });
-    return totalAmount;
-  };
-
   try {
     const paymentIntent = await stripe.paymentIntents.create({
       currency: "EUR",
-      amount: calculateOrderAmount(),
+      amount: 1999,
       automatic_payment_methods: { enabled: true },
     });
 
@@ -73,38 +41,28 @@ app.post("/create-payment-intent", async (req, res) => {
     });
   }
 });
-
-async function createPaymentIntent() {
+app.post("/create-payment-intent", async (req, res) => {
   try {
-    // Get the selected items and quantities
-    const items = cart.map((item) => ({
-      id: item.id,
-      price: item.price,
-      quantity: item.quantity,
-    }));
+    const { amount } = req.body;
 
-    // Send the selected items and quantities to the server
-    const response = await fetch("/create-payment-intent", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ items }),
+    const paymentIntent = await stripe.paymentIntents.create({
+      currency: "EUR",
+      amount,
+      automatic_payment_methods: { enabled: true },
     });
 
-    const { clientSecret } = await response.json();
-    return clientSecret;
-  } catch (err) {
-    console.error("Error creating payment intent: ", err);
+    // Send publishable key and PaymentIntent details to client
+    res.send({
+      clientSecret: paymentIntent.client_secret,
+    });
+  } catch (e) {
+    return res.status(400).send({
+      error: {
+        message: e.message,
+      },
+    });
   }
-}
-
-
-
-
-
-
-
+});
 
 app.listen(5252, () =>
   console.log(`Node server listening at http://localhost:5252`)

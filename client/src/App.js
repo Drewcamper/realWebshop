@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { WebshopProvider } from "./context/context";
 
 function App() {
+  
   return (
     <WebshopProvider>
       <main>

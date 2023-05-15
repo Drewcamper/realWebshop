@@ -9,14 +9,13 @@ import "../style/home.css";
 // import cartButton from './images/cartLogo.png'
 
 function Home() {
+  const { priceSum } = useContext(WebshopContext);
+
   return (
     <WebshopProvider>
       <div className="home">
         <div className="header">
           <div className="headerFlexbox">
-            <h1 className="title">
-              <Link to="/">webshop</Link>
-            </h1>
             <Auth />
             <button>
               <Link to="/cart" className="cartButton">
@@ -26,7 +25,7 @@ function Home() {
           </div>
         </div>
         <div>
-          <ProductsPage />
+          <ProductsPage priceSum={priceSum}/>
         </div>
       </div>
     </WebshopProvider>

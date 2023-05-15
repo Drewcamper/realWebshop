@@ -11,6 +11,7 @@ export const WebshopProvider = ({ children }) => {
   const [isAuth, setIsAuth] = useState(cookies.get("auth-token"));
   const [buttonText, setButtonText] = useState("Sign In With Google");
   const [cart, setCart] = useState([]);
+  const [priceSum, setPriceSum] = useState(0);
   const [uid, setUid] = useState();
 
   return (
@@ -26,6 +27,8 @@ export const WebshopProvider = ({ children }) => {
         setButtonText,
         cart,
         setCart,
+        priceSum,
+        setPriceSum,
         uid,
         setUid,
       }}
