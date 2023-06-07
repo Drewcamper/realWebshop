@@ -6,6 +6,7 @@ import Auth from "./header/Auth";
 import { Link } from "react-router-dom";
 
 import "../style/home.css";
+import Footer from "./footer/Footer";
 // import cartButton from './images/cartLogo.png'
 
 function Home() {
@@ -25,8 +26,9 @@ function Home() {
           </div>
         </div>
         <div>
-          <ProductsPage priceSum={priceSum}/>
+          {/* <ProductsPage priceSum={priceSum} /> */}
         </div>
+        <Footer />
       </div>
     </WebshopProvider>
   );

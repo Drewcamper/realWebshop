@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import "../../style/productsPage/products.css";
+import "../../style/products/products.css";
 import { WebshopContext } from "../../context/context";
 import { db } from "../../firebase-config";
 import {

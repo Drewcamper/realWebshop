@@ -1,12 +1,11 @@
 import React, { useContext, useEffect } from "react";
-import "../../style/productsPage/products.css";
+import "../../style/products/products.css";
 import { WebshopContext } from "../../context/context";
-import Cookies from "universal-cookie";
 import { Link } from "react-router-dom";
 
 function Cart() {
   const { cart, setCart } = useContext(WebshopContext);
-  const cookies = new Cookies();
+ 
 
   useEffect(() => {
     const savedCart = localStorage.getItem("cart") || []; //setCart is async --> [] ensures the state is correctly updated even if there is a delay.

@@ -1,0 +1,107 @@
+.chatWrapper {
+  position: fixed;
+  height: 80vh;
+  width: 30vw;
+  bottom: 0;
+  right: 0;
+  min-width: 300px;
+  border: 3px solid purple;
+}
+header {
+  background-color: purple;
+  display: flex;
+  height: 5vh;
+  align-items: center;
+}
+.headerText {
+  width: 100%;
+  color: white;
+  padding-left: 3%;
+}
+button {
+  margin: 0;
+}
+.xButton {
+  height: 100%;
+  background-color: transparent;
+}
+.messagesWrapper {
+  /* display:contents; */
+  padding: 1vh;
+  height: 30vh;
+  flex-grow: 1;
+}
+
+.received-message {
+  text-align: left;
+}
+.sent-message {
+  text-align: right;
+}
+.inputWrapper {
+  width: 30vw;
+  right: 0;
+  bottom: 10px;
+  position: fixed;
+}
+.inputAndButtonFlex {
+  display: flex;
+  width: 100%;
+  justify-content: center; /* Center the content horizontally */
+  margin-top: auto;
+}
+.inputBox {
+  width: 75%;
+
+  /* height: 5vh; */
+  height: auto;
+  min-height: 50px;
+  max-height: 200px;
+  margin-right: 5px;
+  margin-left: 5px;
+  resize: none;
+  border-color: grey;
+  background-color: white;
+  padding: 5px;
+  font-size: 80%;
+  overflow-y: auto;
+  /* overflow-x:unset */
+}
+.sendButton {
+  margin-right: 5px;
+}
+
+/* minimised chat window */
+
+.chatCircle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #ff0000; /* Replace with your desired color */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  
+  .sphere {
+    width: 10px;
+    height: 10px;
+    background-color: blue; /* Replace with your desired color */
+    border-radius: 50%;
+    animation: rotate 2s infinite linear;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  }
+  
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
