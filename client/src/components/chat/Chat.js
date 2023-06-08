@@ -4,14 +4,14 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 import { auth, db } from "../../firebase-config";
 import { WebshopContext } from "../../context/context";
 import "../../style/chat/chat.css";
-import ChatSphere from "./ChatSphere";
+import Sphere from "./ChatSphere";
 function Chat() {
-  const { username, email } = useContext(WebshopContext);
+  const { username, email, chatWindowVisible, setChatWindowVisible } = useContext(WebshopContext);
 
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [user, setUser] = useState(null);
-  const [chatWindowVisible, setChatWindowVisible] = useState(false);
+  const [messageSent, setMessageSent] = useState(false);
   const messagesRef = collection(db, "messages");
   const messagesQuery = query(
     messagesRef,
@@ -67,21 +67,41 @@ function Chat() {
         email: email,
       });
     }
+    setMessageSent(true);
     setNewMessage("");
   };
   useEffect(() => {
-    console.log(newMessage);
-  }, [newMessage]);
+    console.log(newMessage, chatWindowVisible);
+  }, [newMessage, chatWindowVisible]);
 
   const exitChat = () => {
     setChatWindowVisible(false);
   };
-
   const handleTextarea = (e) => {
     const textarea = textareaRef.current;
     textarea.style.height = "auto";
     textarea.style.height = `${textarea.scrollHeight}px`;
-    setNewMessage(e.target.textContent);
+    setNewMessage(e.target.value);
+  };
+  const showMessage = () => {
+    if (messageSent) {
+      const message = {
+        id: "demo-message",
+        text: "This is a demo version. Chat functionality is not available.",
+        email: "customer-service@example.com",
+        createdAt: new Date().toISOString(),
+        recipient: recipient,
+        username: "Customer Service",
+      };
+
+      return (
+        <div className="received-message">
+          <p>{message.text}</p>
+        </div>
+      );
+    }
+
+    return null;
   };
   if (chatWindowVisible) {
     return (
@@ -92,24 +112,31 @@ function Chat() {
             X
           </button>
         </header>
-        <div className="messagesWrapper">
-          {queriedMessages &&
-            queriedMessages.map((message, index) => (
-              <div
-                key={index}
-                className={
-                  message.email === auth.currentUser?.email ? "sent-message" : "received-message"
-                }>
-                <p>{message.text}</p>
-              </div>
-            ))}
+        <div className="contentWrapper">
+          <div className="messagesWrapper">
+            {queriedMessages &&
+              queriedMessages.map((message, index) => (
+                <div
+                  key={index}
+                  className={
+                    message.email === auth.currentUser?.email ? "sent-message" : "received-message"
+                  }>
+                  <p>{message.text}</p>
+                </div>
+              ))}
+            <div className="received-message">{showMessage()}</div>
+          </div>
         </div>
         <div className="inputWrapper">
           <div className="inputAndButtonFlex">
-            <textarea className="inputBox" ref={textareaRef} onChange={handleTextarea}>
-              {newMessage}
-            </textarea>
-            <button type="submit" onClick={sendMessage()} className="sendButton">
+            <textarea
+              className="inputBox"
+              ref={textareaRef}
+              value={newMessage}
+              onChange={handleTextarea}
+            />
+
+            <button type="submit" onClick={sendMessage} className="sendButton">
               Send
             </button>
           </div>
@@ -117,13 +144,7 @@ function Chat() {
       </div>
     );
   }
-  return(
-    // <div className="chatCircle">
-
-    //   <div className="sphere"></div>
-    // </div>
-    <ChatSphere />
-  )
+  return <Sphere />;
 }
 
 export default Chat;

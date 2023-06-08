@@ -25,30 +25,48 @@ button {
   height: 100%;
   background-color: transparent;
 }
-.messagesWrapper {
-  /* display:contents; */
-  padding: 1vh;
-  height: 30vh;
+.contentWrapper {
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: hidden;
 }
+.messagesWrapper {
+  padding: 1vh;
+  /* height: 63vh; */
+  flex-grow: 1;
+  background-color: red;
+  overflow-y: auto;
+
+}
+
 
 .received-message {
   text-align: left;
+  width: 60%;
 }
 .sent-message {
+  display: inline-block;
+  max-width: 50%; /* Adjust the width as needed */
+  word-wrap: break-word;
   text-align: right;
+  padding-left: 50%;
 }
+
 .inputWrapper {
   width: 30vw;
   right: 0;
   bottom: 10px;
   position: fixed;
+  flex-shrink: 0;
 }
 .inputAndButtonFlex {
   display: flex;
   width: 100%;
   justify-content: center; /* Center the content horizontally */
   margin-top: auto;
+  align-items: center;
+
 }
 .inputBox {
   width: 75%;
@@ -69,6 +87,7 @@ button {
 }
 .sendButton {
   margin-right: 5px;
+  height: 5vh;
 }
 
 /* minimised chat window */

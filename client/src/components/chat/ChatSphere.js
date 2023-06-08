@@ -1,30 +1,120 @@
-import React,{useEffect} from 'react'
-import TagCloud from 'TagCloud'
-import '../../style/chat/chatSphere.css'
-function ChatSphere() {
-    useEffect(() => {
-      return () => {
-        const container = '.tagcloud';
-        const texts = [
-            '.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.',
-            '.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.',
+import "../../style/chat/chatSphere.css";
+import React, { useContext } from "react";
+import { WebshopContext } from "../../context/context";
 
-        ];
-        const options = {
-            radius: 300,
-            maxSpeed: 'normal',
-            initSpeed: 'normal',
-            keep: true
-        }
-        TagCloud(container, texts, options)
-      }
-    }, [])
-    
+const Sphere = () => {
+  const { setChatWindowVisible } = useContext(WebshopContext);
+  const openChat = () => {
+    setChatWindowVisible(true);
+  };
   return (
-    <div className='text-sphere'>
-        <span className='tagcloud'></span>
+    <div className="miniChatWrapper">
+      <div className="hoverText">How can I help you?</div>
+      <button className="loadingWrapper" onClick={openChat}>
+        <div className="container">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
     </div>
-  )
-}
+  );
+};
 
-export default ChatSphere
+export default Sphere;

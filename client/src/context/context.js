@@ -7,7 +7,7 @@ export const WebshopProvider = ({ children }) => {
   const cookies = new Cookies();
 
   const [username, setUsername] = useState(
-    cookies.get("username") || localStorage.getItem("username") || ''
+    cookies.get("username") || localStorage.getItem("username") || ""
   );
   const [email, setEmail] = useState(cookies.get("email") || localStorage.getItem("email") || "");
   const [isAuth, setIsAuth] = useState(
@@ -16,6 +16,8 @@ export const WebshopProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [priceSum, setPriceSum] = useState(0);
   const [uid, setUid] = useState();
+
+  const [chatWindowVisible, setChatWindowVisible] = useState(false);
 
   return (
     <WebshopContext.Provider
@@ -32,6 +34,8 @@ export const WebshopProvider = ({ children }) => {
         setPriceSum,
         uid,
         setUid,
+        chatWindowVisible,
+        setChatWindowVisible,
       }}>
       {children}
     </WebshopContext.Provider>
