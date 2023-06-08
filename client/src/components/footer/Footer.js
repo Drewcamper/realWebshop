@@ -1,10 +1,10 @@
 import React from 'react'
-import Chat from '../chat/Chat'
+import CustomerSupport from '../chat/Chat'
 
 function Footer() {
   return (
     <div>
-        <Chat />
+        <CustomerSupport />
     </div>
   )
 }

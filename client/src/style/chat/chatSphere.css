@@ -21,7 +21,8 @@
   width: auto;
   height: auto;
   padding-right: 10px;
-  transition: .7s ease-in-out;
+  transition: .6s ease-in-out;
+  transition-delay: .4s;
   opacity: 1;
 }
 .miniChatWrapper:hover .container span{
@@ -34,7 +35,8 @@
   width: 4em;
   display: grid;
   place-items: center;
-  background: rgb(194, 173, 247);
+  /* background: rgb(194, 173, 247); */
+  background: rgb(166, 139, 234);
   border-radius: 50%;
   overflow: hidden;
 
