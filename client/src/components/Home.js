@@ -7,15 +7,14 @@ import { Link } from "react-router-dom";
 
 import "../style/home.css";
 import Footer from "./footer/Footer";
-// import cartButton from './images/cartLogo.png'
-
+ import LoadingSquares from "./products/loadingSquares/LoadingSquares";
 function Home() {
   const { priceSum } = useContext(WebshopContext);
 
   return (
     <WebshopProvider>
       <div className="home">
-        <div className="header">
+        {/* <div className="header">
           <div className="headerFlexbox">
             <Auth />
             <button>
@@ -26,9 +25,10 @@ function Home() {
           </div>
         </div>
         <div>
-          {/* <ProductsPage priceSum={priceSum} /> */}
-        </div>
-        <Footer />
+          <ProductsPage priceSum={priceSum} />
+        </div> 
+        <Footer /> */}
+        <LoadingSquares />
       </div>
     </WebshopProvider>
   );

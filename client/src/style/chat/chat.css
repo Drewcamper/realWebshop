@@ -5,13 +5,18 @@
   bottom: 0;
   right: 0;
   min-width: 300px;
-  border: 3px solid purple;
+  border: 3px solid rgb(80, 20, 136);
+  border-radius: 10px;
 }
 header {
-  background-color: purple;
+  background-color: rgb(80, 20, 136);
   display: flex;
   height: 5vh;
+  min-height: 30px;
   align-items: center;
+  border-bottom: 3px solid rgb(80, 20, 136);
+  /* border-radius: 10px; */
+
 }
 .headerText {
   width: 100%;
@@ -22,108 +27,104 @@ button {
   margin: 0;
 }
 .xButton {
-  height: 100%;
-  background-color: transparent;
+  padding: 5px 8px 5px 8px;
+  margin-right: 5px;
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.39);
+  color: rgb(80, 20, 136);
 }
-.xButton:hover{
-  background-color: rgb(234, 125, 234);
+.xButton:hover {
+  /* background-color: rgb(234, 125, 234); */
+  background-color: rgba(255, 255, 255, .5);
+  color: white;
 }
 .messagesWrapper {
   padding: 1vh 1vw 3vh 1vw;
-  background-color: lightblue ;
+  background-color: white;
   overflow-y: auto;
   height: 60vh;
+  font-family: "Nunito Sans", sans-serif;
 }
-
 
 .received-message {
   text-align: left;
-  width: 60%;
+  max-width: 70%;
+  width: auto;
+  /* padding: 1px 0px 1px 5px; */
+  /* background-color: red; */
+  border-radius: 10px;
+  border: 3px solid transparent;
 }
 .sent-message {
   display: inline-block;
-  max-width: 50%; /* Adjust the width as needed */
   word-wrap: break-word;
   text-align: right;
-  padding-left: 50%;
-  /* background-color: white; */
+  width: 65%;
+  padding-left: 35%;
 }
-
+.sendingError {
+  padding: 10px;
+  color: red;
+}
 .inputWrapper {
-  width: 30vw;
-  right: 0;
+  min-width: 300px;
+  width: 30%;
+  /* width: 45%; */
+  /* height: 40px; */
   bottom: 10px;
   position: fixed;
-  flex-shrink: 0;
-  background-color: white;
-}
-.inputAndButtonFlex {
-  display: flex;
-  width: 100%;
-  justify-content: center; /* Center the content horizontally */
   margin-top: auto;
-  align-items: center;
-
+  display: flex;
+  flex-direction: row;
 }
-.inputBox {
-  width: 75%;
 
-  /* height: 5vh; */
-  height: auto;
-  min-height: 50px;
-  max-height: 200px;
-  margin-right: 5px;
-  margin-left: 5px;
+.inputBox {
+  width: 100%;
+  padding: 5px 8px 5px 8px;
+  height: calc(5vh - 2px);
+  /* min-height: 40px; */
+  max-height: 150px;
+  margin: 0px 5px 0px 5px;
   resize: none;
-  border-color: grey;
-  background-color: white;
-  padding: 5px;
-  font-size: 80%;
+  border: 1px solid rgb(80, 20, 136);
+  border-radius: 5px;
+  background-color: rgba(80, 20, 136, 0.169);
+  /* font-size: 80%; */
   overflow-y: auto;
-  /* overflow-x:unset */
+  overflow-x: unset;
+  font-family: "Nunito Sans", sans-serif;
+  justify-content: left;
+}
+.inputBox:focus {
+  /* border: 3px solid rgb(80, 20, 136); */
+  box-shadow: 0 0 5px rgb(80, 20, 136);
+  outline: 1px solid rgb(80, 20, 136);
 }
 .sendButton {
+  background-color: white;
+  color: rgb(80, 20, 136);
+  border: 1px solid rgb(80, 20, 136);
   margin-right: 5px;
-  height: 5vh;
+}
+.sendButton:hover {
+  background-color: rgb(80, 20, 136);
+  color: white;
 }
 
-/* minimised chat window */
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;1,200&display=swap");
 
-.chatCircle {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 60px;
-    height: 60px;
-    background-color: #ff0000; /* Replace with your desired color */
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
   }
-  
-  .sphere {
-    width: 10px;
-    height: 10px;
-    background-color: blue; /* Replace with your desired color */
-    border-radius: 50%;
-    animation: rotate 2s infinite linear;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  to {
+    transform: rotate(360deg);
   }
-  
-  @keyframes rotate {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
+}
+
+@media (max-height: 720px) {
+  .messagesWrapper {
+    height: 70%;
   }
-  
-  @media (max-height: 720px){
-    .messagesWrapper {
-      
-      height: 70%;
-    }
-  }
+}
