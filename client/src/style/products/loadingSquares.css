@@ -1,3 +1,197 @@
+.loadingAnimationWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  background-color: black;
+}
+.backButton{
+    position: fixed;
+    width: 10vw;
+    height: 5vh;
+    left: 10px;
+    top: 10px;
+}
+
+.loadingTileWrapper {
+  width: 300px;
+  height: 300px;
+  margin: 1px;
+  padding: 80px;
+  transition: 1s;
+  overflow: hidden;
+  position: relative;
+  border-radius: 30%;
+  box-shadow: 0px 0px 10px 1px white;
+}
+
+.line {
+  width: 300px;
+  height: 100px;
+  display: flex;
+}
+
+.tiles {
+  width: 100%;
+  background-color: rgba(49, 83, 98, 0.477);
+  border: 1px solid rgba(255, 255, 255, 0.237);
+  border-radius: 15%;
+  margin: 5px;
+}
+
+.first {
+  animation-name: cornerAnimation;
+  animation-duration: 30s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  border-radius: 30% 15% 15% 15%;
+}
+
+.second {
+  animation-name: cornerAnimation;
+  animation-duration: 20s;
+  animation-delay: 21.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.third {
+  animation-name: cornerAnimation;
+  animation-duration: 23.5s;
+  animation-delay: 28s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  border-radius: 15% 30% 15% 15%;
+}
+.fourth {
+  animation-name: cornerAnimation;
+  animation-duration: 45s;
+  animation-delay: 50s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.fifth {
+  animation-name: center;
+  animation-duration: 5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.sixth {
+  animation-name: cornerAnimation;
+  animation-duration: 20s;
+  animation-delay: 26s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.seventh {
+  animation-name: cornerAnimation;
+  animation-duration: 50s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  border-radius: 15% 15% 15% 30%;
+}
+.eighth {
+  animation-name: cornerAnimation;
+  animation-duration: 25s;
+  animation-delay: 47s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.nineth {
+  animation-name: cornerAnimation;
+  animation-duration: 20s;
+  animation-delay: 60s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  border-radius: 15% 15% 30% 15%;
+}
+
+.percentageNumber{
+    width: 100%;
+    height: 100%;
+    padding-top: 20px;
+    text-align: center;
+    color: white;
+}
+
+.loaderWrapper {
+    width: 465px;
+    height: 465px;
+    margin: 2px;
+    padding: 20px;
+    transition: 1s;
+    overflow: hidden;
+    position: fixed;
+    /* background-color: white; */
+    border-radius: 50%; /* Change border-radius to 50% to create a circle */
+  }
+
+:root {
+  --bg: #1c1717;
+ 
+}
+
+body {
+  min-height: 100vh;
+  background: var(--bg);
+  display: grid;
+  place-items: center;
+}
+@property --a {
+  initial-value: 0deg;
+  inherits: false;
+  syntax: "<angle>";
+}
+
+@property --h {
+  initial-value: 0;
+  inherits: false;
+  syntax: "<number>";
+}
+
+.loader {
+  width: 100%;
+  height: 100%;
+  margin: -1px 0px 0px -1px;
+  /* color: #fff; */
+  border-radius: 30%;
+  border-style: solid;
+  /* background-color: lightblue; */
+  --charge: hsl(var(--h, 0), 80%, 50%);
+  -o-border-image: conic-gradient(var(--charge) var(--a), transparent calc(var(--a) + 0.5deg)) 30;
+  border-image: conic-gradient(var(--charge) var(--a), transparent calc(var(--a) + .5deg)) 30;
+  -webkit-animation: load 13s infinite ease-in-out;
+  animation: load 30s ease-in-out;
+}
+
+@-webkit-keyframes load {
+  0%,
+  10% {
+    --a: 0deg;
+    --h: 0;
+  }
+  100% {
+    --a: 360deg;
+    --h: 100;
+  }
+}
+
+@keyframes load {
+  0%,
+  10% {
+    --a: 0deg;
+    --h: 0;
+  }
+  100% {
+    --a: 360deg;
+    --h: 100;
+  }
+}
+
+
 .backgroundLight {
   position: fixed;
   top: 50%;
@@ -47,227 +241,7 @@
   }
 }
 
-.loadingAnimationWrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 70vh;
-  flex-direction: column;
-  background-color: black;
-}
-
-.tileWrapper {
-  width: 300px;
-  height: 300px;
-  transform: skewY(0deg);
-  margin: 1px;
-  padding: 50px;
-  transition: 1s;
-}
-
-.tileWrapper:hover {
-  transform: skewY(0deg);
-  box-shadow: 0px 0px 10px 1px white;
-  border-radius: 25%;
-}
-.tileWrapper:hover .backgroundLight {
-  transform: skewY(0deg);
-}
-
-.line {
-  width: 300px;
-  height: 100px;
-  display: flex;
-}
-
-.tiles {
-  width: 100%;
-  background-color: rgba(49, 83, 98, 0.477);
-  border: 1px solid rgba(255, 255, 255, 0.237);
-  border-radius: 15%;
-  margin: 5px;
-}
-
-.first {
-  animation-name: cornerAnimation;
-  animation-duration: 10s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-
-.second {
-  animation-name: topTileAnimation;
-  animation-duration: 40s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-/* @keyframes tileAnimation {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.15);
-    }
-    100% {
-      transform: scale(1);
-    }
-  }
-  @keyframes cornerAnimation {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.15);
-    }
-    100% {
-      transform: scale(1);
-    }
-  } */
-.third {
-  animation-name: cornerAnimation;
-  animation-duration: 10s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-.fourth {
-  animation-name: leftTileAnimation;
-  animation-duration: 40s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  /* animation-delay: 10s; */
-}
-.fifth {
-  animation-name: center;
-  animation-duration: 10s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-@keyframes fifth {
-  0% {
-    transform: rotate(0deg) translateX(10px) rotate(0deg);
-  }
-  25% {
-    transform: rotate(90deg) translateX(10px) rotate(-90deg);
-  }
-  50% {
-    transform: rotate(180deg) translateX(10px) rotate(-180deg);
-  }
-  75% {
-    transform: rotate(270deg) translateX(10px) rotate(-270deg);
-  }
-  100% {
-    transform: rotate(360deg) translateX(10px) rotate(-360deg);
-  }
-}
-.sixth {
-  animation-name: rightTileAnimation;
-  animation-duration: 40s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-delay: 12s;
-}
-.seventh {
-  animation-name: cornerAnimation;
-  animation-duration: 10s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-.eighth {
-  animation-name: bottomTileAnimation;
-  animation-duration: 5s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-.nineth {
-  animation-name: cornerAnimation;
-  animation-duration: 40s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-
-@keyframes leftTileAnimation {
-  0% {
-    margin-right: 5px;
-  }
-  10% {
-    margin-right: 20px;
-  }
-  20% {
-    margin-right: 20px;
-  }
-  30% {
-    margin-right: 5px;
-  }
-  100% {
-    margin-right: 5px;
-  }
-}
-@keyframes rightTileAnimation {
-  0% {
-    margin-left: 5px;
-  }
-  10% {
-    margin-left: 20px;
-  }
-  20% {
-    margin-left: 20px;
-  }
-  30% {
-    margin-left: 5px;
-  }
-  100% {
-    margin-left: 5px;
-  }
-}
-@keyframes topTileAnimation {
-  0% {
-    margin-left: 5px;
-  }
-  70% {
-    margin-left: 5px;
-  }
-  80% {
-    margin-left: 10px;
-  }
-  90% {
-    margin-left: 10px;
-  }
-  100% {
-    margin-left: 5px;
-  }
-}
-@keyframes bottomTileAnimation {
-  0% {
-  }
-  70% {
-  
-  }
-  50% {
-    transform: rotate3d(1, 1, 1, 30deg) matrix3d(
-        1,
-        0,
-        1,
-        10,
-        1,
-        1,
-        6,
-        15,
-        0,
-        0,
-        1,
-        5,
-        50,
-        100,
-        0,
-        1.1
-      );
-  }
-  
-  100% {
-  }
-}
-@keyframes center {
+/* @keyframes center {
   0% {
     margin: 5px;
   }
@@ -284,3 +258,33 @@
     margin: 5px;
   }
 }
+@keyframes cornerAnimation {
+  0% {
+    width: 90%;
+    height: 90%;
+  }
+  20% {
+    width: 80%;
+    height: 80%;
+  }
+  30% {
+    width: 80%;
+    height: 80%;
+  }
+  40% {
+    width: 90%;
+    height: 90%;
+  }
+  70% {
+    width: 90%;
+    height: 90%;
+  }
+  90% {
+    width: 70%;
+    height: 70%;
+  }
+  100% {
+    width: 90%;
+    height: 90%;
+  }
+} */

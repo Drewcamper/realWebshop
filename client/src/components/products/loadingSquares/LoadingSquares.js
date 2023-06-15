@@ -1,11 +1,61 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../../../style/products/loadingSquares.css";
-import WordCounter from "./WordCounter";
+import { Link } from "react-router-dom";
+
+const ProgressBar = () => {
+  return (
+    <div className="loaderWrapper">
+      <div className="loader"></div>
+    </div>
+  );
+};
+
+const PercentageCalculator = ({ onCountUpdate }) => {
+  useEffect(() => {
+    const timer = setInterval(() => {
+      onCountUpdate((prevCount) => {
+        if (prevCount < 100) {
+          return prevCount + 1;
+        } else {
+          clearInterval(timer);
+          return prevCount;
+        }
+      });
+    }, 300);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, [onCountUpdate]);
+
+  return null;
+};
+
 function LoadingSquares() {
+  const [count, setCount] = useState(0);
+
+  const handleCountUpdate = (newCount) => {
+    setCount(newCount);
+  };
+
+  const tileWrapperStyle = {
+    width: "300px",
+    height: "300px",
+    margin: "1px",
+    padding: "80px",
+    transition: "1s",
+    overflow: "hidden",
+    position: "relative",
+    borderRadius: "30%",
+    boxShadow: count === 100 ? "0px 0px 10px 3px rgb(105, 157, 105)" : "0px 0px 10px 1px white",
+  };
+
   return (
     <>
       <div className="loadingAnimationWrapper">
-        <div className="tileWrapper">
+       
+        <ProgressBar />
+        <div className="tileWrapper" style={tileWrapperStyle}>
           <div className="backgroundLight L1"></div>
           <div className="backgroundLight L2"></div>
           <div className="backgroundLight L3"></div>
@@ -26,9 +76,13 @@ function LoadingSquares() {
             <div className="eighth tiles secondColumn"></div>
             <div className="nineth tiles thirdColumn"></div>
           </div>
+          <PercentageCalculator onCountUpdate={handleCountUpdate} />
+          <div className="percentageNumber">{count}%</div>
         </div>
       </div>
-      <WordCounter />
+      {/* <Link to="/home" className="backButton">
+          HOME
+        </Link> */}
     </>
   );
 }

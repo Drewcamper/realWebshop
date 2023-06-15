@@ -4,7 +4,7 @@ body {
   margin: 0;
 }
 
-.tileWrapper {
+.productsTileWrapper {
   display: flex;
   flex-wrap: wrap;
   width: 80%;

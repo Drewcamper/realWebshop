@@ -132,10 +132,10 @@ function ProductsPage() {
 
   return (
     <>
-      <h1 className="title">
+      <h1 className="productsTitle">
         <Link to="/">webshop</Link>
       </h1>
-      <div className="tileWrapper">{productTemplates}</div>
+      <div className="productsTileWrapper">{productTemplates}</div>
       <button onClick={handleClearCart}>empty cart</button>
     </>
   );

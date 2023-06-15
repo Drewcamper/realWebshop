@@ -3,7 +3,7 @@
 }
 
 .header {
-  /* position: fixed; */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -21,7 +21,7 @@
   /* background-color: violet; */
 }
 
-.title {
+.productsTitle {
   cursor: pointer;
   color: #000;
   font-size: 2rem;
