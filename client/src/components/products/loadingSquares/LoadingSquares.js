@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../../../style/products/loadingSquares.css";
+import "../../../style/products/loadingSquares/loadingSquares.css";
 import { Link } from "react-router-dom";
 
 const ProgressBar = () => {
@@ -53,7 +53,6 @@ function LoadingSquares() {
   return (
     <>
       <div className="loadingAnimationWrapper">
-       
         <ProgressBar />
         <div className="tileWrapper" style={tileWrapperStyle}>
           <div className="backgroundLight L1"></div>
@@ -80,9 +79,9 @@ function LoadingSquares() {
           <div className="percentageNumber">{count}%</div>
         </div>
       </div>
-      {/* <Link to="/home" className="backButton">
-          HOME
-        </Link> */}
+      <Link to="/" className="backButton">
+        HOME
+      </Link>
     </>
   );
 }

@@ -91,7 +91,7 @@ select {
 
 #messages {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New";
-  display: none; /* hide initially, then show once the first message arrives */
+  display: none;
   background-color: #0a253c;
   color: #00d924;
   padding: 20px;

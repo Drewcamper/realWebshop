@@ -1,0 +1,87 @@
+.loadingCirclesWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+}
+
+.rings {
+  border-radius: 50%;
+  position: absolute;
+}
+
+.outer {
+  width: 400px;
+  height: 400px;
+  border-style: solid;
+  border-color: orange transparent transparent transparent;
+  border-width: 10px;
+  animation: circleRotating 11s linear infinite;
+}
+
+.semiOuter {
+  width: 300px;
+  height: 300px;
+  border-style: solid;
+  border-color: orange transparent transparent transparent;
+  border-width: 10px;
+  animation: circleRotating 9s linear infinite;
+}
+
+.middle {
+  width: 240px;
+  height: 240px;
+  background-color: transparent;
+  border: 10px solid;
+  border-color: brown transparent transparent transparent;
+  animation: circleRotating 4s linear infinite;
+}
+
+.semiInner {
+  width: 150px;
+  height: 150px;
+  border: 10px solid;
+  border-color: brown transparent transparent transparent;
+  animation: circleRotating 9s linear infinite;
+}
+
+.inner {
+  width: 100px;
+  height: 100px;
+  background-color: rgb(39, 162, 206);
+  border: 10px solid;
+  border-color: brown transparent transparent transparent;
+  animation: circleRotating 3s linear infinite;
+}
+
+/* .circle {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background-color: red;
+  border-radius: 100px 100px 0 0;
+  transform-origin: 50% 100%;
+  animation: circleRotating 4s linear infinite;
+} */
+
+@keyframes circleRotating {
+  0% {
+    transform: rotateZ(0deg);
+  }
+
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
+@keyframes rotate-quarter {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(90deg);
+  }
+}

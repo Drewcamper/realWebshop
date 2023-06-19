@@ -24,13 +24,13 @@ function Home() {
             </button>
           </div>
         </div>
-        <div>
-          <ProductsPage priceSum={priceSum} />
-        </div> 
+        <ProductsPage priceSum={priceSum} />
         <Footer />
-        {/* <Link to="/loadingAnimation">
-          animation
-        </Link> */}
+        <Link to="/loadingSquare">loading square</Link>
+        <Link to="/loadingFigure">loading figure</Link>
+        <Link to="/loadingCircles">loading circles</Link>
+
+
       </div>
     </WebshopProvider>
   );

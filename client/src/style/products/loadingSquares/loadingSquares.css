@@ -125,8 +125,7 @@
     transition: 1s;
     overflow: hidden;
     position: fixed;
-    /* background-color: white; */
-    border-radius: 50%; /* Change border-radius to 50% to create a circle */
+    border-radius: 50%; 
   }
 
 :root {
@@ -156,10 +155,8 @@ body {
   width: 100%;
   height: 100%;
   margin: -1px 0px 0px -1px;
-  /* color: #fff; */
   border-radius: 30%;
   border-style: solid;
-  /* background-color: lightblue; */
   --charge: hsl(var(--h, 0), 80%, 50%);
   -o-border-image: conic-gradient(var(--charge) var(--a), transparent calc(var(--a) + 0.5deg)) 30;
   border-image: conic-gradient(var(--charge) var(--a), transparent calc(var(--a) + .5deg)) 30;
@@ -241,7 +238,7 @@ body {
   }
 }
 
-/* @keyframes center {
+@keyframes center {
   0% {
     margin: 5px;
   }
@@ -287,4 +284,4 @@ body {
     width: 90%;
     height: 90%;
   }
-} */
+}
