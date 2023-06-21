@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../../../style/products/loadingCircles/loadingCircles.css";
 
 function LoadingCircles() {
@@ -11,7 +12,7 @@ function LoadingCircles() {
         <div className="rings semiInner"></div>
         <div className="rings inner"></div>
 
-        <div className="container">
+        <div className="sphere">
           <span></span>
           <span></span>
           <span></span>
@@ -114,6 +115,9 @@ function LoadingCircles() {
           <span></span>
         </div>
       </div>
+      <Link to="/" className="backButton">
+        HOME
+      </Link>
     </div>
   );
 }
