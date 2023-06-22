@@ -27,7 +27,7 @@ function Home() {
         <ProductsPage priceSum={priceSum} />
         <Footer />
         <Link to="/loadingSquare">loading square</Link>
-        <Link to="/loadingFigure">loading figure</Link>
+        <Link to="/formsAnimation">forms animation</Link>
         <Link to="/loadingCircles">loading circles</Link>
 
 

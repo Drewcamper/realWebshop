@@ -1,7 +1,7 @@
 import "./App.css";
 import Home from "./components/Home";
 import LoadingSquares from "./components/products/loadingSquares/LoadingSquares";
-import LoadingFigure from "./components/products/loadingFigure/LoadingFigure";
+import Forms from "./components/products/formsAnimation/Forms";
 import LoadingCircles from "./components/products/loadingCircles/LoadingCircles";
 import Cart from "./components/header/Cart";
 import Payment from "./components/payment/Payment";
@@ -17,7 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/loadingSquare" element={<LoadingSquares />} />
-          <Route path="/loadingFigure" element={<LoadingFigure />} />
+          <Route path="/formsAnimation" element={<Forms />} />
           <Route path="/loadingCircles" element={<LoadingCircles />} />
 
           <Route path="/cart" element={<Cart />} />
