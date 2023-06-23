@@ -1,28 +1,10 @@
 import React from "react";
 import "../../../style/products/formsAnimation/formsAnimation.css";
+import { Link } from "react-router-dom";
 
 const CubeOne = () => {
   return (
-    <div className="cubeWrapper cubeWrapper-1">
-      <div className="cube">
-        <div className="cube-face front">
-          <div className="cube-content">
-            <button className="cube-text">Menu</button>
-          </div>
-        </div>
-        <div className="cube-face back"></div>
-        <div className="cube-face right"></div>
-        <div className="cube-face left"></div>
-        <div className="cube-face top"></div>
-        <div className="cube-face bottom"></div>
-        <div className="cube-face bottom secondBottom"></div>
-      </div>
-    </div>
-  );
-};
-const CubeTwo = () => {
-  return (
-    <div className="cubeWrapper cubeWrapper-2">
+    <div className="cubeWrapper">
       <div className="cube">
         <div className="cube-face front">
           <div className="cube-content">
@@ -39,9 +21,28 @@ const CubeTwo = () => {
     </div>
   );
 };
+const CubeTwo = () => {
+  return (
+    <div className="cubeWrapper">
+      <div className="cube">
+        <div className="cube-face front">
+          <div className="cube-content">
+            <button className="cube-text">Products</button>
+          </div>
+        </div>
+        <div className="cube-face back"></div>
+        <div className="cube-face right"></div>
+        <div className="cube-face left"></div>
+        <div className="cube-face top"></div>
+        <div className="cube-face bottom"></div>
+        <div className="cube-face bottom secondBottom"></div>
+      </div>
+    </div>
+  );
+};
 const CubeThree = () => {
   return (
-    <div className="cubeWrapper cubeWrapper-3">
+    <div className="cubeWrapper">
       <div className="cube">
         <div className="cube-face front">
           <div className="cube-content">
@@ -64,6 +65,9 @@ const Forms = () => {
       <CubeOne />
       <CubeTwo />
       <CubeThree />
+      <Link to="/" className="backButton">
+        HOME
+      </Link>
     </div>
   );
 };
