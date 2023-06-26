@@ -31,7 +31,7 @@ const PercentageCalculator = ({ onCountUpdate }) => {
   return null;
 };
 
-function LoadingSquares() {
+function LoadingSphere() {
   const [count, setCount] = useState(0);
 
   const handleCountUpdate = (newCount) => {
@@ -86,4 +86,4 @@ function LoadingSquares() {
   );
 }
 
-export default LoadingSquares;
+export default LoadingSphere;

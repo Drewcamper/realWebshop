@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 // import { useNavigate } from "react-router";
 import { WebshopProvider, WebshopContext } from "../context/context";
 import ProductsPage from "./products/productsPage";
-import LoadingSquares from "./products/loadingSquares/LoadingSquares";
 import Auth from "./header/Auth";
 import { Link } from "react-router-dom";
 
@@ -26,10 +25,10 @@ function Home() {
         </div>
         <ProductsPage priceSum={priceSum} />
         <Footer />
+        <Link to="/loadingSphere">loading sphere</Link>
         <Link to="/loadingSquare">loading square</Link>
         <Link to="/formsAnimation">forms animation</Link>
-        <Link to="/loadingCircles">loading circles</Link>
-
+        <Link to="/connectionAnimation">connection animation</Link>
 
       </div>
     </WebshopProvider>

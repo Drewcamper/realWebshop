@@ -1,7 +1,15 @@
+:root {
+  --bg: #1e6d6f;
+}
+
 body {
   justify-content: left;
   padding: 0;
   margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  display: grid;
+  place-items: center;
 }
 
 .productsTileWrapper {
