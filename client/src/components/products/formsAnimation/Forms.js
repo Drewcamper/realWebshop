@@ -65,7 +65,7 @@ const Forms = () => {
       <CubeOne />
       <CubeTwo />
       <CubeThree />
-      <Link to="/" className="backButton">
+      <Link to="/" className="backToHome">
         HOME
       </Link>
     </div>

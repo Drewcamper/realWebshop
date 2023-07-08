@@ -105,7 +105,7 @@
 .cube:hover .cube-face {
   position: absolute;
   opacity: 1;
-  animation: buildCubes 2s ease-in-out forwards; /* Use forwards to retain the final animation state */
+  animation: buildCubes .8s ease-in-out forwards; /* Use forwards to retain the final animation state */
   border: 1px solid rgba(255, 255, 255, 0.477);
   visibility: visible;
 

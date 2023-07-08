@@ -115,7 +115,7 @@ function LoadingCircles() {
           <span></span>
         </div>
       </div>
-      <Link to="/" className="backButton">
+      <Link to="/" className="backToHomeSphere">
         HOME
       </Link>
     </div>

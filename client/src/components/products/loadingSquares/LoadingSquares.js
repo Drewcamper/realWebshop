@@ -79,7 +79,7 @@ function LoadingSphere() {
           <div className="percentageNumber">{count}%</div>
         </div>
       </div>
-      <Link to="/" className="backButton">
+      <Link to="/" className="backToHome">
         HOME
       </Link>
     </>

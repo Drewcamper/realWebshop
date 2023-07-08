@@ -81,8 +81,9 @@ const ConnectionAnimation = () => {
       </div>
       {/* <div className="loadingText">{loadingText}</div> */}
       <PercentageCalculator onCountUpdate={handleCountUpdate} />
+
       {/* <div className="percentageNumber">{count}%</div> */}
-      <Link to="/" className="backButton">
+      <Link to="/" className="backToHome">
         HOME
       </Link>
     </>

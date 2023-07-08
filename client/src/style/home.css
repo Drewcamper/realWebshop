@@ -1,39 +1,16 @@
-:root{
-  --homeBg: rgb(0,0,0)
+:root {
+  /* --homeBg: rgb(27, 122, 177); */
+  /* --homeBg: rgba(242, 194, 72, 0.1); */
+  --homeBg: black;
+
 }
-body{
-  background-color: var(--homeBg);
-}
+
 .home {
   width: 100vw;
+  background-color: var(--homeBg);
 }
-
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  color: #fff;
-  height: 80px;
-}
-
-.headerFlexbox {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-}
-
 .productsTitle {
   cursor: pointer;
   color: #000;
   font-size: 2rem;
-}
-.cartButton {
-  background-color: #635bff;
-  color: white;
-  text-decoration: none;
-  padding: 0;
-  margin: 0;
 }

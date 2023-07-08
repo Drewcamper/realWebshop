@@ -101,22 +101,18 @@ import React, { useContext, useEffect, useState } from "react";
 import { WebshopContext } from "../../context/context.js";
 
 import { auth, provider, db } from "../../firebase-config.js";
-import { signInWithPopup, signOut } from "firebase/auth";
+import { signInWithPopup, signInWithRedirect, signOut } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
-import Cookies from "universal-cookie";
 
 function Auth() {
-  const { setUsername, setEmail, setIsAuth } = useContext(WebshopContext);
+  const { setUsername, setEmail, setIsAuth, email, username } = useContext(WebshopContext);
 
-  const cookies = new Cookies();
   const [initialRender, setInitialRender] = useState(true);
-  const [buttonText, setButtonText] = useState("Log In");
+  const [buttonText, setButtonText] = useState("");
 
   const signUserOut = async () => {
     await signOut(auth);
-    cookies.remove("auth-token");
-    cookies.remove("username");
-    cookies.remove("email");
+
     localStorage.removeItem("username");
     localStorage.removeItem("email");
     setIsAuth(false);
@@ -127,16 +123,13 @@ function Auth() {
 
   const signInWithGoogle = async () => {
     try {
+      // await signInWithRedirect(auth, provider);
       await signInWithPopup(auth, provider);
-
-      cookies.set("auth-token", auth.currentUser.refreshToken);
 
       setEmail(auth.currentUser.email);
       setUsername(auth.currentUser.displayName);
       setIsAuth(true);
       setButtonText("Log Out");
-      cookies.set("username", auth.currentUser.displayName);
-      cookies.set("email", auth.currentUser.email);
       localStorage.setItem("username", auth.currentUser.displayName);
       localStorage.setItem("email", auth.currentUser.email);
     } catch (err) {
@@ -168,25 +161,30 @@ function Auth() {
 
   useEffect(() => {
     if (auth.currentUser) {
-      updateUserDocument(auth.currentUser.uid, auth.currentUser.email, auth.currentUser.displayName);
+      updateUserDocument(
+        auth.currentUser.uid,
+        auth.currentUser.email,
+        auth.currentUser.displayName
+      );
+      setButtonText("log out");
+    } else {
+      setButtonText("log in");
     }
   }, [auth.currentUser]);
 
   useEffect(() => {
     // Retrieve the buttonText from local storage
     const storedButtonText = localStorage.getItem("buttonText");
-  
     // If the buttonText exists in local storage, set it as the initial state
     if (storedButtonText) {
       setButtonText(storedButtonText);
     }
   }, []);
-  
+
   useEffect(() => {
     // Update the buttonText state in local storage whenever it changes
     localStorage.setItem("buttonText", buttonText);
   }, [buttonText]);
-  
 
   return (
     <div className="auth">

@@ -1,3 +1,60 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,400;1,6..12,200&display=swap");
+
 body {
   justify-content: center;
+}
+h4{
+  color: rgb(13, 50, 89);
+  top: 30vh;
+  left: 55vw;
+  width: 30vw;
+  text-align: center;
+  position: relative;
+  font-family: "Nunito Sans", sans-serif;
+  text-align: justify;
+  letter-spacing: .8px;
+}
+h5{
+  color: rgb(13, 50, 89);
+  top: 30vh;
+  left: 55vw;
+  width: 30vw;
+  text-align: center;
+  position: relative;
+  font-family: "Nunito Sans", sans-serif;
+  text-align: justify;
+  letter-spacing: 1.2px;
+}
+.paymentWrapper {
+  background-color: white;
+  width: 100vw;
+  height: 100vh;
+  top: 0px;
+  left: 0px;
+  position: fixed;
+}
+.paymentForm {
+  background-color: white;
+  position: fixed;
+  top: 25vh;
+  left: 15vw;
+  width: 25vw;
+}
+.backToHome {
+  background-color: transparent;
+  position: fixed;
+  top: 23px;
+  left: 20px;
+  text-decoration: none;
+  padding: 8px 14px 8px 11px;
+  border: 1px solid transparent;
+  border-radius: 1px 15px 15px 1px;
+  color: black;
+}
+.backToHome:hover {
+  border-color: black;
+  transition: 0.15s ease-in-out;
+}
+button {
+  color: black;
 }

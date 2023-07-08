@@ -1,3 +1,18 @@
+.backToHomeSphere {
+  background-color: transparent;
+  position: fixed;
+  top: 23px;
+  left: 20px;
+  text-decoration: none;
+  padding: 8px 14px 8px 11px;
+  border: 1px solid transparent;
+  border-radius: 1px 15px 15px 1px;
+  color: white;
+}
+.backToHomeSphere:hover{
+  border-color: white;
+  transition: 0.15s ease-in-out;
+}
 .loadingCirclesWrapper {
   display: flex;
   justify-content: center;
@@ -73,12 +88,11 @@
 .sphere {
   height: 1em;
   width: 1em;
-  font-size: .25em;
+  font-size: 0.25em;
   border-radius: 100%;
   position: relative;
   transform-style: preserve-3d;
   animation: spinning 55s linear infinite;
-
 }
 .sphere span {
   font-size: 2em;

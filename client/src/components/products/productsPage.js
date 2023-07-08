@@ -2,21 +2,14 @@ import React, { useState, useEffect, useContext } from "react";
 import "../../style/products/products.css";
 import { WebshopContext } from "../../context/context";
 import { db } from "../../firebase-config";
-import {
-  collection,
-  query,
-  where,
-  onSnapshot,
-  orderBy,
-} from "firebase/firestore";
-import Cookies from "universal-cookie";
+import { collection, query, where, onSnapshot, orderBy } from "firebase/firestore";
 import _ from "lodash";
+import sphereProduct from "../../assets/products/sphere.png";
 import { Link } from "react-router-dom";
 
 function ProductsPage() {
   const { cart, setCart, setPriceSum } = useContext(WebshopContext);
   const [products, setProducts] = useState([]);
-  const cookies = new Cookies();
 
   useEffect(() => {
     const q = query(
@@ -38,12 +31,11 @@ function ProductsPage() {
   }, []); //get the shippable products
 
   useEffect(() => {
-    const savedCart =
-      cookies.get("cart") || JSON.parse(localStorage.getItem("cart")) || []; //setCart is async --> [] ensures the state is correctly updated even if there is a delay.
+    const savedCart = JSON.parse(localStorage.getItem("cart")) || []; //setCart is async --> [] ensures the state is correctly updated even if there is a delay.
     if (savedCart !== []) {
       setCart(savedCart);
     }
-  }, []); //if there are products in the cart, loads from cookies or local storage
+  }, []); //if there are products in the cart, loads from local storage
 
   useEffect(() => {
     console.log(cart);
@@ -52,13 +44,11 @@ function ProductsPage() {
     setPriceSum(sum);
     if (cart !== 0) {
       localStorage.setItem("cart", JSON.stringify(cart));
-      cookies.set("cart", cart);
     }
   }, [cart]); //updates the cart when there is change
 
   const handleClearCart = () => {
     localStorage.setItem("cart", []);
-    cookies.set("cart", []);
     setCart([]);
   }; //clears the cart
 
@@ -94,10 +84,7 @@ function ProductsPage() {
 
       <div className="quantitySetter">
         {/* Pass `product` and `1` to `addToCart`. */}
-        <button
-          className="inputButtonMinus"
-          onClick={() => removeFromCart(product, 1)}
-        >
+        <button className="inputButtonMinus" onClick={() => removeFromCart(product, 1)}>
           -
         </button>
         <input
@@ -110,9 +97,7 @@ function ProductsPage() {
           onChange={(e) =>
             setCart((prevCart) => {
               const newCart = [...prevCart];
-              const itemIndex = newCart.findIndex(
-                (item) => item.id === product.id
-              );
+              const itemIndex = newCart.findIndex((item) => item.id === product.id);
               if (itemIndex !== -1) {
                 newCart[itemIndex].quantity = parseInt(e.target.value);
               }
@@ -120,10 +105,7 @@ function ProductsPage() {
             })
           }
         />
-        <button
-          className="inputButtonPlus"
-          onClick={() => addToCart(product, 1)}
-        >
+        <button className="inputButtonPlus" onClick={() => addToCart(product, 1)}>
           +
         </button>
       </div>
@@ -132,10 +114,26 @@ function ProductsPage() {
 
   return (
     <>
-      <h1 className="productsTitle">
-        <Link to="/">webshop</Link>
-      </h1>
-      <div className="productsTileWrapper">{productTemplates}</div>
+      {/* <Link to="/">webshop</Link> */}
+      <div className="secondCurve"></div>
+
+      <div className="productsFlexBox">
+        products
+        <Link to="/loadingSphere">
+          <img src={sphereProduct} alt="loading sphere"></img>
+        </Link>
+        <Link to="/formsAnimation">
+          <img src={sphereProduct} alt="square menu"></img>
+        </Link>
+        <Link to="/connectionAnimation">
+          <img src={sphereProduct} alt="connection animation"></img>
+        </Link>
+        <Link to="/loadingSquare">
+          <img src={sphereProduct} alt="loading squares"></img>
+        </Link>
+      </div>
+
+      {/* <div className="productsTileWrapper">{productTem§plates}</div> */}
       <button onClick={handleClearCart}>empty cart</button>
     </>
   );

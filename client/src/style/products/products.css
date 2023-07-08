@@ -1,5 +1,7 @@
 :root {
   --bg: #1e6d6f;
+
+  --bg: white;
 }
 
 body {
@@ -11,13 +13,56 @@ body {
   display: grid;
   place-items: center;
 }
+img {
+  width: 300px;
+}
 
+
+.secondCurve {
+  position: absolute;
+  height: 250px;
+  width: 100%;
+  bottom: 0px;
+  text-align: center;
+  
+}
+.secondCurve::before {
+  content: "";
+  display: block;
+  position: absolute;
+  border-radius: 100%;
+  width: 70%;
+  height: 100%;
+  transform: translate(-31.5%, 57%);
+  background-color: black;
+}
+
+.secondCurve::after {
+  content: "";
+  display: block;
+  position: absolute;
+  border-radius: 100%;
+  width: 55%;
+  height: 100%;
+  background-color: #3c31dd;
+  transform: translate(-4%, 40%);
+  z-index: -1;
+}
+
+
+.productsFlexBox{
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  padding-top: 20vh;
+
+
+}
 .productsTileWrapper {
   display: flex;
   flex-wrap: wrap;
   width: 80%;
   margin: 100px 0% 0px 10%;
-  padding: 0;
 }
 .product-template {
   height: 100%;
