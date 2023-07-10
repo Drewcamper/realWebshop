@@ -1,15 +1,17 @@
 .welcomeWrapper {
   height: 100vh;
-  padding-top: 10vh;
+  padding-top: 20vh;
   position: relative;
   overflow: hidden;
 }
+
 .curve {
   position: absolute;
-  height: 350px;
-  width: 100%;
+  height: 700px;
+  width: 120%;
   bottom: 0;
   text-align: center;
+
 }
 
 .curve::before {
@@ -19,8 +21,9 @@
   border-radius: 100%;
   width: 80%;
   height: 100%;
-  transform: translate(49.3%, 71.5%);
+  transform: translate(-33%, 71%);
   background-color: white;
+
 }
 
 .curve::after {
@@ -30,15 +33,12 @@
   border-radius: 100%;
   width: 55%;
   height: 100%;
-  background-color: #3c31dd;
   transform: translate(-4%, 40%);
   z-index: -1;
 }
 
-
-
 .welcome {
-  padding: 15% 15% 0% 15%;
+  padding: 5% 15% 0% 15%;
   text-align: justify;
   font-size: 200%;
   color: rgba(252, 191, 38, 0.8);

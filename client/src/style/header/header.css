@@ -6,6 +6,7 @@
   width: 100%;
   color: #fff;
   height: 80px;
+  z-index: 1;
 }
 
 .headerFlexbox {

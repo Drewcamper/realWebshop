@@ -1,7 +1,6 @@
 .cubeWrapper {
   position: relative;
   display: inline-block;
-  
 }
 
 .cubeWrapper:nth-child(1) {
@@ -23,7 +22,6 @@
   transform-style: preserve-3d;
   transform: perspective(800px);
   animation: float infinite alternate ease-in-out;
-  animation-delay: 3s;
 }
 
 @keyframes float {
@@ -57,8 +55,6 @@
   border: 1px solid white;
   background-color: rgba(0, 0, 0, 1);
   visibility: visible;
-
-
 }
 
 .cube-text {
@@ -67,9 +63,8 @@
   font-size: 24px;
   text-align: center;
   visibility: visible;
-
 }
-.cube:hover .cube-content{
+.cube:hover .cube-content {
   left: 8%;
   background-color: rgba(0, 0, 0, 0.7);
 }
@@ -105,14 +100,12 @@
 .cube:hover .cube-face {
   position: absolute;
   opacity: 1;
-  animation: buildCubes .8s ease-in-out forwards; /* Use forwards to retain the final animation state */
+  animation: buildCubes 0.8s ease-in-out forwards; /* Use forwards to retain the final animation state */
   border: 1px solid rgba(255, 255, 255, 0.477);
   visibility: visible;
-
 }
 .cube:hover {
   animation-duration: 3s;
-  
 }
 .cube .cube-face {
   transition: transform 2s ease-in-out;

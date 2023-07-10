@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 function Cart() {
   const { cart, setCart } = useContext(WebshopContext);
- 
 
   useEffect(() => {
     const savedCart = localStorage.getItem("cart") || []; //setCart is async --> [] ensures the state is correctly updated even if there is a delay.
@@ -15,27 +14,26 @@ function Cart() {
     }
   }, []);
 
-  return (
-    <div>
-      {cart.length ? (
-        cart.map((item) => (
-          <div key={item.id} className="product-template">
-            <h3>{item.name}</h3>
+  const ChoosenProducts = () => {
+    return (
+      <ul>
+        {Object.values(cart).map((item, index) => (
+          <li key={index}>
+            {/* Display the image */}
+            <img src={item.image} alt={item.name} />
+
+            {/* Display the item details */}
+            <p>Name: {item.name}</p>
             <p>Price: ${item.price}</p>
             <p>Quantity: {item.quantity}</p>
-          </div>
-        ))
-      ) : (
-        <div>The cart is empty.</div>
-      )}
-      cart
-      <button
-        onClick={() => {
-          console.log(cart);
-        }}
-      >
-        check cart
-      </button>
+          </li>
+        ))}
+      </ul>
+    );
+  };
+  return (
+    <div>
+      <ChoosenProducts />
       <button>
         <Link to="/" className="cartButton">
           back to products

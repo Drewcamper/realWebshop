@@ -10,7 +10,7 @@ function Welcome() {
         into your web projects. Elevate your websites with seamless motion and mesmerizing effects,
         creating extraordinary user experiences.
       </div>
-      <div className="curve"></div>
+      {/* <div className="curve"></div> */}
     </div>
   );
 }
