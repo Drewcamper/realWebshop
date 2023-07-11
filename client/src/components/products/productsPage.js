@@ -5,7 +5,6 @@ import { db, storage } from "../../firebase-config";
 import { collection, query, where, onSnapshot, orderBy } from "firebase/firestore";
 import { ref, getDownloadURL, listAll } from "firebase/storage";
 import _ from "lodash";
-import sphereProduct from "../../assets/products/sphere.png";
 import { Link } from "react-router-dom";
 
 function ProductsPage() {
@@ -13,9 +12,7 @@ function ProductsPage() {
   const [products, setProducts] = useState([]);
   const [imageUrls, setImageUrls] = useState([]);
   const imagesListRef = ref(storage, "productImages/");
-  const isProductInCart = (product) => {
-    return cart.some((item) => item.id === product.id);
-  };
+
   useEffect(() => {
     const fetchImageUrls = async () => {
       const response = await listAll(imagesListRef);
@@ -25,6 +22,7 @@ function ProductsPage() {
 
     fetchImageUrls();
   }, []);
+
   useEffect(() => {
     const q = query(
       collection(db, "products"),
@@ -43,7 +41,6 @@ function ProductsPage() {
       unsubscribe();
     };
   }, []); //get the shippable products
-
   useEffect(() => {
     const savedCart = JSON.parse(localStorage.getItem("cart")) || []; //setCart is async --> [] ensures the state is correctly updated even if there is a delay.
     if (savedCart !== []) {
@@ -61,19 +58,9 @@ function ProductsPage() {
     }
   }, [cart]); //updates the cart when there is change
 
-  // useEffect(() => {
-  //   console.log(cart);
-  //   const sum = cart.reduce((acc, item) => {
-  //     const itemPrice = typeof item.price === "number" ? item.price : 0;
-  //     const itemQuantity = typeof item.quantity === "number" ? item.quantity : 0;
-  //     return acc + itemPrice * itemQuantity;
-  //   }, 0);
-  //   console.log("Cart sum:", sum);
-  //   setPriceSum(sum);
-  //   if (cart.length !== 0) {
-  //     localStorage.setItem("cart", JSON.stringify(cart));
-  //   }
-  // }, [cart]);
+  const isProductInCart = (product) => {
+    return cart.some((item) => item.id === product.id);
+  };
 
   const handleClearCart = () => {
     localStorage.setItem("cart", []);
@@ -103,21 +90,37 @@ function ProductsPage() {
     }
   };
 
+  const handleCartToggle = (product) => {
+    if (isProductInCart(product)) {
+      removeFromCart(product, 1);
+    } else {
+      addToCart(product, 1);
+    }
+  };
+
   const productTemplates = products.map((product, index) => {
     const imageUrl = imageUrls[index]; // Access image URL based on the index
-
     return (
       <div key={product.id} className="product-template">
-        <h3>{product.name}</h3>
-        <Link to="/formsAnimation" className="reactRouterLinks">
-          {imageUrl && <img src={imageUrl} alt="loading sphere" />}
+        <Link to={product.link} className="reactRouterLinks">
+          <div className="productName">{product.name}</div>
+
+          {imageUrl && <img src={imageUrl} alt={product.name} />}
         </Link>
-        <div>{product.description}</div>
-        <p>Price: ${product.price}</p>
-        <button onClick={() => addToCart(product, 1)} disabled={isProductInCart(product)}>
-          {isProductInCart(product) ? "Added to cart" : "Add to cart"}
-        </button>
-        <button onClick={() => removeFromCart(product, 1)}>remove from cart</button>
+        <div className="productDescriptionAndPriceAndButton">
+          <div className="productDescription">{product.description}</div>
+
+          <div>
+            <div className="productPrice">Price: ${product.price}</div>
+            <button
+              className={`cartHandleButton ${
+                isProductInCart(product) ? "removeFromCart" : "addToCart"
+              }`}
+              onClick={() => handleCartToggle(product)}>
+              {isProductInCart(product) ? "Remove from cart" : "Add to cart"}
+            </button>
+          </div>
+        </div>
       </div>
     );
   });
@@ -127,79 +130,10 @@ function ProductsPage() {
       {/* <Link to="/">webshop</Link> */}
       {/* <div className="secondCurve"></div> */}
 
-      <div className="productsFlexBox">
-        {/* <LoadingSphereMain />
-        <CubeMenu />
-        <ConnectionAnimation />
-        <SquareAnimation /> */}
-      </div>
-
       <div className="productsTileWrapper">{productTemplates}</div>
       <button onClick={handleClearCart}>empty cart</button>
     </>
   );
 }
-
-const LoadingSphereMain = () => {
-  return (
-    <div className="productTiles">
-      <Link to="/loadingSphere" className="reactRouterLinks">
-        <img src={sphereProduct} alt="loading sphere"></img>
-      </Link>
-      <div className="productDescription">
-        The Earth Sphere animation is a representation of our planet, its atmosphere, and the
-        satellites orbiting around it. Immerse your users in a visually stunning experience as they
-        witness the beauty and grandeur of Earth.
-      </div>
-    </div>
-  );
-};
-const CubeMenu = () => {
-  return (
-    <div className="productTiles">
-      <Link to="/formsAnimation" className="reactRouterLinks">
-        <img src={sphereProduct} alt="square menu"></img>
-      </Link>
-      <div className="productDescription">
-        Introducing our dynamic Cube Menu animation, a sleek and interactive way to navigate your
-        website. Engage your visitors with a modern and playful user experience, making navigation a
-        visually captivating journey.
-      </div>
-    </div>
-  );
-};
-const ConnectionAnimation = () => {
-  return (
-    <div className="productTiles">
-      <Link to="/connectionAnimation" className="reactRouterLinks">
-        <img src={sphereProduct} alt="connection animation"></img>
-      </Link>
-      <div className="productDescription">
-        An efficient Data Retrieval animation, designed to add a touch of sophistication to your
-        loading screens. This simple yet elegant animation symbolizes the process of retrieving and
-        connecting data, keeping your users engaged while they await content. Enhance the user
-        experience on your web projects with this seamless loading animation.
-      </div>
-    </div>
-  );
-};
-const SquareAnimation = () => {
-  return (
-    <div className="productTiles">
-      <Link to="/loadingSquare" className="reactRouterLinks">
-        <img src={sphereProduct} alt="loading squares"></img>
-      </Link>{" "}
-      <div className="cartWrapper">
-        <div className="productDescription">
-          Progress Square animation, a delightful way to showcase the progress of your tasks or
-          loading processes smoothly transitions from 0% to 100% to indicate progress. Whether it's
-          for loading content or indicating task completion, this charming animation adds a touch of
-          visual appeal to your web projects.
-        </div>
-        <button className="addToCartButton">add to cart</button>
-      </div>{" "}
-    </div>
-  );
-};
 
 export default ProductsPage;

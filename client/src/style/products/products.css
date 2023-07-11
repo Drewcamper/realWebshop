@@ -10,11 +10,10 @@ body {
   margin: 0;
   min-height: 100vh;
   background: var(--bg);
-  display: grid;
   place-items: center;
 }
 img {
-  width: 300px;
+  width: 100%;
 }
 
 .secondCurve {
@@ -47,74 +46,55 @@ img {
   transform: translate(-4%, 40%);
   z-index: -1;
 }
-
-.productsFlexBox {
-  display: flex;
-  flex-direction: column;
-  background: var(--bg);
-  padding-top: 20vh;
-}
 .productsTileWrapper {
-  display: flex;
-  flex-wrap: wrap;
   width: 80%;
-  margin: 100px 0% 0px 10%;
+  margin: 10% 0% 0px 10%;
 }
 .product-template {
-  height: 100%;
-  width: calc(33.33%);
-  background-color: aqua;
   padding: 0;
-  margin: 0;
+  margin-bottom: 100px;
 }
-.quantitySetter {
-  background-color: bisque;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  min-width: 40px;
-  max-height: 70px;
-  height: 4vh;
-}
-input {
-  width: 20%;
-  height: 100%;
-  padding: 0;
-  margin: 0;
+
+.productName {
+  height: 20%;
   text-align: center;
+  color: rgb(215, 215, 215);
+  font-size: 2em;
+  margin-bottom: 25px;
 }
-.inputButtonMinus {
-  width: 15%;
-  height: 100%;
-  padding: 0;
-  margin: 0 0 0 25%;
-}
-.inputButtonPlus {
-  width: 15%;
-  height: 100%;
-  padding: 0;
-  margin: 0 20% 0 0%;
-}
-.productTiles {
+.productDescriptionAndPriceAndButton {
+  width: auto;
   display: flex;
-  height: 100vh;
-  padding-top: 10vh;
 }
 .productDescription {
-  width: 50%;
+  width: 100%;
   text-align: justify;
   margin-right: 10%;
+  margin-top: 25px;
+  color: rgb(215, 215, 215);
 }
 .reactRouterLinks {
-  margin-left: 10%;
+  margin-left: 0%;
+  text-decoration: none;
 }
-.cartWrapper{
-display: flex;
-flex-direction: column;
-align-items: center;
+.productPrice {
+  color: rgb(91, 175, 161);
+  margin-top: 25px;
 }
-.addToCartButton{
-  background-color: red;
-  width: 10vw;
+.cartHandleButton {
+  width: 20vw;
   margin-top: 5vh;
+}
+.removeFromCart {
+  background-color: #1e516f;
+  color: rgb(170, 170, 170);
+}
+.addToCart {
+  background-color: #4eaae0;
+  border: 1px solid transparent;
+color: white;
+}
+.addToCart:hover{
+  background-color: rgba(78, 170, 224, 0.846);
+  border: 1px solid white;
 }

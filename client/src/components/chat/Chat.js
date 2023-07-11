@@ -87,7 +87,7 @@ function Chat() {
       return;
     }
     if (!auth.currentUser) {
-      alert("Please log in to chat with us");
+      alert("Please log in to chat with us to ensure private messaging.");
     } else {
       try {
         if (!isOnline) {

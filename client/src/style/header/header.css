@@ -1,6 +1,11 @@
 
 .header {
   position: fixed;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
   top: 0;
   left: 0;
   width: 100%;
@@ -9,16 +14,12 @@
   z-index: 1;
 }
 
-.headerFlexbox {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-}
 .cartButton {
   color: rgb(79, 35, 145);
   text-decoration: none;
   padding: 0;
   margin: 0;
+}
+.cartSum{
+  color: grey;
 }
