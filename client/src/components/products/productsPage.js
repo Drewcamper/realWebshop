@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import "../../style/products/products.css";
 import { WebshopContext } from "../../context/context";
 import { db, storage } from "../../firebase-config";
@@ -8,10 +8,12 @@ import _ from "lodash";
 import { Link } from "react-router-dom";
 
 function ProductsPage() {
-  const { cart, setCart, setPriceSum } = useContext(WebshopContext);
-  const [products, setProducts] = useState([]);
+  const { cart, setCart, setPriceSum, products, setProducts } =
+    useContext(WebshopContext);
   const [imageUrls, setImageUrls] = useState([]);
   const imagesListRef = ref(storage, "productImages/");
+
+
 
   useEffect(() => {
     const fetchImageUrls = async () => {
@@ -21,7 +23,7 @@ function ProductsPage() {
     };
 
     fetchImageUrls();
-  }, []);
+  }, []); //load images
 
   useEffect(() => {
     const q = query(
@@ -101,16 +103,14 @@ function ProductsPage() {
   const productTemplates = products.map((product, index) => {
     const imageUrl = imageUrls[index]; // Access image URL based on the index
     return (
-      <div key={product.id} className="product-template">
+      <div key={product.id} className="product-template" id={product.id}>
         <Link to={product.link} className="reactRouterLinks">
           <div className="productName">{product.name}</div>
-
           {imageUrl && <img src={imageUrl} alt={product.name} />}
         </Link>
         <div className="productDescriptionAndPriceAndButton">
           <div className="productDescription">{product.description}</div>
-
-          <div>
+          <div className="productPriceAndButton">
             <div className="productPrice">Price: ${product.price}</div>
             <button
               className={`cartHandleButton ${
@@ -119,6 +119,7 @@ function ProductsPage() {
               onClick={() => handleCartToggle(product)}>
               {isProductInCart(product) ? "Remove from cart" : "Add to cart"}
             </button>
+            <div>{product.id}</div>
           </div>
         </div>
       </div>

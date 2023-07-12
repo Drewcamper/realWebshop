@@ -1,0 +1,15 @@
+.menuWrapper {
+    width: 10vw;
+  }
+.closedMenu {
+  width: 60px;
+  /* background-color: green; */
+  height: 90vh;
+}
+.productName{
+    font-size: 1.2em;
+}
+.menuButton{
+    width: 10px;
+    background-color: red;
+}

@@ -47,12 +47,12 @@ img {
   z-index: -1;
 }
 .productsTileWrapper {
-  width: 80%;
-  margin: 10% 0% 0px 10%;
+  width: 70%;
+  margin: 10% 0% 0px 15%;
 }
 .product-template {
   padding: 0;
-  margin-bottom: 100px;
+  margin-bottom: 30vh;
 }
 
 .productName {
@@ -64,7 +64,6 @@ img {
 }
 .productDescriptionAndPriceAndButton {
   width: auto;
-  display: flex;
 }
 .productDescription {
   width: 100%;
@@ -72,6 +71,13 @@ img {
   margin-right: 10%;
   margin-top: 25px;
   color: rgb(215, 215, 215);
+  font-size: 80%;
+}
+.productPriceAndButton {
+  width: 70%;
+  margin-top: 50px;
+  margin-left: 15%;
+  display: flex;
 }
 .reactRouterLinks {
   margin-left: 0%;
@@ -79,11 +85,14 @@ img {
 }
 .productPrice {
   color: rgb(91, 175, 161);
-  margin-top: 25px;
+  text-align: right;
+  margin: auto;
+  /* background-color: red; */
+
 }
 .cartHandleButton {
-  width: 20vw;
-  margin-top: 5vh;
+  width: 30vw;
+  /* margin-top: auto; */
 }
 .removeFromCart {
   background-color: #1e516f;
@@ -92,9 +101,9 @@ img {
 .addToCart {
   background-color: #4eaae0;
   border: 1px solid transparent;
-color: white;
+  color: white;
 }
-.addToCart:hover{
+.addToCart:hover {
   background-color: rgba(78, 170, 224, 0.846);
   border: 1px solid white;
 }

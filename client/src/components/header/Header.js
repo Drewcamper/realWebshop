@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import Auth from "./Auth";
+import Menu from "./Menu";
 import "../../style/header/header.css";
 import { WebshopContext } from "../../context/context";
 function Header() {
@@ -8,7 +8,7 @@ function Header() {
 
   return (
     <div className="header">
-      <Auth />
+      <Menu />
       <button>
         <Link to="/cart" className="cartButton">
           cart

@@ -9,6 +9,7 @@ export const WebshopProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [priceSum, setPriceSum] = useState(0);
   const [uid, setUid] = useState();
+  const [products, setProducts] = useState([]);
 
   const [chatWindowVisible, setChatWindowVisible] = useState(false);
 
@@ -29,6 +30,9 @@ export const WebshopProvider = ({ children }) => {
         setUid,
         chatWindowVisible,
         setChatWindowVisible,
+        products,
+        setProducts,
+   
       }}>
       {children}
     </WebshopContext.Provider>

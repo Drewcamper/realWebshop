@@ -1,0 +1,13 @@
+.auth {
+  width: 100%;
+}
+.authButton {
+  /* background-color: grey; */
+  padding: 10%;
+  text-align: center;
+  width: 90%;
+  border: 1px solid transparent;
+}
+.authButton:hover {
+  border-color: white;
+}
