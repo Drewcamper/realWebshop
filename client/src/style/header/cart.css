@@ -1,0 +1,68 @@
+.cartWrapper {
+  position: fixed;
+  right: 0px;
+  top: 0vh;
+  bottom: 0px;
+  height: auto;
+}
+
+.closedCart {
+  color: rgba(255, 255, 255, 0.6);
+  position: fixed;
+  bottom: calc(85vh - 30px);
+  right: -37.5px;
+  transform: rotateZ(270deg);
+
+}
+.rotatedCart {
+  position: relative;
+  letter-spacing: 30px;
+  text-align: center;
+  transform: rotateZ(180deg);
+}
+.cartSum {
+  color: grey;
+  font-size: .5em;
+}
+.openedCart {
+  background-color: rgb(91, 91, 91);
+  width: 20vw;
+  height: 80vh;
+  top: 0px;
+}
+.emptyCartText{
+  width: 80%;
+  margin-left: 10%;
+  padding-top: 30%;
+  text-align: center;
+}
+
+.chooseProducts{
+  
+  top:0px;
+  background-color: red;
+}
+ul{
+  margin: 0px;
+}
+@media screen and (max-width: 800px) {
+  .closedCart {
+    bottom: 92vh;
+    width: calc(50% - 1px);
+    right: 0px;
+    transform: rotateZ(0deg);
+    background-color: rgba(0, 0, 0, 0.2);
+    padding-top: 20px;
+    padding-bottom: 20px ;
+    backdrop-filter: blur(8px);
+    border-left: 1px solid rgba(255, 255, 255, 0.466);
+  }
+  .rotatedCart {
+    transform: rotateZ(0deg);
+    height: 100%;
+  }
+  .openedCart {
+    width: 100vw;
+    height: 100vh;
+  }
+}

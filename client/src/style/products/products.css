@@ -87,12 +87,9 @@ img {
   color: rgb(91, 175, 161);
   text-align: right;
   margin: auto;
-  /* background-color: red; */
-
 }
 .cartHandleButton {
   width: 30vw;
-  /* margin-top: auto; */
 }
 .removeFromCart {
   background-color: #1e516f;

@@ -1,10 +1,11 @@
-import React, { useContext, useEffect } from "react";
-import "../../style/products/products.css";
+import React, { useContext, useState, useEffect } from "react";
+import "../../style/header/cart.css";
 import { WebshopContext } from "../../context/context";
 import { Link } from "react-router-dom";
 
 function Cart() {
-  const { cart, setCart } = useContext(WebshopContext);
+  const { cart, setCart, priceSum } = useContext(WebshopContext);
+  const [openCart, setOpenCart] = useState(false);
 
   useEffect(() => {
     const savedCart = localStorage.getItem("cart") || []; //setCart is async --> [] ensures the state is correctly updated even if there is a delay.
@@ -13,37 +14,50 @@ function Cart() {
       setCart(updatedCart);
     }
   }, []);
-
   const ChoosenProducts = () => {
     return (
-      <ul>
-        {Object.values(cart).map((item, index) => (
-          <li key={index}>
-            {/* Display the image */}
-            <img src={item.image} alt={item.name} />
-
-            {/* Display the item details */}
-            <p>Name: {item.name}</p>
-            <p>Price: ${item.price}</p>
-            <p>Quantity: {item.quantity}</p>
-          </li>
-        ))}
-      </ul>
+      <div className="openedCart">
+        {priceSum === 0 ? (
+          <div className="emptyCartText">The cart is empty. You haven't choosed any product.</div>
+        ) : (
+          <div className="choosenProducts">
+            <ul>
+              {Object.values(cart).map((item, index) => (
+                <li key={index}>
+                  <p>Name: {item.name}</p>
+                  <p>Price: ${item.price}</p>
+                </li>
+              ))}
+            </ul>
+            {priceSum}
+            <Link to="/payment">purchase</Link>
+          </div>
+        )}
+      </div>
     );
   };
+  const handleCartToggleByHover = () => {
+    setOpenCart((prevOpenCart) => !prevOpenCart);
+  };
+  const handleCartToggleByClick = () => {
+    openCart ? setOpenCart(false) : setOpenCart(true);
+  };
   return (
-    <div>
-      <ChoosenProducts />
-      <button>
-        <Link to="/" className="cartButton">
-          back to products
-        </Link>
-      </button>
-      <button>
-        <Link to="/payment" className="cartButton">
-          purchase
-        </Link>
-      </button>
+    <div
+      className="cartWrapper"
+      onMouseEnter={handleCartToggleByHover}
+      onMouseLeave={handleCartToggleByHover}
+      onClick={handleCartToggleByClick}>
+      {!openCart ? (
+        <div className="closedCart">
+          {/* {priceSum !== 0 && <div className="cartSum">{priceSum} $</div>} */}
+          <div className="rotatedCart">cart</div>
+        </div>
+      ) : (
+        <>
+          <ChoosenProducts />
+        </>
+      )}
     </div>
   );
 }

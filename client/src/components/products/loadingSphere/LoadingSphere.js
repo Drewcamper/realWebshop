@@ -1,8 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, } from "react-router-dom";
 import "../../../style/products/loadingCircles/loadingCircles.css";
 
 function LoadingCircles() {
+  const navigate = useNavigate();
   return (
     <div>
       <Link to="/">
