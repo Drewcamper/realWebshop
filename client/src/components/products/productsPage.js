@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "../../style/products/products.css";
 import { WebshopContext } from "../../context/context";
 import { db, storage } from "../../firebase-config";
@@ -8,12 +8,9 @@ import _ from "lodash";
 import { Link } from "react-router-dom";
 
 function ProductsPage() {
-  const { cart, setCart, setPriceSum, products, setProducts } =
-    useContext(WebshopContext);
+  const { cart, setCart, setPriceSum, products, setProducts } = useContext(WebshopContext);
   const [imageUrls, setImageUrls] = useState([]);
   const imagesListRef = ref(storage, "productImages/");
-
-
 
   useEffect(() => {
     const fetchImageUrls = async () => {
@@ -51,9 +48,7 @@ function ProductsPage() {
   }, []); //if there are products in the cart, loads from local storage
 
   useEffect(() => {
-    console.log(cart);
     const sum = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
-    console.log("Cart sum:", sum);
     setPriceSum(sum);
     if (cart !== 0) {
       localStorage.setItem("cart", JSON.stringify(cart));
@@ -100,6 +95,35 @@ function ProductsPage() {
     }
   };
 
+  const useScrollToTop = () => {
+    useEffect(() => {
+      // Scroll to the top of the page when the component is mounted
+      window.scrollTo(0, 0);
+
+      // Scroll to the saved position when navigating back to the page
+      const scrollY = localStorage.getItem("scrollY");
+      const scrollX = localStorage.getItem("scrollX");
+
+      if (scrollY && scrollX) {
+        window.scrollTo(scrollX, scrollY);
+        localStorage.removeItem("scrollY");
+        localStorage.removeItem("scrollX");
+      }
+
+      // Save the scroll position when navigating away from the page
+      const handleScroll = () => {
+        localStorage.setItem("scrollY", window.scrollY);
+        localStorage.setItem("scrollX", window.scrollX);
+      };
+
+      window.addEventListener("scroll", handleScroll);
+
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+      };
+    }, []);
+  };
+  useScrollToTop();
   const productTemplates = products.map((product, index) => {
     const imageUrl = imageUrls[index]; // Access image URL based on the index
     return (
@@ -108,6 +132,7 @@ function ProductsPage() {
           <div className="productName">{product.name}</div>
           {imageUrl && <img src={imageUrl} alt={product.name} />}
         </Link>
+
         <div className="productDescriptionAndPriceAndButton">
           <div className="productDescription">{product.description}</div>
           <div className="productPriceAndButton">
@@ -119,7 +144,6 @@ function ProductsPage() {
               onClick={() => handleCartToggle(product)}>
               {isProductInCart(product) ? "Remove from cart" : "Add to cart"}
             </button>
-            <div>{product.id}</div>
           </div>
         </div>
       </div>
@@ -130,7 +154,6 @@ function ProductsPage() {
     <>
       {/* <Link to="/">webshop</Link> */}
       {/* <div className="secondCurve"></div> */}
-
       <div className="productsTileWrapper">{productTemplates}</div>
       <button onClick={handleClearCart}>empty cart</button>
     </>

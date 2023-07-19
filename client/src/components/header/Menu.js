@@ -1,29 +1,77 @@
-import React, { useState, useContext, useRef } from "react";
+import React, { useContext, useEffect } from "react";
 import { WebshopContext } from "../../context/context";
 import "../../style/header/menu.css";
 import Auth from "./Auth";
 
 function Menu() {
-  const [openMenu, setOpenMenu] = useState(false);
-  const { products } = useContext(WebshopContext);
+  const { products, openMenu, setOpenMenu, openCart, setOpenCart } = useContext(WebshopContext);
 
-  const productNamesTemplates = products.map((product) => {
-    const handleScrollTo = () => {
-      document.getElementById(product.id).scrollIntoView({ behavior: "smooth" });
-    };
-    return (
-      <div className="menuProductName" key={product.id} id={products.id} onClick={handleScrollTo}>
-        {product.name}
-      </div>
-    );
-  });
+  const handleScrollTo = (id) => {
+    document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+  };
+
+  const productNames = products.map((product) => (
+    <div
+      className="menuProductName"
+      key={product.id}
+      id={product.id}
+      onClick={() => handleScrollTo(product.id)}>
+      {product.name}
+    </div>
+  ));
 
   const handleMenuToggleByHover = () => {
     setOpenMenu((prevOpenMenu) => !prevOpenMenu);
   };
+
   const handleMenuToggleByClick = () => {
-    openMenu ? setOpenMenu(false) : setOpenMenu(true);
+    setOpenMenu((prevOpenMenu) => !prevOpenMenu);
+    if (openCart && openMenu) {
+      setOpenCart(false);
+      setOpenMenu(false);
+    }
   };
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape" && openMenu) {
+        setOpenMenu(false);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
+  const ClosedMenu = () => (
+    <div className="closedMenu">
+      <div className="rotatedMenu">menu</div>
+    </div>
+  );
+
+  const OpenedMenu = () => (
+    <div className="openedMenu">
+      {productNames}
+      <Auth />
+    </div>
+  );
+
+  const MenuToggle = () =>
+    window.screen.width < 800 ? (
+      !openCart && !openMenu ? (
+        <ClosedMenu />
+      ) : !openCart && openMenu ? (
+        <OpenedMenu />
+      ) : openCart ? (
+        <></>
+      ) : null
+    ) : openMenu ? (
+      <OpenedMenu />
+    ) : (
+      <ClosedMenu />
+    );
 
   return (
     <div
@@ -31,16 +79,7 @@ function Menu() {
       onMouseEnter={handleMenuToggleByHover}
       onMouseLeave={handleMenuToggleByHover}
       onClick={handleMenuToggleByClick}>
-      {!openMenu ? (
-        <div className="closedMenu">
-          <div className="rotatedMenu">menu</div>
-        </div>
-      ) : (
-        <div className="openedMenu">
-          {productNamesTemplates}
-          <Auth />
-        </div>
-      )}
+      <MenuToggle />
     </div>
   );
 }

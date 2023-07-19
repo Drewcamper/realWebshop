@@ -1,9 +1,8 @@
 import React from "react";
-import { Link, useNavigate, } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../../../style/products/loadingCircles/loadingCircles.css";
 
 function LoadingCircles() {
-  const navigate = useNavigate();
   return (
     <div>
       <Link to="/">
@@ -117,8 +116,9 @@ function LoadingCircles() {
             <span></span>
           </div>
         </div>
-        {/* <Link to="/" className="backToHomeSphere">
-        HOME */}
+      </Link>
+      <Link to="/" className="backToHome">
+        HOME
       </Link>
     </div>
   );

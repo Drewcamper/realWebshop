@@ -2,22 +2,27 @@
   --bubbleBg: #3cabe3;
   --finishedBg: rgb(0, 0, 0);
 }
-body{
+body {
   background-color: black;
+}
+.prevPage{
+cursor: pointer;
 }
 .loadingScreen {
   display: flex;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
 }
 .loadingText {
   color: rgb(215, 215, 215);
   text-transform: capitalize;
-  min-width: 10vw;
-  width: 15vw;
+  text-align: center;
 }
 .loadingPercentage {
   color: rgb(215, 215, 215);
-  width: 5vw;
   text-align: center;
+  padding-left: 10px;
 }
 .bubbleContainer {
   position: relative;
@@ -106,5 +111,16 @@ body{
   }
   100% {
     transform: translateX(0px);
+  }
+}
+@media screen and (max-width: 800px) {
+  .loadingScreen {
+    flex-direction: column;
+  }
+  .loadingText {
+    font-size: 80%;
+  }
+  .loadingPercentage {
+    font-size: 80%;
   }
 }

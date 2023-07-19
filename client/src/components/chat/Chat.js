@@ -8,22 +8,35 @@ import "../../style/chat/chatSphere.css";
 
 const Sphere = () => {
   const { setChatWindowVisible } = useContext(WebshopContext);
+  const [buttonText, setButtonText] = useState("Hey");
+
   const openChat = useCallback(() => {
     setChatWindowVisible(true);
   }, [setChatWindowVisible]);
 
+  const handleMouseEnter = () => {
+    setButtonText("How can I help you?");
+  };
+
+  const handleMouseLeave = () => {
+    setButtonText("Hey");
+  };
+
   return (
     <div className="miniChatWrapper">
-      <div className="hoverText">How can I help you?</div>
-      <button className="loadingWrapper" onClick={openChat}>
-        {/* <div className="container"></div> */}
+      <button
+        className="loadingWrapper"
+        onClick={openChat}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}>
+        {buttonText}
       </button>
     </div>
   );
 };
 
 function Chat() {
-  const { username, email, setChatWindowVisible } = useContext(WebshopContext);
+  const { username, email, chatWindowVisible, setChatWindowVisible } = useContext(WebshopContext);
 
   const [newMessage, setNewMessage] = useState("");
   const [user, setUser] = useState(null);
@@ -45,6 +58,19 @@ function Chat() {
   const recipient = "Customer Service";
   const textareaRef = useRef(null);
 
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape" && chatWindowVisible) {
+        exitChat();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
   // Fetch user information from Firebase authentication
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((currentUser) => {
@@ -54,7 +80,6 @@ function Chat() {
         setUser(null);
       }
     });
-
     return () => unsubscribe();
   }, []);
 
@@ -174,9 +199,9 @@ function Chat() {
     <div className="chatWrapper">
       <header>
         <div className="headerText">Customer Service</div>
-        <button className="xButton" onClick={exitChat}>
+        <div className="xButton" onClick={exitChat}>
           x
-        </button>
+        </div>
       </header>
       <div className="messagesWrapper" ref={messagesContainerRef}>
         {loading ? (
@@ -207,16 +232,15 @@ function Chat() {
           onKeyDown={handleEnterKeyPress}
           placeholder="Type here.."
         />
-        <button type="submit" onClick={sendMessage} className="sendButton" disabled={!isOnline}>
+        <div type="submit" onClick={sendMessage} className="sendButton" disabled={!isOnline}>
           Send
-        </button>
+        </div>
       </div>
     </div>
   );
 }
 const CustomerSupport = () => {
   const { chatWindowVisible } = useContext(WebshopContext);
-
   return <div className="customerSupportWrapper">{chatWindowVisible ? <Chat /> : <Sphere />}</div>;
 };
 

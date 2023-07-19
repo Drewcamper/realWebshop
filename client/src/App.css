@@ -1,11 +1,11 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway&display=swap");
 
-  :root {
-    --light-grey: #f6f9fc;
-    --dark-terminal-color: #0a2540;
-    --accent-color: #eeeeee;
-    --radius: 3px;
-  }
+:root {
+  --light-grey: #f6f9fc;
+  --dark-terminal-color: #0a2540;
+  --accent-color: #eeeeee;
+  --radius: 3px;
+}
 
 body {
   padding: 20px;
@@ -88,7 +88,7 @@ select {
 }
 
 #messages {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New";
+  /* font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New"; */
   display: none;
   background-color: #0a253c;
   color: #00d924;

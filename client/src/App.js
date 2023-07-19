@@ -21,7 +21,6 @@ function App() {
           <Route path="/formsAnimation" element={<Forms />} />
           <Route path="/loadingsphere" element={<LoadingSphere />} />
           <Route path="/connectionAnimation" element={<ConnectionAnimation />} />
-
           <Route path="/cart" element={<Cart />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/completion" element={<Completion />} />

@@ -1,23 +1,22 @@
 .chatWrapper {
   position: fixed;
-  height: 80vh;
-  width: 30vw;
-  bottom: 0;
+  height: 40vh;
+  width: 25vw;
+  bottom: 0px;
   right: 0;
   min-width: 300px;
-  border: 3px solid rgb(80, 20, 136);
-  border-radius: 10px;
+  border-bottom: 0px;
+  border-radius: 10px 10px 0px 0px;
   background-color: white;
+  z-index: 1;
 }
 header {
-  background-color: rgb(80, 20, 136);
+  background-color: #007bff;
   display: flex;
-  height: 5vh;
+  height: 2.5vh;
   min-height: 30px;
   align-items: center;
-  border-bottom: 3px solid rgb(80, 20, 136);
-  /* border-radius: 10px; */
-
+  border-radius: 10px 10px 0px 0px;
 }
 .headerText {
   width: 100%;
@@ -28,23 +27,27 @@ button {
   margin: 0;
 }
 .xButton {
-  padding: 5px 8px 5px 8px;
-  margin-right: 5px;
-  background-color: white;
-  border-radius: 5px;
-  border: 1px solid rgba(255, 255, 255, 0.39);
-  color: rgb(80, 20, 136);
+  margin: auto 10px auto auto;
+  /* margin-right: 20px; */
+  margin-top: 3px;
+  /* background-color: grey; */
+  /* border-radius: 10px; */
+  height: 2.5vh;
+  /* width: 2.5vh; */
+  min-height: 30px;
+  text-align: center;
+  /* border: 1px solid rgba(255, 255, 255, 0.39); */
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
 }
 .xButton:hover {
   /* background-color: rgb(234, 125, 234); */
-  background-color: rgba(255, 255, 255, .5);
-  color: white;
 }
 .messagesWrapper {
   padding: 1vh 1vw 3vh 1vw;
   background-color: white;
   overflow-y: auto;
-  height: 60vh;
+  height: 30vh;
   font-family: "Nunito Sans", sans-serif;
 }
 
@@ -69,47 +72,61 @@ button {
   color: red;
 }
 .inputWrapper {
-  min-width: 300px;
-  width: 30%;
-  /* width: 45%; */
-  /* height: 40px; */
-  bottom: 10px;
+  /* min-width: 300px;
+  width: 21vw;
+  bottom: 0px;
   position: fixed;
   margin-top: auto;
+  display: flex; */
   display: flex;
-  flex-direction: row;
+  position: fixed;
+  align-items: center;
+  justify-content: space-between;
+  bottom: 0px;
+  min-width: 300px;
+  width: 25vw;
+  /* background-color: grey; */
 }
 
 .inputBox {
-  width: 100%;
+  width: 80%;
   padding: 5px 8px 5px 8px;
-  height: calc(5vh - 2px);
-  /* min-height: 40px; */
-  max-height: 150px;
-  margin: 0px 5px 0px 5px;
+  height: 100%;
+  max-height: calc(5vh - 4px);
   resize: none;
-  border: 1px solid rgb(80, 20, 136);
+  border: 1px solid white;
   border-radius: 5px;
-  background-color: rgba(80, 20, 136, 0.169);
-  /* font-size: 80%; */
-  overflow-y: auto;
-  overflow-x: unset;
+  background-color: rgba(0, 123, 255, .133);
   font-family: "Nunito Sans", sans-serif;
   justify-content: left;
 }
 .inputBox:focus {
-  /* border: 3px solid rgb(80, 20, 136); */
-  box-shadow: 0 0 5px rgb(80, 20, 136);
-  outline: 1px solid rgb(80, 20, 136);
+  border: 1px solid rgb(166, 166, 166);
+  outline: 0px solid transparent;
 }
 .sendButton {
-  background-color: white;
+  /* background-color: white;
   color: rgb(80, 20, 136);
   border: 1px solid rgb(80, 20, 136);
   margin-right: 5px;
+  min-width: 40px;
+  width: 4vw;
+  padding: 0px;
+  float: right; */
+  width: 20%;
+  height: 100%;
+  padding: 10px 10px;
+  text-align: center;
+  margin: 1px;
+  background-color: #007bff;
+  border-radius: 5px;
+  color: #fff; /* Adjust the text color as needed */
+  border: 1px solid #007bff;
+
+  cursor: pointer;
 }
 .sendButton:hover {
-  background-color: rgb(80, 20, 136);
+  background-color: #007bfee7;
   color: white;
 }
 

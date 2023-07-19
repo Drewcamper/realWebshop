@@ -2,8 +2,7 @@
   width: 5vw;
   height: 90vh;
   position: fixed;
-  z-index: 1;
-  /* padding-top: 2vh; */
+  z-index: 2;
 }
 .closedMenu {
   color: rgba(255, 255, 255, 0.6);
@@ -15,12 +14,13 @@
 .rotatedMenu {
   position: relative;
   letter-spacing: 30px;
-  text-align: center;
+  text-align: right;
 }
 .openedMenu {
   background-color: rgb(91, 91, 91);
   width: 20vw;
   height: 100vh;
+
 }
 .menuProductName {
   font-size: 120%;
@@ -37,7 +37,6 @@
 }
 
 .menuButton {
-  /* width: 10px; */
   background-color: red;
 }
 @media screen and (max-width: 800px) {
@@ -52,7 +51,7 @@
     padding-bottom: 20px ;
     backdrop-filter: blur(8px);
     border-right: 1px solid rgba(255, 255, 255, 0.466);
-
+    
   }
   .openedMenu {
     width: 100vw;

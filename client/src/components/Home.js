@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { WebshopProvider, WebshopContext } from "../context/context";
 import ProductsPage from "./products/productsPage";
 
@@ -8,16 +8,19 @@ import Cart from "./header/Cart";
 import Welcome from "./main/Welcome";
 import CustomerSupport from "./chat/Chat";
 function Home() {
-  const { priceSum } = useContext(WebshopContext);
+  const { priceSum, openMenu, openCart } = useContext(WebshopContext);
+  // useEffect(() => {
+  //   console.log({ menu: openMenu, cart: openCart });
+  // }, [openMenu, openCart]);
 
   return (
     <WebshopProvider>
       <div className="home">
         <Menu />
+        <Cart />
         <Welcome />
         <ProductsPage priceSum={priceSum} />
         <CustomerSupport />
-        <Cart />
       </div>
     </WebshopProvider>
   );

@@ -1,6 +1,6 @@
 import React from "react";
 import "../../../style/products/formsAnimation/formsAnimation.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const CubeOne = () => {
   return (
@@ -8,7 +8,7 @@ const CubeOne = () => {
       <div className="cube">
         <div className="cube-face front">
           <div className="cube-content">
-            <button className="cube-text">About</button>
+            <button className="cube-text">PLAY</button>
           </div>
         </div>
         <div className="cube-face back"></div>
@@ -27,7 +27,7 @@ const CubeTwo = () => {
       <div className="cube">
         <div className="cube-face front">
           <div className="cube-content">
-            <button className="cube-text">Products</button>
+            <button className="cube-text">LEVELS</button>
           </div>
         </div>
         <div className="cube-face back"></div>
@@ -46,7 +46,7 @@ const CubeThree = () => {
       <div className="cube">
         <div className="cube-face front">
           <div className="cube-content">
-            <button className="cube-text">Contacts</button>
+            <button className="cube-text">SETTINGS</button>
           </div>
         </div>
         <div className="cube-face back"></div>
@@ -60,11 +60,15 @@ const CubeThree = () => {
   );
 };
 const Forms = () => {
+  const navigate = useNavigate();
   return (
-    <div>
-      <CubeOne />
-      <CubeTwo />
-      <CubeThree />
+    <div onClick={() => navigate(-1)} className="prevPage">
+      <div className="threeCubes">
+        <CubeOne />
+        <CubeTwo />
+        <CubeThree />
+      </div>
+
       <Link to="/" className="backToHome">
         HOME
       </Link>

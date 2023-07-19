@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../../../style/products/connectionAnimation/connectionAnimation.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const ConnectionAnimation = () => {
   const [count, setCount] = useState(0);
@@ -8,6 +8,7 @@ const ConnectionAnimation = () => {
   const [waitingTime, setWaitingTime] = useState(7);
   const [loadingText, setLoadingText] = useState("authentication");
   const timeRandomizer = 75;
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (count === 100 && loadingRepetitions < 5) {
@@ -72,6 +73,7 @@ const ConnectionAnimation = () => {
 
   return (
     <>
+    <div onClick={() => navigate(-1)} className="prevPage">
       <div className={bubbleContainerClassName}>
         <div className={stationeryClassName}></div>
         <div className={wobbleClassName}></div>
@@ -79,10 +81,7 @@ const ConnectionAnimation = () => {
         <div className={oneClassName}></div>
         <div className={twoClassName}></div>
       </div>
-      {/* <div className="loadingText">{loadingText}</div> */}
-      <PercentageCalculator onCountUpdate={handleCountUpdate} />
-
-      {/* <div className="percentageNumber">{count}%</div> */}
+      <PercentageCalculator onCountUpdate={handleCountUpdate} /></div>
       <Link to="/" className="backToHome">
         HOME
       </Link>
