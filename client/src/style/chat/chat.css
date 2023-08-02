@@ -11,7 +11,8 @@
   z-index: 1;
 }
 header {
-  background-color: #007bff;
+  /* background-color: #007bff; */
+  background-color: rgb(68, 129, 195);
   display: flex;
   height: 2.5vh;
   min-height: 30px;
@@ -96,7 +97,7 @@ button {
   resize: none;
   border: 1px solid white;
   border-radius: 5px;
-  background-color: rgba(0, 123, 255, .133);
+  background-color: rgba(0, 123, 255, 0.133);
   font-family: "Nunito Sans", sans-serif;
   justify-content: left;
 }
@@ -118,16 +119,20 @@ button {
   padding: 10px 10px;
   text-align: center;
   margin: 1px;
-  background-color: #007bff;
+  /* background-color: rgb(68, 102, 195); */
+  /* background-color: rgb(53, 103, 158); */
   border-radius: 5px;
-  color: #fff; /* Adjust the text color as needed */
-  border: 1px solid #007bff;
+  /* color: rgb(255, 255, 255);  */
+  background-color: white;
+  color: black;
+  border: 1px solid rgb(68, 129, 195);
 
   cursor: pointer;
 }
 .sendButton:hover {
-  background-color: #007bfee7;
-  color: white;
+  background-color: rgb(53, 102, 154);
+  background-color: rgb(68, 129, 195);
+ color: white
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;1,200&display=swap");

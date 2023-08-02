@@ -9,8 +9,14 @@
   cursor: pointer;
   padding-top: 2vh;
   padding-bottom: 2vh;
+  
 }
 .authButton:hover {
   border-right: 1px solid white;
   border-left: 1px solid white;
+}
+@media screen and (max-width: 800px) {
+  .auth {
+    width: 100vw;
+  }
 }

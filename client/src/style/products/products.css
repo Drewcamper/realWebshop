@@ -15,37 +15,6 @@ body {
 img {
   width: 100%;
 }
-
-.secondCurve {
-  position: absolute;
-  height: 350px;
-  width: 100%;
-  bottom: -10vh;
-  text-align: center;
-  z-index: 1;
-}
-.secondCurve::before {
-  content: "";
-  display: block;
-  position: absolute;
-  border-radius: 100%;
-  width: 70%;
-  height: 100%;
-  transform: translate(75.5%, 40.1%);
-  background-color: red;
-}
-
-.secondCurve::after {
-  content: "";
-  display: block;
-  position: absolute;
-  border-radius: 100%;
-  width: 55%;
-  height: 100%;
-  background-color: #3c31dd;
-  transform: translate(-4%, 40%);
-  z-index: -1;
-}
 .productsTileWrapper {
   width: 70%;
   margin: 10% 0% 0px 15%;
@@ -62,6 +31,54 @@ img {
   font-size: 2em;
   margin-bottom: 25px;
 }
+.toTop {
+  position: fixed;
+  left: 30px;
+  bottom: 30px;
+  background-color: transparent;
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 10px;
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+  cursor: pointer;
+  z-index: 1;
+  transition: ease-in-out;
+  transition-duration: 0.2s;
+}
+.toTop:hover {
+  background-color: white;
+  bottom: 40px;
+  left: 37.5px;
+  padding: 15px;
+}
+
+.secondToTop {
+  position: fixed;
+  left: 30px;
+  bottom: 35px;
+  border: solid black;
+  border-width: 0px 3px 3px 0px;
+  display: inline-block;
+  padding: 10px;
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+  cursor: pointer;
+  
+  background-color: rgba(255, 255, 255, 0.6);
+  z-index: 0;
+  transition: ease-in-out;
+  transition-duration: 0.2s;
+}
+
+.toTop:hover ~ .secondToTop {
+  background-color: white;
+  bottom: 45px;
+  left: 37.5px;
+  padding: 15px;
+}
+
 .productDescriptionAndPriceAndButton {
   width: auto;
 }
@@ -78,18 +95,21 @@ img {
   margin-top: 50px;
   margin-left: 15%;
   display: flex;
+  /* background-color: red; */
 }
 .reactRouterLinks {
   margin-left: 0%;
   text-decoration: none;
 }
 .productPrice {
-  color: rgb(91, 175, 161);
-  text-align: right;
+  /* color: rgb(91, 175, 161); */
+  color: rgb(170, 170, 170);
+  text-align: center;
   margin: auto;
+width: 50%;
 }
 .cartHandleButton {
-  width: 30vw;
+  width: 50%;
 }
 .removeFromCart {
   background-color: #1e516f;

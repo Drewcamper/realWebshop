@@ -2,8 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { WebshopContext } from "../../context/context";
 import "../../style/header/menu.css";
 import Auth from "./Auth";
-
-function Menu() {
+const Menu = () => {
   const { products, openMenu, setOpenMenu, openCart, setOpenCart } = useContext(WebshopContext);
 
   const handleScrollTo = (id) => {
@@ -23,22 +22,16 @@ function Menu() {
   const handleMenuToggleByHover = () => {
     setOpenMenu((prevOpenMenu) => !prevOpenMenu);
   };
-
   const handleMenuToggleByClick = () => {
     setOpenMenu((prevOpenMenu) => !prevOpenMenu);
-    if (openCart && openMenu) {
-      setOpenCart(false);
-      setOpenMenu(false);
-    }
+    setOpenCart(false);
   };
-
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === "Escape" && openMenu) {
         setOpenMenu(false);
       }
     };
-
     document.addEventListener("keydown", handleKeyDown);
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
@@ -47,7 +40,7 @@ function Menu() {
 
   const ClosedMenu = () => (
     <div className="closedMenu">
-      <div className="rotatedMenu">menu</div>
+      <span className="rotatedMenu">menu</span> {/* SEO friendly */}
     </div>
   );
 
@@ -58,20 +51,18 @@ function Menu() {
     </div>
   );
 
-  const MenuToggle = () =>
-    window.screen.width < 800 ? (
-      !openCart && !openMenu ? (
+  const MenuToggle = () => {
+    const isMobile = window.matchMedia("(max-width: 800px)").matches;
+    if (isMobile) {
+      return !openCart && !openMenu ? (
         <ClosedMenu />
       ) : !openCart && openMenu ? (
         <OpenedMenu />
-      ) : openCart ? (
-        <></>
-      ) : null
-    ) : openMenu ? (
-      <OpenedMenu />
-    ) : (
-      <ClosedMenu />
-    );
+      ) : null;
+    } else {
+      return openMenu ? <OpenedMenu /> : <ClosedMenu />;
+    }
+  };
 
   return (
     <div
@@ -82,6 +73,6 @@ function Menu() {
       <MenuToggle />
     </div>
   );
-}
+};
 
 export default Menu;

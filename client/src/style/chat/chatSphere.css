@@ -1,3 +1,7 @@
+:root {
+  --lightColor: rgba(133, 147, 152, 0.5);
+  --darkColor: rgba(40, 48, 72, 0.5);
+}
 .miniChatWrapper {
   position: fixed;
   display: flex;
@@ -19,6 +23,7 @@
   background-color: transparent;
   overflow: hidden;
   transition: 0.3s ease-in-out;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .miniChatWrapper:hover {
@@ -27,9 +32,15 @@
 .miniChatWrapper:hover .loadingWrapper {
   border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 30%;
+  color: rgba(255, 255, 255, 0.8);
   height: 8em;
   width: 8em;
   background-image: linear-gradient(
+ 
+
+
+
+  
     rgba(40, 48, 72, 0.5),
     rgba(133, 147, 152, 0.5),
     rgba(40, 48, 72, 0.5),

@@ -59,11 +59,6 @@ function ProductsPage() {
     return cart.some((item) => item.id === product.id);
   };
 
-  const handleClearCart = () => {
-    localStorage.setItem("cart", []);
-    setCart([]);
-  }; //clears the cart
-
   const addToCart = (product, quantity) => {
     const itemIndex = cart.findIndex((item) => item.id === product.id);
     if (itemIndex === -1 && quantity > 0) {
@@ -95,35 +90,12 @@ function ProductsPage() {
     }
   };
 
-  const useScrollToTop = () => {
-    useEffect(() => {
-      // Scroll to the top of the page when the component is mounted
-      window.scrollTo(0, 0);
-
-      // Scroll to the saved position when navigating back to the page
-      const scrollY = localStorage.getItem("scrollY");
-      const scrollX = localStorage.getItem("scrollX");
-
-      if (scrollY && scrollX) {
-        window.scrollTo(scrollX, scrollY);
-        localStorage.removeItem("scrollY");
-        localStorage.removeItem("scrollX");
-      }
-
-      // Save the scroll position when navigating away from the page
-      const handleScroll = () => {
-        localStorage.setItem("scrollY", window.scrollY);
-        localStorage.setItem("scrollX", window.scrollX);
-      };
-
-      window.addEventListener("scroll", handleScroll);
-
-      return () => {
-        window.removeEventListener("scroll", handleScroll);
-      };
-    }, []);
-  };
-  useScrollToTop();
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
   const productTemplates = products.map((product, index) => {
     const imageUrl = imageUrls[index]; // Access image URL based on the index
     return (
@@ -152,10 +124,12 @@ function ProductsPage() {
 
   return (
     <>
-      {/* <Link to="/">webshop</Link> */}
-      {/* <div className="secondCurve"></div> */}
+      <div onClick={scrollToTop}>
+        <div className="toTop"></div>
+        <div className="secondToTop"></div>
+      </div>
+
       <div className="productsTileWrapper">{productTemplates}</div>
-      <button onClick={handleClearCart}>empty cart</button>
     </>
   );
 }
