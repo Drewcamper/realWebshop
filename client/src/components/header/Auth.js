@@ -1,15 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { WebshopContext } from "../../context/context.js";
-import '../../style/auth/auth.css'
+import "../../style/auth/auth.css";
 import { auth, provider, db } from "../../firebase-config.js";
 import { signInWithPopup, signOut } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
 
 function Auth() {
-  const { setUsername, setEmail, setIsAuth, email, username } = useContext(WebshopContext);
+  const { setUsername, setEmail, setIsAuth } = useContext(WebshopContext);
 
-  const [initialRender, setInitialRender] = useState(true);
-  const [buttonText, setButtonText] = useState("");
+  const [buttonText, setButtonText] = useState("Log In");
 
   const signUserOut = async () => {
     await signOut(auth);
@@ -24,7 +23,6 @@ function Auth() {
 
   const signInWithGoogle = async () => {
     try {
-      // await signInWithRedirect(auth, provider);
       await signInWithPopup(auth, provider);
 
       setEmail(auth.currentUser.email);
@@ -42,7 +40,6 @@ function Auth() {
     if (!uid || !email || !username) {
       return;
     }
-
     const userRef = doc(db, "users", uid);
 
     try {
@@ -59,7 +56,22 @@ function Auth() {
       signInWithGoogle();
     }
   };
-
+  const openUserMenu = (event) => {
+    event.stopPropagation();
+  }
+  const UserPhoto = () => {
+    if (auth.currentUser) {
+      return (
+        <>
+          <div className="profileWrapper" onClick={openUserMenu}>
+            <img src={auth.currentUser.photoURL} referrerpolicy="no-referrer" className="profilePhoto"></img>
+            <div className="profileName">{auth.currentUser.displayName}</div>
+          </div>
+        </>
+      );
+    }
+    return <></>;
+  };
   useEffect(() => {
     if (auth.currentUser) {
       updateUserDocument(
@@ -67,28 +79,14 @@ function Auth() {
         auth.currentUser.email,
         auth.currentUser.displayName
       );
-      setButtonText("log out");
+      setButtonText("Log Out");
     } else {
-      setButtonText("log in");
+      setButtonText("Log In");
     }
   }, [auth.currentUser]);
-
-  useEffect(() => {
-    // Retrieve the buttonText from local storage
-    const storedButtonText = localStorage.getItem("buttonText");
-    // If the buttonText exists in local storage, set it as the initial state
-    if (storedButtonText) {
-      setButtonText(storedButtonText);
-    }
-  }, []);
-
-  useEffect(() => {
-    // Update the buttonText state in local storage whenever it changes
-    localStorage.setItem("buttonText", buttonText);
-  }, [buttonText]);
-
   return (
     <div className="auth">
+      <UserPhoto />
       <div onClick={handleAuth} className="authButton">
         {buttonText}
       </div>

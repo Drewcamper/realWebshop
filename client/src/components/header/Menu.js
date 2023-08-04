@@ -3,13 +3,13 @@ import { WebshopContext } from "../../context/context";
 import "../../style/header/menu.css";
 import Auth from "./Auth";
 const Menu = () => {
-  const { products, openMenu, setOpenMenu, openCart, setOpenCart } = useContext(WebshopContext);
+  const { animationProducts, openMenu, setOpenMenu, openCart, setOpenCart } = useContext(WebshopContext);
 
   const handleScrollTo = (id) => {
     document.getElementById(id).scrollIntoView({ behavior: "smooth" });
   };
 
-  const productNames = products.map((product) => (
+  const productNames = animationProducts.map((product) => (
     <div
       className="menuProductName"
       key={product.id}

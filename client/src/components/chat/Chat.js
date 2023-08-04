@@ -105,6 +105,7 @@ function Chat() {
       messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
     }
   };
+
   // Function to send a new message
   const sendMessage = async (e) => {
     e.preventDefault();
@@ -112,7 +113,9 @@ function Chat() {
       return;
     }
     if (!auth.currentUser) {
-      alert("Please log in to chat with us to ensure private messaging.");
+      setSendingError(
+        `Welcome! For private messaging and a personalized experience, please log in in the Menu to chat with us.`
+      );
     } else {
       try {
         if (!isOnline) {

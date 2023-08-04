@@ -8,7 +8,7 @@ import _ from "lodash";
 import { Link } from "react-router-dom";
 
 function ProductsPage() {
-  const { cart, setCart, setPriceSum, products, setProducts } = useContext(WebshopContext);
+  const { cart, setCart, setPriceSum, animationProducts, setAnimationProducts,smallProducts, setSmallProducts } = useContext(WebshopContext);
   const [imageUrls, setImageUrls] = useState([]);
   const imagesListRef = ref(storage, "productImages/");
 
@@ -26,6 +26,7 @@ function ProductsPage() {
     const q = query(
       collection(db, "products"),
       where("shippable", "==", true),
+      where("type", "==", "animation"),
       orderBy("id", "asc")
     );
     const unsubscribe = onSnapshot(q, (snapshot) => {
@@ -33,13 +34,38 @@ function ProductsPage() {
         id: doc.id,
         ...doc.data(),
       }));
-      setProducts(productsData);
+      setAnimationProducts(productsData);
     });
     // Only unsubscribe when the component unmounts.
     return () => {
       unsubscribe();
     };
-  }, []); //get the shippable products
+  }, []); //get the shippable animation products
+
+  useEffect(() => {
+    const q = query(
+      collection(db, "products"),
+      where("shippable", "==", true),
+      where("type", "==", "small project"),
+      orderBy("id", "asc")
+    );
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const productsData = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setSmallProducts(productsData);
+    });
+    // Only unsubscribe when the component unmounts.
+    return () => {
+      unsubscribe();
+    };
+  }, []); //get the shippable animation products
+
+useEffect(() => {
+  console.log({smallProducts: smallProducts})
+}, [smallProducts])
+
   useEffect(() => {
     const savedCart = JSON.parse(localStorage.getItem("cart")) || []; //setCart is async --> [] ensures the state is correctly updated even if there is a delay.
     if (savedCart !== []) {
@@ -96,8 +122,33 @@ function ProductsPage() {
       behavior: "smooth"
     });
   }
-  const productTemplates = products.map((product, index) => {
+  const animationProductTemplates = animationProducts.map((product, index) => {
     const imageUrl = imageUrls[index]; // Access image URL based on the index
+    return (
+      <div key={product.id} className="product-template" id={product.id}>
+        <Link to={product.link} className="reactRouterLinks">
+          <div className="productName">{product.name}</div>
+          {imageUrl && <img src={imageUrl} alt={product.name} />}
+        </Link>
+
+        <div className="productDescriptionAndPriceAndButton">
+          <div className="productDescription">{product.description}</div>
+          <div className="productPriceAndButton">
+            <div className="productPrice">Price: ${product.price}</div>
+            <button
+              className={`cartHandleButton ${
+                isProductInCart(product) ? "removeFromCart" : "addToCart"
+              }`}
+              onClick={() => handleCartToggle(product)}>
+              {isProductInCart(product) ? "Remove from cart" : "Add to cart"}
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  });
+  const smallProductTemplates = smallProducts.map((product, index) => {
+    const imageUrl = imageUrls[index+4]; // Access image URL based on the index
     return (
       <div key={product.id} className="product-template" id={product.id}>
         <Link to={product.link} className="reactRouterLinks">
@@ -129,7 +180,9 @@ function ProductsPage() {
         <div className="secondToTop"></div>
       </div>
 
-      <div className="productsTileWrapper">{productTemplates}</div>
+      <div className="productsTileWrapper">{animationProductTemplates}</div>
+      <div className="productsTileWrapper">{smallProductTemplates}</div>
+
     </>
   );
 }
