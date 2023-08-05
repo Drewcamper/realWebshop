@@ -50,7 +50,7 @@ img {
 .toTop:hover {
   background-color: white;
   bottom: 40px;
-  left: 37.5px;
+  left: 27.5px;
   padding: 15px;
 }
 
@@ -75,7 +75,7 @@ img {
 .toTop:hover ~ .secondToTop {
   background-color: white;
   bottom: 45px;
-  left: 37.5px;
+  left: 27.5px;
   padding: 15px;
 }
 

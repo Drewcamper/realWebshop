@@ -58,13 +58,16 @@ function Auth() {
   };
   const openUserMenu = (event) => {
     event.stopPropagation();
-  }
+  };
   const UserPhoto = () => {
     if (auth.currentUser) {
       return (
         <>
           <div className="profileWrapper" onClick={openUserMenu}>
-            <img src={auth.currentUser.photoURL} referrerpolicy="no-referrer" className="profilePhoto"></img>
+            <img
+              src={auth.currentUser.photoURL}
+              // referrerpolicy="no-referrer"
+              className="profilePhoto"></img>
             <div className="profileName">{auth.currentUser.displayName}</div>
           </div>
         </>

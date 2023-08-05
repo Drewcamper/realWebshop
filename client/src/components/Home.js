@@ -8,11 +8,8 @@ import Cart from "./header/Cart";
 import Welcome from "./main/Welcome";
 import CustomerSupport from "./chat/Chat";
 function Home() {
-  const { priceSum, openMenu, openCart } = useContext(WebshopContext);
-  // useEffect(() => {
-  //   console.log({ menu: openMenu, cart: openCart });
-  // }, [openMenu, openCart]);
-
+  const { priceSum } = useContext(WebshopContext);
+ 
   return (
     <WebshopProvider>
       <div className="home">

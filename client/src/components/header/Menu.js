@@ -1,23 +1,103 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { WebshopContext } from "../../context/context";
 import "../../style/header/menu.css";
 import Auth from "./Auth";
 const Menu = () => {
-  const { animationProducts, openMenu, setOpenMenu, openCart, setOpenCart } = useContext(WebshopContext);
+  const {
+    animationProducts,
+    smallProducts,
+    openMenu,
+    setOpenMenu,
+    openCart,
+    setOpenCart,
+    currentWindowLocation,
+    setCurrentWindowLocation,
+  } = useContext(WebshopContext);
+
+  // const handleScrollTo = (id) => {
+  //   document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+  //   console.log(id);
+  //   setCurrentWindowLocation(id);
+  //   if (id) {
+  //     const targetElement = document.getElementById(id);
+  //     if (targetElement) {
+  //       targetElement.scrollIntoView({ behavior: "smooth" });
+  //       setCurrentWindowLocation(null);
+  //     }
+  //   }
+  // };
+  // useEffect(() => {
+  //   const targetElement = document.getElementById(currentWindowLocation);
+  //   if (targetElement) {
+  //     // targetElement.window.scrollTo({ behavior: "smooth" });
+  //     console.log(`element found`);
+  //   } else {
+  //     console.log(`haven't found element by id`);
+  //     console.log(targetElement);
+  //   }
+  // }, [currentWindowLocation]);
+
 
   const handleScrollTo = (id) => {
-    document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+    setCurrentWindowLocation(id);
+  };
+  
+  useEffect(() => {
+    if (currentWindowLocation) {
+      const targetElement = document.getElementById(currentWindowLocation);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth" });
+        setCurrentWindowLocation(null);
+      }
+    }
+  }, [currentWindowLocation]);
+  
+
+
+
+  useEffect(() => {
+    console.log(currentWindowLocation);
+  }, [currentWindowLocation]);
+
+  const AnimationProductNames = () => {
+    const productType = animationProducts[0].type;
+    const animationProductNames = animationProducts.map((product) => (
+      <div
+        className="menuProductName"
+        key={product.id}
+        id={product.id}
+        onClick={() => handleScrollTo(product.id)}>
+        {product.name}
+      </div>
+    ));
+
+    return (
+      <>
+        <>{productType}s</>
+        <>{animationProductNames}</>
+      </>
+    );
   };
 
-  const productNames = animationProducts.map((product) => (
-    <div
-      className="menuProductName"
-      key={product.id}
-      id={product.id}
-      onClick={() => handleScrollTo(product.id)}>
-      {product.name}
-    </div>
-  ));
+  const SmallProductNames = () => {
+    const productType = smallProducts[0].type;
+
+    const smallProductsNames = smallProducts.map((product) => (
+      <div
+        className="menuProductName"
+        key={product.id}
+        id={product.id}
+        onClick={() => handleScrollTo(product.id)}>
+        {product.name}
+      </div>
+    ));
+    return (
+      <>
+        <>{productType}s</>
+        <>{smallProductsNames}</>
+      </>
+    );
+  };
 
   const handleMenuToggleByHover = () => {
     setOpenMenu((prevOpenMenu) => !prevOpenMenu);
@@ -46,7 +126,8 @@ const Menu = () => {
 
   const OpenedMenu = () => (
     <div className="openedMenu">
-      {productNames}
+      <AnimationProductNames />
+      <SmallProductNames />
       <Auth />
     </div>
   );

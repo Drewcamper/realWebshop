@@ -2,13 +2,21 @@ import React, { useState, useEffect, useContext } from "react";
 import "../../style/products/products.css";
 import { WebshopContext } from "../../context/context";
 import { db, storage } from "../../firebase-config";
-import { collection, query, where, onSnapshot, orderBy } from "firebase/firestore";
+import { collection, query, where, onSnapshot, orderBy, documentId } from "firebase/firestore";
 import { ref, getDownloadURL, listAll } from "firebase/storage";
 import _ from "lodash";
 import { Link } from "react-router-dom";
 
 function ProductsPage() {
-  const { cart, setCart, setPriceSum, animationProducts, setAnimationProducts,smallProducts, setSmallProducts } = useContext(WebshopContext);
+  const {
+    cart,
+    setCart,
+    setPriceSum,
+    animationProducts,
+    setAnimationProducts,
+    smallProducts,
+    setSmallProducts,
+  } = useContext(WebshopContext);
   const [imageUrls, setImageUrls] = useState([]);
   const imagesListRef = ref(storage, "productImages/");
 
@@ -61,10 +69,6 @@ function ProductsPage() {
       unsubscribe();
     };
   }, []); //get the shippable animation products
-
-useEffect(() => {
-  console.log({smallProducts: smallProducts})
-}, [smallProducts])
 
   useEffect(() => {
     const savedCart = JSON.parse(localStorage.getItem("cart")) || []; //setCart is async --> [] ensures the state is correctly updated even if there is a delay.
@@ -119,59 +123,90 @@ useEffect(() => {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth"
+      behavior: "smooth",
     });
-  }
-  const animationProductTemplates = animationProducts.map((product, index) => {
-    const imageUrl = imageUrls[index]; // Access image URL based on the index
-    return (
-      <div key={product.id} className="product-template" id={product.id}>
-        <Link to={product.link} className="reactRouterLinks">
-          <div className="productName">{product.name}</div>
-          {imageUrl && <img src={imageUrl} alt={product.name} />}
-        </Link>
+  };
 
-        <div className="productDescriptionAndPriceAndButton">
-          <div className="productDescription">{product.description}</div>
-          <div className="productPriceAndButton">
-            <div className="productPrice">Price: ${product.price}</div>
-            <button
-              className={`cartHandleButton ${
-                isProductInCart(product) ? "removeFromCart" : "addToCart"
-              }`}
-              onClick={() => handleCartToggle(product)}>
-              {isProductInCart(product) ? "Remove from cart" : "Add to cart"}
-            </button>
+  const AnimationProducts = () => {
+    const [productType, setProductType] = useState("");
+    useEffect(() => {
+      if (animationProducts.length > 0 && productType === "") {
+        setProductType(animationProducts[0].type);
+      }
+    }, [animationProducts, productType]);
+
+    const animationProductTemplates = animationProducts.map((product, index) => {
+      const imageUrl = imageUrls[index]; // Access image URL based on the index
+      return (
+        <div key={product.id} className="product-template" id={product.id}>
+          {product.id}
+          <Link to={product.link} className="reactRouterLinks">
+            <div className="productName">{product.name}</div>
+            {imageUrl && <img src={imageUrl} alt={product.name} />}
+          </Link>
+          <div className="productDescriptionAndPriceAndButton">
+            <div className="productDescription">{product.description}</div>
+            <div className="productPriceAndButton">
+              <div className="productPrice">Price: ${product.price}</div>
+              <button
+                className={`cartHandleButton ${
+                  isProductInCart(product) ? "removeFromCart" : "addToCart"
+                }`}
+                onClick={() => handleCartToggle(product)}>
+                {isProductInCart(product) ? "Remove from cart" : "Add to cart"}
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    );
-  });
-  const smallProductTemplates = smallProducts.map((product, index) => {
-    const imageUrl = imageUrls[index+4]; // Access image URL based on the index
+      );
+    });
     return (
-      <div key={product.id} className="product-template" id={product.id}>
-        <Link to={product.link} className="reactRouterLinks">
-          <div className="productName">{product.name}</div>
-          {imageUrl && <img src={imageUrl} alt={product.name} />}
-        </Link>
+      <>
+        <div>{productType}</div>
+        <div className="productsTileWrapper">{animationProductTemplates}</div>;
+      </>
+    );
+  };
 
-        <div className="productDescriptionAndPriceAndButton">
-          <div className="productDescription">{product.description}</div>
-          <div className="productPriceAndButton">
-            <div className="productPrice">Price: ${product.price}</div>
-            <button
-              className={`cartHandleButton ${
-                isProductInCart(product) ? "removeFromCart" : "addToCart"
-              }`}
-              onClick={() => handleCartToggle(product)}>
-              {isProductInCart(product) ? "Remove from cart" : "Add to cart"}
-            </button>
+  const SmallProducts = () => {
+    const [productType, setProductType] = useState("");
+    useEffect(() => {
+      if (animationProducts.length > 0 && productType === "") {
+        setProductType(animationProducts[0].type);
+      }
+    }, [animationProducts, productType]);
+    const smallProductTemplates = smallProducts.map((product, index) => {
+      const imageUrl = imageUrls[index + 4]; // Access image URL based on the index
+      return (
+        <div key={product.id} className="product-template" id={product.id}>
+          <Link to={product.link} className="reactRouterLinks">
+            <div className="productName">{product.name}</div>
+            {imageUrl && <img src={imageUrl} alt={product.name} />}
+          </Link>
+
+          <div className="productDescriptionAndPriceAndButton">
+            <div className="productDescription">{product.description}</div>
+            <div className="productPriceAndButton">
+              <div className="productPrice">Price: ${product.price}</div>
+              <button
+                className={`cartHandleButton ${
+                  isProductInCart(product) ? "removeFromCart" : "addToCart"
+                }`}
+                onClick={() => handleCartToggle(product)}>
+                {isProductInCart(product) ? "Remove from cart" : "Add to cart"}
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      );
+    });
+    return (
+      <>
+        <div>{productType}</div>
+        <div className="productsTileWrapper">{smallProductTemplates}</div>
+      </>
     );
-  });
+  };
 
   return (
     <>
@@ -180,9 +215,8 @@ useEffect(() => {
         <div className="secondToTop"></div>
       </div>
 
-      <div className="productsTileWrapper">{animationProductTemplates}</div>
-      <div className="productsTileWrapper">{smallProductTemplates}</div>
-
+      <AnimationProducts />
+      <SmallProducts />
     </>
   );
 }
