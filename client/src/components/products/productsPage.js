@@ -184,11 +184,18 @@ function ProductsPage() {
     return (
       <>
         <div className="productTypeWrapper">
-          <div className="productType">{productType}s</div>
-          <div className="openProductsButton"></div>
+          <div className="responsiveProtector">
+            <div className="productType">{productType}s</div>
+            <div className="openProductsButton"></div>{" "}
+          </div>
           <ul className="animationProductList">
             {animationProducts.map((product, index) => (
-              <li key={index} id={product.id}>
+              <li
+                key={index}
+                id={product.id}
+                onClick={() => {
+                  handleScrollTo(product.id);
+                }}>
                 {product.name}
               </li>
             ))}

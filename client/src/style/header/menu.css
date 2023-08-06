@@ -53,9 +53,6 @@
     padding-left: 30px;
     padding-top: 20px;
     padding-bottom: 20px ;
-
-
-
     width: calc(50% - 11px);
     transform: rotateZ(0deg);
     background-color: rgba(0, 0, 0, 0.2);
