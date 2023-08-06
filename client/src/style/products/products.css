@@ -23,7 +23,74 @@ img {
   padding: 0;
   margin-bottom: 30vh;
 }
+/* 
+.productType {
+  color: white;
+  font-size: 200%;
+  margin: auto;
+  margin-left: 10%;
+  margin-right: 10%;
+  padding: 5px;
+  border: 1px solid white;
+  border-radius: 15px;
+} */
 
+.productTypeWrapper {
+  position: relative;
+  /* display: flex; */
+  overflow: hidden;
+  cursor: pointer;
+  width: 30%;
+  left: 15%;
+  border-bottom: 1px solid white;
+  padding: 15px 15px 0px 10px;
+}
+
+.productType {
+  color: white;
+  text-transform: uppercase;
+}
+.responsiveProtector {
+  display: flex;
+}
+.openProductsButton {
+  border-radius: 50px;
+  margin: 5px 25px auto 25px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 10px 10px 0 10px;
+  border-color: rgba(255, 255, 255, 1) transparent transparent transparent;
+}
+.animationProductList {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  visibility: hidden;
+  height: 0px;
+  transition: 0.4s ease-in-out;
+  cursor: default;
+  color: black;
+}
+.animationProductList:hover {
+  color: white;
+}
+.productTypeWrapper:hover .animationProductList {
+  padding-top: 15px;
+  padding-bottom: 5px;
+  visibility: visible;
+  height: auto;
+  color: rgba(255, 255, 255, 0.6);
+}
+.productTypeWrapper:hover .openProductsButton {
+  border-width: 0 10px 10px 10px;
+  margin: 5px 25px auto 25px;
+  border-color: transparent transparent white transparent;
+}
+ul li {
+  margin: 0px;
+  list-style-type: none;
+  padding-top: 15px;
+}
 .productName {
   height: 20%;
   text-align: center;
@@ -65,7 +132,7 @@ img {
   transform: rotate(-135deg);
   -webkit-transform: rotate(-135deg);
   cursor: pointer;
-  
+
   background-color: rgba(255, 255, 255, 0.6);
   z-index: 0;
   transition: ease-in-out;
@@ -106,7 +173,7 @@ img {
   color: rgb(170, 170, 170);
   text-align: center;
   margin: auto;
-width: 50%;
+  width: 50%;
 }
 .cartHandleButton {
   width: 50%;
@@ -123,4 +190,40 @@ width: 50%;
 .addToCart:hover {
   background-color: rgba(78, 170, 224, 0.846);
   border: 1px solid white;
+}
+
+@media screen and (max-width: 800px) {
+  .productTypeWrapper {
+    width: 70%;
+    left: 15%;
+    flex-direction: column;
+  }
+
+
+
+  .toTop {
+    left: .75em;
+    bottom: .75em;
+    padding: 10px;
+  }
+  .toTop:hover {
+    background-color: white;
+    bottom: 40px;
+    left: 27.5px;
+    padding: 15px;
+  }
+  
+  .secondToTop {
+    left: .75em;
+    bottom: calc(.75em + 5px);
+    padding: 10px;
+  }
+  
+  .toTop:hover ~ .secondToTop {
+    background-color: white;
+    bottom: 45px;
+    left: 27.5px;
+    padding: 15px;
+  }
+  
 }

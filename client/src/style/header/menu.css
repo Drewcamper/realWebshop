@@ -24,6 +24,9 @@
   height: 100vh;
 
 }
+.menuProductType{
+  cursor: pointer;
+}
 .menuProductName {
   font-size: 120%;
   text-align: left;

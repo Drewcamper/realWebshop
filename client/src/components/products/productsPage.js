@@ -16,10 +16,15 @@ function ProductsPage() {
     setAnimationProducts,
     smallProducts,
     setSmallProducts,
+    setAlertMessage,
+    currentWindowLocation,
+    setCurrentWindowLocation,
   } = useContext(WebshopContext);
   const [imageUrls, setImageUrls] = useState([]);
   const imagesListRef = ref(storage, "productImages/");
-
+  useEffect(() => {
+    console.log({ currentWindowLocation: currentWindowLocation });
+  }, [currentWindowLocation]);
   useEffect(() => {
     const fetchImageUrls = async () => {
       const response = await listAll(imagesListRef);
@@ -115,8 +120,10 @@ function ProductsPage() {
   const handleCartToggle = (product) => {
     if (isProductInCart(product)) {
       removeFromCart(product, 1);
+      setAlertMessage("Item removed from your cart");
     } else {
       addToCart(product, 1);
+      setAlertMessage("Item added to your cart");
     }
   };
 
@@ -126,9 +133,23 @@ function ProductsPage() {
       behavior: "smooth",
     });
   };
+  const handleScrollTo = (id) => {
+    setCurrentWindowLocation(id);
+  };
+
+  useEffect(() => {
+    if (currentWindowLocation) {
+      const targetElement = document.getElementById(currentWindowLocation);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth" });
+        setCurrentWindowLocation(null);
+      }
+    }
+  }, [currentWindowLocation]);
 
   const AnimationProducts = () => {
     const [productType, setProductType] = useState("");
+
     useEffect(() => {
       if (animationProducts.length > 0 && productType === "") {
         setProductType(animationProducts[0].type);
@@ -139,7 +160,6 @@ function ProductsPage() {
       const imageUrl = imageUrls[index]; // Access image URL based on the index
       return (
         <div key={product.id} className="product-template" id={product.id}>
-          {product.id}
           <Link to={product.link} className="reactRouterLinks">
             <div className="productName">{product.name}</div>
             {imageUrl && <img src={imageUrl} alt={product.name} />}
@@ -160,10 +180,21 @@ function ProductsPage() {
         </div>
       );
     });
+
     return (
       <>
-        <div>{productType}</div>
-        <div className="productsTileWrapper">{animationProductTemplates}</div>;
+        <div className="productTypeWrapper">
+          <div className="productType">{productType}s</div>
+          <div className="openProductsButton"></div>
+          <ul className="animationProductList">
+            {animationProducts.map((product, index) => (
+              <li key={index} id={product.id}>
+                {product.name}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="productsTileWrapper">{animationProductTemplates}</div>
       </>
     );
   };
@@ -171,12 +202,13 @@ function ProductsPage() {
   const SmallProducts = () => {
     const [productType, setProductType] = useState("");
     useEffect(() => {
-      if (animationProducts.length > 0 && productType === "") {
-        setProductType(animationProducts[0].type);
+      if (smallProducts.length > 0 && productType === "") {
+        setProductType(smallProducts[0].type);
       }
-    }, [animationProducts, productType]);
+    }, [smallProducts, productType]);
     const smallProductTemplates = smallProducts.map((product, index) => {
       const imageUrl = imageUrls[index + 4]; // Access image URL based on the index
+
       return (
         <div key={product.id} className="product-template" id={product.id}>
           <Link to={product.link} className="reactRouterLinks">
@@ -202,7 +234,24 @@ function ProductsPage() {
     });
     return (
       <>
-        <div>{productType}</div>
+        <div className="productTypeWrapper">
+          <div className="responsiveProtector">
+            <div className="productType">{productType}s</div>{" "}
+            <div className="openProductsButton"></div>
+          </div>
+          <ul className="animationProductList">
+            {smallProducts.map((product, index) => (
+              <li
+                key={index}
+                id={product.id}
+                onClick={() => {
+                  handleScrollTo(product.id);
+                }}>
+                {product.name}
+              </li>
+            ))}
+          </ul>
+        </div>
         <div className="productsTileWrapper">{smallProductTemplates}</div>
       </>
     );

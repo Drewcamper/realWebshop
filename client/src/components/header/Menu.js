@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { WebshopContext } from "../../context/context";
 import "../../style/header/menu.css";
 import Auth from "./Auth";
@@ -14,34 +14,10 @@ const Menu = () => {
     setCurrentWindowLocation,
   } = useContext(WebshopContext);
 
-  // const handleScrollTo = (id) => {
-  //   document.getElementById(id).scrollIntoView({ behavior: "smooth" });
-  //   console.log(id);
-  //   setCurrentWindowLocation(id);
-  //   if (id) {
-  //     const targetElement = document.getElementById(id);
-  //     if (targetElement) {
-  //       targetElement.scrollIntoView({ behavior: "smooth" });
-  //       setCurrentWindowLocation(null);
-  //     }
-  //   }
-  // };
-  // useEffect(() => {
-  //   const targetElement = document.getElementById(currentWindowLocation);
-  //   if (targetElement) {
-  //     // targetElement.window.scrollTo({ behavior: "smooth" });
-  //     console.log(`element found`);
-  //   } else {
-  //     console.log(`haven't found element by id`);
-  //     console.log(targetElement);
-  //   }
-  // }, [currentWindowLocation]);
-
-
   const handleScrollTo = (id) => {
     setCurrentWindowLocation(id);
   };
-  
+
   useEffect(() => {
     if (currentWindowLocation) {
       const targetElement = document.getElementById(currentWindowLocation);
@@ -50,13 +26,6 @@ const Menu = () => {
         setCurrentWindowLocation(null);
       }
     }
-  }, [currentWindowLocation]);
-  
-
-
-
-  useEffect(() => {
-    console.log(currentWindowLocation);
   }, [currentWindowLocation]);
 
   const AnimationProductNames = () => {
@@ -73,8 +42,14 @@ const Menu = () => {
 
     return (
       <>
-        <>{productType}s</>
-        <>{animationProductNames}</>
+        <div
+          className="menuProductType"
+          onClick={() => {
+            handleScrollTo(productType);
+          }}>
+          {productType}s
+        </div>
+        <div>{animationProductNames}</div>
       </>
     );
   };
@@ -93,8 +68,14 @@ const Menu = () => {
     ));
     return (
       <>
-        <>{productType}s</>
-        <>{smallProductsNames}</>
+        <div
+          className="menuProductType"
+          onClick={() => {
+            handleScrollTo(productType);
+          }}>
+          {productType}s
+        </div>
+        <div>{smallProductsNames}</div>
       </>
     );
   };

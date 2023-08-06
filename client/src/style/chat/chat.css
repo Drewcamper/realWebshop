@@ -68,10 +68,7 @@ button {
   width: 65%;
   padding-left: 35%;
 }
-.sendingError {
-  padding: 10px;
-  color: red;
-}
+
 .inputWrapper {
   /* min-width: 300px;
   width: 21vw;

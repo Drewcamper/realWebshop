@@ -17,6 +17,7 @@ export const WebshopProvider = ({ children }) => {
 
   const [chatWindowVisible, setChatWindowVisible] = useState(false);
   const [currentWindowLocation, setCurrentWindowLocation] = useState(null);
+  const [alertMessage, setAlertMessage] = useState(undefined);
   return (
     <WebshopContext.Provider
       value={{
@@ -44,6 +45,8 @@ export const WebshopProvider = ({ children }) => {
         setOpenCart,
         currentWindowLocation,
         setCurrentWindowLocation,
+        alertMessage,
+        setAlertMessage,
       }}>
       {children}
     </WebshopContext.Provider>

@@ -6,7 +6,8 @@ import { signInWithPopup, signOut } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
 
 function Auth() {
-  const { setUsername, setEmail, setIsAuth } = useContext(WebshopContext);
+  const { setUsername, setEmail, setIsAuth, setAlertMessage } =
+    useContext(WebshopContext);
 
   const [buttonText, setButtonText] = useState("Log In");
 
@@ -19,6 +20,7 @@ function Auth() {
     setUsername("");
     setEmail("");
     setButtonText("Log In");
+    setAlertMessage('You succesfully logged out')
   };
 
   const signInWithGoogle = async () => {
@@ -31,10 +33,13 @@ function Auth() {
       setButtonText("Log Out");
       localStorage.setItem("username", auth.currentUser.displayName);
       localStorage.setItem("email", auth.currentUser.email);
+      setAlertMessage('You succesfully logged in')
+
     } catch (err) {
-      console.log(err);
+      setAlertMessage(err)
     }
   };
+
 
   const updateUserDocument = async (uid, email, username) => {
     if (!uid || !email || !username) {
@@ -45,7 +50,7 @@ function Auth() {
     try {
       await setDoc(userRef, { email, username }, { merge: true });
     } catch (error) {
-      console.log("Error updating user document:", error);
+      setAlertMessage(`Error updating user document: ${error}`)
     }
   };
 

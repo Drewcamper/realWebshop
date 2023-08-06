@@ -36,11 +36,11 @@ const Sphere = () => {
 };
 
 function Chat() {
-  const { username, email, chatWindowVisible, setChatWindowVisible } = useContext(WebshopContext);
+  const { username, email, chatWindowVisible, setChatWindowVisible, setAlertMessage } =
+    useContext(WebshopContext);
 
   const [newMessage, setNewMessage] = useState("");
   const [user, setUser] = useState(null);
-  const [sendingError, setSendingError] = useState("");
   const [isOnline, setIsOnline] = useState(navigator.onLine);
   const [loading, setLoading] = useState(true);
   const [messageSent, setMessageSent] = useState(false);
@@ -113,7 +113,7 @@ function Chat() {
       return;
     }
     if (!auth.currentUser) {
-      setSendingError(
+      setAlertMessage(
         `Welcome! For private messaging and a personalized experience, please log in in the Menu to chat with us.`
       );
     } else {
@@ -132,14 +132,13 @@ function Chat() {
         setMessageSent(true);
       } catch (error) {
         // Handle the error
-        console.error("Failed to send message:", error);
+        setAlertMessage(`Failed to send message: ${error.message}`);
         // You can show an error message to the user or perform any other action here
         if (error.message === "No internet connection") {
-          setSendingError("Failed to send message. Please check your internet connection.");
+          setAlertMessage(`Failed to send message. Please check your internet connection.`);
         } else {
-          setSendingError("Failed to send message. An unknown error occurred.");
+          setAlertMessage(`Failed to send message. An unknown error occurred.`);
         }
-        console.log(error.message);
       }
     }
     setNewMessage("");
@@ -151,10 +150,8 @@ function Chat() {
 
   useEffect(() => {
     if (!isOnline) {
-      setSendingError("You are offline. Please check your internet connection.");
-    } else {
-      setSendingError("");
-    }
+      setAlertMessage(`You are offline. Please check your internet connection.`)
+    } 
 
     window.addEventListener("online", handleConnectionChange);
     window.addEventListener("offline", handleConnectionChange);
@@ -222,7 +219,6 @@ function Chat() {
                 </div>
               ))}
             <div className="received-message">{showMessage()}</div>
-            <div className="sendingError">{sendingError}</div>
           </>
         )}
       </div>
