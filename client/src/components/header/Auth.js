@@ -6,7 +6,7 @@ import { signInWithPopup, signOut } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
 
 function Auth() {
-  const { setUsername, setEmail, setIsAuth, setAlertMessage } =
+  const { setUsername, setEmail, setIsAuth, setAlertMessage, profileIsOpen, setProfileIsOpen } =
     useContext(WebshopContext);
 
   const [buttonText, setButtonText] = useState("Log In");
@@ -20,7 +20,7 @@ function Auth() {
     setUsername("");
     setEmail("");
     setButtonText("Log In");
-    setAlertMessage('You succesfully logged out')
+    setAlertMessage(`You succesfully logged out`);
   };
 
   const signInWithGoogle = async () => {
@@ -33,13 +33,11 @@ function Auth() {
       setButtonText("Log Out");
       localStorage.setItem("username", auth.currentUser.displayName);
       localStorage.setItem("email", auth.currentUser.email);
-      setAlertMessage('You succesfully logged in')
-
+      setAlertMessage(<ProfilePhotoAndName />);
     } catch (err) {
-      setAlertMessage(err)
+      setAlertMessage(err);
     }
   };
-
 
   const updateUserDocument = async (uid, email, username) => {
     if (!uid || !email || !username) {
@@ -50,7 +48,7 @@ function Auth() {
     try {
       await setDoc(userRef, { email, username }, { merge: true });
     } catch (error) {
-      setAlertMessage(`Error updating user document: ${error}`)
+      setAlertMessage(`Error updating user document: ${error}`);
     }
   };
 
@@ -61,20 +59,24 @@ function Auth() {
       signInWithGoogle();
     }
   };
-  const openUserMenu = (event) => {
-    event.stopPropagation();
+  const ProfilePhotoAndName = () => {
+    return (
+      <>
+        <div className="profileWrapper">
+          <img
+            src={auth.currentUser.photoURL}
+            // referrerpolicy="no-referrer"
+            className="profilePhoto"></img>
+          <div className="profileName">Welcome {auth.currentUser.displayName}</div>
+        </div>
+      </>
+    );
   };
-  const UserPhoto = () => {
+  const UserProfile = () => {
     if (auth.currentUser) {
       return (
         <>
-          <div className="profileWrapper" onClick={openUserMenu}>
-            <img
-              src={auth.currentUser.photoURL}
-              // referrerpolicy="no-referrer"
-              className="profilePhoto"></img>
-            <div className="profileName">{auth.currentUser.displayName}</div>
-          </div>
+          <ProfilePhotoAndName />
         </>
       );
     }
@@ -94,7 +96,6 @@ function Auth() {
   }, [auth.currentUser]);
   return (
     <div className="auth">
-      <UserPhoto />
       <div onClick={handleAuth} className="authButton">
         {buttonText}
       </div>

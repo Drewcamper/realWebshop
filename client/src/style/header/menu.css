@@ -24,16 +24,16 @@
   height: 100vh;
 
 }
-.menuProductType{
-  cursor: pointer;
+.menuPorudctNameWrapper{
+  padding-top: 5vh;
 }
 .menuProductName {
   font-size: 120%;
   text-align: left;
   color: rgb(215, 215, 215);
-  padding-top: 2vh;
-  padding-bottom: 2vh;
-  padding-left: 1vw;
+  padding-top: 2.5vh;
+  padding-bottom: 2.5vh;
+  padding-left: 2vw;
   cursor: pointer;
 }
 .menuProductName:hover {

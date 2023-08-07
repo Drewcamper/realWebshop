@@ -10,50 +10,59 @@ const Menu = () => {
     setOpenMenu,
     openCart,
     setOpenCart,
-    currentWindowLocation,
     setCurrentWindowLocation,
   } = useContext(WebshopContext);
 
   const handleScrollTo = (id) => {
     setCurrentWindowLocation(id);
+    console.log({ id: id });
   };
   const AnimationProductNames = () => {
     const productType = animationProducts[0].type;
-    const animationProductNames = animationProducts.map((product) => (
-      <div
-        className="menuProductName"
-        key={product.id}
-        id={product.id}
-        onClick={() => handleScrollTo(product.id)}>
-        {product.name}
-      </div>
-    ));
 
     return (
-      <>
-        <div className="menuProductType">{productType}s</div>
-        <div>{animationProductNames}</div>
-      </>
+      <div
+        className="menuProductName"
+        onClick={() => {
+          const targetElement = document.getElementById(animationProducts[0].id);
+          if (targetElement) {
+            const offset = -window.innerHeight * 0.4; // 20% of the viewport height
+            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset + offset;
+        
+            window.scrollTo({
+              top: targetPosition,
+              behavior: 'smooth', // Optional: Add smooth scrolling behavior
+            });
+          }
+        }}
+        >
+        {productType}s
+      </div>
     );
   };
 
   const SmallProductNames = () => {
     const productType = smallProducts[0].type;
-
-    const smallProductsNames = smallProducts.map((product) => (
+    return (
       <div
         className="menuProductName"
-        key={product.id}
-        id={product.id}
-        onClick={() => handleScrollTo(product.id)}>
-        {product.name}
+        onClick={() => {
+          const targetElement = document.getElementById(smallProducts[0].id);
+          if (targetElement) {
+            const offset = -window.innerHeight * 0.4; // 20% of the viewport height
+            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset + offset;
+        
+            window.scrollTo({
+              top: targetPosition,
+              behavior: 'smooth', // Optional: Add smooth scrolling behavior
+            });
+          }
+        }}
+        
+        
+        >
+        {productType}s
       </div>
-    ));
-    return (
-      <>
-        <div className="menuProductType">{productType}s</div>
-        <div>{smallProductsNames}</div>
-      </>
     );
   };
 
@@ -84,8 +93,10 @@ const Menu = () => {
 
   const OpenedMenu = () => (
     <div className="openedMenu">
-      <AnimationProductNames />
-      <SmallProductNames />
+      <div className="menuPorudctNameWrapper">
+        <AnimationProductNames />
+        <SmallProductNames />
+      </div>
       <Auth />
     </div>
   );

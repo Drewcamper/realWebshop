@@ -14,7 +14,7 @@ function AlertBox() {
       const timeout = setTimeout(() => {
         setDisplayAlert(false);
         setAlertMessage(undefined);
-      }, 250000);
+      }, 3500);
 
       return () => {
         clearTimeout(timeout);

@@ -15,7 +15,6 @@
 .alertMessage {
   background-color: rgba(255, 255, 255, 0.6);
   color: black;
-
   padding: 15px;
   border-radius: 10px 0px 0px 10px;
   width: 95%;
@@ -23,19 +22,31 @@
 .alertExit {
   width: 5%;
   right: 0px;
+  /* height: 100%; */
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 0px 10px 10px 0px;
   padding: 15px;
   cursor: pointer;
+  align-items: center;
+  margin: auto;
 }
 .alertExitText {
   text-align: center;
   color: black;
   margin: auto;
 }
-.alertExit:hover{
-    background-color: rgba(255, 255, 255, 0.3);
+.alertExit:hover {
+  background-color: rgba(255, 255, 255, 0.3);
 }
-.alertExit:hover .alertExitText{
-    color: rgba(255, 255, 255, 0.6);
+.alertExit:hover .alertExitText {
+  color: rgba(255, 255, 255, 0.6);
+}
+@media screen and (max-width: 800px) {
+  .alertBox {
+    height: auto;
+    width: 90vw;
+    top: 15px;
+    left: 5%;
+ 
+  }
 }

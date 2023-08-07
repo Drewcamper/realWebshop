@@ -14,6 +14,7 @@ export const WebshopProvider = ({ children }) => {
 
   const [openMenu, setOpenMenu] = useState(false);
   const [openCart, setOpenCart] = useState(false);
+  const [profileIsOpen, setProfileIsOpen] = useState(false);
 
   const [chatWindowVisible, setChatWindowVisible] = useState(false);
   const [currentWindowLocation, setCurrentWindowLocation] = useState(null);
@@ -43,6 +44,8 @@ export const WebshopProvider = ({ children }) => {
         setOpenMenu,
         openCart,
         setOpenCart,
+        profileIsOpen,
+        setProfileIsOpen,
         currentWindowLocation,
         setCurrentWindowLocation,
         alertMessage,
