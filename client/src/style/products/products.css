@@ -23,18 +23,6 @@ img {
   padding: 0;
   margin-bottom: 30vh;
 }
-/* 
-.productType {
-  color: white;
-  font-size: 200%;
-  margin: auto;
-  margin-left: 10%;
-  margin-right: 10%;
-  padding: 5px;
-  border: 1px solid white;
-  border-radius: 15px;
-} */
-
 .productTypeWrapper {
   position: relative;
   overflow: hidden;
@@ -43,7 +31,6 @@ img {
   left: 15%;
   padding: 15px 15px 0px 15px;
   border-bottom: 1px solid white;
-
 }
 
 .productType {
@@ -52,7 +39,6 @@ img {
 }
 .responsiveProtector {
   display: flex;
-
 }
 .openProductsButton {
   border-radius: 50px;
@@ -71,7 +57,6 @@ img {
   visibility: hidden;
   height: 0px;
   transition: 0.4s ease-in-out;
-  /* cursor: default; */
   color: black;
 }
 .animationProductList:hover {
@@ -94,10 +79,8 @@ ul li {
   list-style-type: none;
   padding: 7.5px 0px 7.5px 20px;
 }
-li:hover{
+li:hover {
   color: white;
-  /* border-right: 1px solid white;
-  border-left: 1px solid white; */
 }
 .productName {
   height: 20%;
@@ -205,11 +188,9 @@ li:hover{
     flex-direction: column;
   }
 
-
-
   .toTop {
-    left: .75em;
-    bottom: .75em;
+    left: 0.75em;
+    bottom: 0.75em;
     padding: 10px;
   }
   .toTop:hover {
@@ -218,18 +199,17 @@ li:hover{
     left: 27.5px;
     padding: 15px;
   }
-  
+
   .secondToTop {
-    left: .75em;
-    bottom: calc(.75em + 5px);
+    left: 0.75em;
+    bottom: calc(0.75em + 5px);
     padding: 10px;
   }
-  
+
   .toTop:hover ~ .secondToTop {
     background-color: white;
     bottom: 45px;
     left: 27.5px;
     padding: 15px;
   }
-  
 }

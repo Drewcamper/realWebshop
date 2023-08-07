@@ -17,17 +17,6 @@ const Menu = () => {
   const handleScrollTo = (id) => {
     setCurrentWindowLocation(id);
   };
-
-  useEffect(() => {
-    if (currentWindowLocation) {
-      const targetElement = document.getElementById(currentWindowLocation);
-      if (targetElement) {
-        targetElement.scrollIntoView({ behavior: "smooth" });
-        setCurrentWindowLocation(null);
-      }
-    }
-  }, [currentWindowLocation]);
-
   const AnimationProductNames = () => {
     const productType = animationProducts[0].type;
     const animationProductNames = animationProducts.map((product) => (
@@ -42,13 +31,7 @@ const Menu = () => {
 
     return (
       <>
-        <div
-          className="menuProductType"
-          onClick={() => {
-            handleScrollTo(productType);
-          }}>
-          {productType}s
-        </div>
+        <div className="menuProductType">{productType}s</div>
         <div>{animationProductNames}</div>
       </>
     );
@@ -68,13 +51,7 @@ const Menu = () => {
     ));
     return (
       <>
-        <div
-          className="menuProductType"
-          onClick={() => {
-            handleScrollTo(productType);
-          }}>
-          {productType}s
-        </div>
+        <div className="menuProductType">{productType}s</div>
         <div>{smallProductsNames}</div>
       </>
     );

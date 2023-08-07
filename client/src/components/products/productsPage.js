@@ -20,8 +20,10 @@ function ProductsPage() {
     currentWindowLocation,
     setCurrentWindowLocation,
   } = useContext(WebshopContext);
+
   const [imageUrls, setImageUrls] = useState([]);
   const imagesListRef = ref(storage, "productImages/");
+  
   useEffect(() => {
     console.log({ currentWindowLocation: currentWindowLocation });
   }, [currentWindowLocation]);
@@ -142,7 +144,6 @@ function ProductsPage() {
       const targetElement = document.getElementById(currentWindowLocation);
       if (targetElement) {
         targetElement.scrollIntoView({ behavior: "smooth" });
-        setCurrentWindowLocation(null);
       }
     }
   }, [currentWindowLocation]);
@@ -192,7 +193,7 @@ function ProductsPage() {
             {animationProducts.map((product, index) => (
               <li
                 key={index}
-                id={product.id}
+               
                 onClick={() => {
                   handleScrollTo(product.id);
                 }}>
@@ -250,7 +251,6 @@ function ProductsPage() {
             {smallProducts.map((product, index) => (
               <li
                 key={index}
-                id={product.id}
                 onClick={() => {
                   handleScrollTo(product.id);
                 }}>
