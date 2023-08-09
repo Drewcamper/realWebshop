@@ -5,7 +5,7 @@
   bottom: 0px;
   width: 5vw;
   z-index: 1;
-  height: 60vh;
+  height: 50vh;
   z-index: 2;
 }
 
@@ -126,6 +126,9 @@ p {
 }
 
 @media screen and (max-width: 800px) {
+  .cartWrapper {
+height: 0px;
+  }
   .closedCart {
     top: 0px;
     bottom: 92vh;

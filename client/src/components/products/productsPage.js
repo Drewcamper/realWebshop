@@ -23,7 +23,7 @@ function ProductsPage() {
 
   const [imageUrls, setImageUrls] = useState([]);
   const imagesListRef = ref(storage, "productImages/");
-  
+
   useEffect(() => {
     console.log({ currentWindowLocation: currentWindowLocation });
   }, [currentWindowLocation]);
@@ -161,21 +161,25 @@ function ProductsPage() {
       const imageUrl = imageUrls[index]; // Access image URL based on the index
       return (
         <div key={product.id} className="product-template" id={product.id}>
-          <Link to={product.link} className="reactRouterLinks">
-            <div className="productName">{product.name}</div>
-            {imageUrl && <img src={imageUrl} alt={product.name} />}
-          </Link>
-          <div className="productDescriptionAndPriceAndButton">
-            <div className="productDescription">{product.description}</div>
-            <div className="productPriceAndButton">
-              <div className="productPrice">Price: ${product.price}</div>
-              <button
-                className={`cartHandleButton ${
-                  isProductInCart(product) ? "removeFromCart" : "addToCart"
-                }`}
-                onClick={() => handleCartToggle(product)}>
-                {isProductInCart(product) ? "Remove from cart" : "Add to cart"}
-              </button>
+          <div className="productAligner">
+          <div className="productName smallScreenVisible">{product.name}</div>
+
+            <Link to={product.link} className="reactRouterLinks">
+              {imageUrl && <img src={imageUrl} alt={product.name} className="productImage" />}
+            </Link>
+            <div className="productDescriptionAndPriceAndButton">
+              <div className="productName  bigScreenVisible">{product.name}</div>
+              <div className="productDescription">{product.description}</div>
+              <div className="productPriceAndButton">
+                <div className="productPrice">Price: ${product.price}</div>
+                <button
+                  className={`cartHandleButton ${
+                    isProductInCart(product) ? "removeFromCart" : "addToCart"
+                  }`}
+                  onClick={() => handleCartToggle(product)}>
+                  {isProductInCart(product) ? "Remove from cart" : "Add to cart"}
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -193,7 +197,6 @@ function ProductsPage() {
             {animationProducts.map((product, index) => (
               <li
                 key={index}
-               
                 onClick={() => {
                   handleScrollTo(product.id);
                 }}>
@@ -219,23 +222,25 @@ function ProductsPage() {
 
       return (
         <div key={product.id} className="product-template" id={product.id}>
-          <Link to={product.link} className="reactRouterLinks">
-            <div className="productName">{product.name}</div>
-            {imageUrl && <img src={imageUrl} alt={product.name} />}
-          </Link>
-
-          <div className="productDescriptionAndPriceAndButton">
-            <div className="productDescription">{product.description}</div>
-            <div className="productPriceAndButton">
-              <div className="productPrice">Price: ${product.price}</div>
-              <button
-                className={`cartHandleButton ${
-                  isProductInCart(product) ? "removeFromCart" : "addToCart"
-                }`}
-                onClick={() => handleCartToggle(product)}>
-                {isProductInCart(product) ? "Remove from cart" : "Add to cart"}
-              </button>
-            </div>
+          <div className="productAligner">
+            <div className="productName smallScreenVisible">{product.name}</div>
+            <a href={product.link} target="_blank" className="reactRouterLinks">
+              {imageUrl && <img src={imageUrl} alt={product.name} className="productImage" />}
+            </a>
+            <div className="productDescriptionAndPriceAndButton">
+              <div className="productName bigScreenVisible">{product.name}</div>
+              <div className="productDescription">{product.description}</div>
+              <div className="productPriceAndButton">
+                <div className="productPrice">Price: ${product.price}</div>
+                <button
+                  className={`cartHandleButton ${
+                    isProductInCart(product) ? "removeFromCart" : "addToCart"
+                  }`}
+                  onClick={() => handleCartToggle(product)}>
+                  {isProductInCart(product) ? "Remove from cart" : "Add to cart"}
+                </button>
+              </div>
+            </div>{" "}
           </div>
         </div>
       );

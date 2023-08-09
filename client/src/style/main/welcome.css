@@ -4,49 +4,105 @@
   position: relative;
   overflow: hidden;
 }
-
-.curve {
-  position: absolute;
-  height: 700px;
-  width: 120%;
-  bottom: 0;
-  text-align: center;
-
-}
-
-.curve::before {
-  content: "";
-  display: block;
-  position: absolute;
-  border-radius: 100%;
+.welcomeTextWrapper {
+  padding: 5% 10% 0% 10%;
+  align-items: center;
+  /* background-color: red; */
   width: 80%;
-  height: 100%;
-  transform: translate(-33%, 71%);
-  background-color: white;
-
+  align-items: center;
+  perspective: 100%;
 }
-
-.curve::after {
-  content: "";
-  display: block;
-  position: absolute;
-  border-radius: 100%;
-  width: 55%;
-  height: 100%;
-  transform: translate(-4%, 40%);
-  z-index: -1;
+.welcomeFlexbox {
+  display: flex;
 }
-
 .welcome {
-  padding: 5% 15% 0% 15%;
-  text-align: justify;
+  text-align: center;
+  width: 100%;
   font-size: 200%;
   color: rgba(252, 191, 38, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 1.2em;
+  line-height: 1.5em;
+  transition: transform 0.5s;
 
   /* color: rgba(198, 137, 252, 0.8); */
+}
+.firstWord {
+  padding-left: 1.2em;
+}
+.to {
+  padding-left: 1.2em;
+}
+.my {
+  padding-left: 1.2em;
+}
+.portfolio {
+  padding-left: 1.2em;
+}
+.webshop {
+  padding-left: 1.2em;
+}
+.firstWord:hover {
+  /* color: white; */
+  background-color: white;
+}
+.to:hover {
+  /* color: grey; */
+  background-color: grey;
+}
+.my:hover {
+  /* color: white; */
+  background-color: white;
+}
+.portfolio:hover {
+  /* color: grey; */
+  background-color: grey;
+}
+.webshop:hover {
+  /* color: white; */
+  background-color: white;
 }
 .welcomeIntruduction {
   padding: 15% 15% 0% 15%;
   color: rgb(201, 229, 254);
-  text-align: justify;
+  /* text-align: justify; */
+  text-align: center;
+}
+@media screen and (max-width: 800px) {
+}
+
+.side {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  background-color: #3498db;
+  color: white;
+  transition: transform 0.5s;
+}
+.front {
+  color: white;
+}
+.back {
+  background-color: red;
+}
+
+.column:hover .side:nth-child(2) {
+  transform: rotateX(360deg);
+  z-index: 1;
+}
+
+.column:hover .side:nth-child(3) {
+  transform: rotateX(360deg);
+}
+/* .column:hover {
+  transform: rotateX(360deg);
+} */
+.welcome:hover {
+  transform: rotateX(360deg);
+  transition: transform 0.5s, background-color .1s .1s;
+  background-color: red;
 }
