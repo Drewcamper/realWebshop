@@ -7,33 +7,28 @@
 .welcomeTextWrapper {
   padding: 5% 10% 0% 10%;
   align-items: center;
-  /* background-color: red; */
   width: 80%;
   align-items: center;
-  perspective: 100%;
+
 }
 .welcomeFlexbox {
   display: flex;
 }
+
 .welcome {
   text-align: center;
   width: 100%;
   font-size: 200%;
   color: rgba(252, 191, 38, 0.8);
+  color: rgb(121, 154, 184);
   text-transform: uppercase;
   letter-spacing: 1.2em;
   line-height: 1.5em;
   transition: transform 0.5s;
 
-  /* color: rgba(198, 137, 252, 0.8); */
+  color: rgba(198, 137, 252, 0.8);
 }
-.firstWord {
-  padding-left: 1.2em;
-}
-.to {
-  padding-left: 1.2em;
-}
-.my {
+.firstLine {
   padding-left: 1.2em;
 }
 .portfolio {
@@ -42,67 +37,63 @@
 .webshop {
   padding-left: 1.2em;
 }
-.firstWord:hover {
-  /* color: white; */
-  background-color: white;
-}
-.to:hover {
-  /* color: grey; */
-  background-color: grey;
-}
-.my:hover {
-  /* color: white; */
-  background-color: white;
+/* .firstLine:hover {
+  background-color: aliceblue;
 }
 .portfolio:hover {
-  /* color: grey; */
   background-color: grey;
 }
 .webshop:hover {
-  /* color: white; */
   background-color: white;
-}
+} */
 .welcomeIntruduction {
   padding: 15% 15% 0% 15%;
   color: rgb(201, 229, 254);
-  /* text-align: justify; */
   text-align: center;
+  animation: delayedFadeInUp 3s forwards;
 }
 @media screen and (max-width: 800px) {
 }
 
-.side {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 16px;
-  background-color: #3498db;
-  color: white;
-  transition: transform 0.5s;
+.welcomeTextWrapper > div {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s forwards;
 }
-.front {
-  color: white;
-}
-.back {
-  background-color: red;
-}
-
-.column:hover .side:nth-child(2) {
-  transform: rotateX(360deg);
-  z-index: 1;
+@keyframes delayedFadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  70% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.column:hover .side:nth-child(3) {
-  transform: rotateX(360deg);
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-/* .column:hover {
-  transform: rotateX(360deg);
-} */
-.welcome:hover {
-  transform: rotateX(360deg);
-  transition: transform 0.5s, background-color .1s .1s;
-  background-color: red;
+
+.welcomeFlexbox > div {
+  animation-delay: 0.5s;
+}
+
+.welcome.portfolio {
+  animation-delay: 1s;
+}
+
+.welcome.webshop {
+  animation-delay: 1.5s;
 }
