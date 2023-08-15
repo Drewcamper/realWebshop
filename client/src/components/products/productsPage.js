@@ -2,31 +2,24 @@ import React, { useState, useEffect, useContext } from "react";
 import "../../style/products/products.css";
 import { WebshopContext } from "../../context/context";
 import { db, storage } from "../../firebase-config";
-import { collection, query, where, onSnapshot, orderBy, documentId } from "firebase/firestore";
+import { collection, query, where, onSnapshot, orderBy } from "firebase/firestore";
 import { ref, getDownloadURL, listAll } from "firebase/storage";
 import _ from "lodash";
-import { Link } from "react-router-dom";
-
 function ProductsPage() {
   const {
     cart,
     setCart,
     setPriceSum,
-    animationProducts,
-    setAnimationProducts,
-    smallProducts,
-    setSmallProducts,
+    colorProducts,
+    setColorProducts,
+    shapeProducts,
+    setShapeProducts,
     setAlertMessage,
     currentWindowLocation,
-    setCurrentWindowLocation,
   } = useContext(WebshopContext);
-
   const [imageUrls, setImageUrls] = useState([]);
   const imagesListRef = ref(storage, "productImages/");
 
-  useEffect(() => {
-    console.log({ currentWindowLocation: currentWindowLocation });
-  }, [currentWindowLocation]);
   useEffect(() => {
     const fetchImageUrls = async () => {
       const response = await listAll(imagesListRef);
@@ -38,44 +31,35 @@ function ProductsPage() {
   }, []); //load images
 
   useEffect(() => {
-    const q = query(
-      collection(db, "products"),
-      where("shippable", "==", true),
-      where("type", "==", "animation"),
-      orderBy("id", "asc")
-    );
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      const productsData = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setAnimationProducts(productsData);
-    });
-    // Only unsubscribe when the component unmounts.
-    return () => {
-      unsubscribe();
-    };
-  }, []); //get the shippable animation products
+    console.log({ colorProducts: colorProducts, shapeProducts: shapeProducts });
+  }, [colorProducts, shapeProducts]);
 
   useEffect(() => {
-    const q = query(
-      collection(db, "products"),
-      where("shippable", "==", true),
-      where("type", "==", "small project"),
-      orderBy("id", "asc")
-    );
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      const productsData = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setSmallProducts(productsData);
-    });
-    // Only unsubscribe when the component unmounts.
-    return () => {
-      unsubscribe();
+    const fetchProducts = async (productType, setProducts) => {
+      const q = query(
+        collection(db, "products"),
+        where("shippable", "==", true),
+        where("type", "==", productType),
+        orderBy("id", "asc")
+      );
+
+      const unsubscribe = onSnapshot(q, (snapshot) => {
+        const productsData = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setProducts(productsData);
+      });
+
+      // Only unsubscribe when the component unmounts.
+      return () => {
+        unsubscribe();
+      };
     };
-  }, []); //get the shippable animation products
+
+    fetchProducts("color", setColorProducts);
+    fetchProducts("shape", setShapeProducts);
+  }, []); // Fetch both color and shape products
 
   useEffect(() => {
     const savedCart = JSON.parse(localStorage.getItem("cart")) || []; //setCart is async --> [] ensures the state is correctly updated even if there is a delay.
@@ -135,38 +119,49 @@ function ProductsPage() {
       behavior: "smooth",
     });
   };
-  const handleScrollTo = (id) => {
-    setCurrentWindowLocation(id);
-  };
 
   useEffect(() => {
     if (currentWindowLocation) {
       const targetElement = document.getElementById(currentWindowLocation);
       if (targetElement) {
-        targetElement.scrollIntoView({ behavior: "smooth" });
+        const viewportHeight = window.innerHeight;
+        const offset = -viewportHeight * 0.15;
+
+        const targetPosition =
+          targetElement.getBoundingClientRect().top + window.pageYOffset + offset;
+
+        window.scrollTo({
+          top: targetPosition,
+          behavior: "smooth",
+        });
       }
     }
   }, [currentWindowLocation]);
 
-  const AnimationProducts = () => {
+  const ColorProducts = () => {
     const [productType, setProductType] = useState("");
 
     useEffect(() => {
-      if (animationProducts.length > 0 && productType === "") {
-        setProductType(animationProducts[0].type);
+      if (colorProducts.length > 0 && productType === "") {
+        setProductType(colorProducts[0].type);
       }
-    }, [animationProducts, productType]);
+    }, [colorProducts, productType]);
 
-    const animationProductTemplates = animationProducts.map((product, index) => {
-      const imageUrl = imageUrls[index]; // Access image URL based on the index
+    const colorProductTemplates = colorProducts.map((product, index) => {
       return (
         <div key={product.id} className="product-template" id={product.id}>
           <div className="productAligner">
-          <div className="productName smallScreenVisible">{product.name}</div>
-
-            <Link to={product.link} className="reactRouterLinks">
-              {imageUrl && <img src={imageUrl} alt={product.name} className="productImage" />}
-            </Link>
+            <div className="productName smallScreenVisible">{product.name}</div>
+            <div className="reactRouterLinks">
+              <div className="lightWrapper">
+                <div
+                  className="backgroundLight"
+                  style={{
+                    boxShadow: product.boxShadow,
+                    // backgroundColor: product.backgroundColor,
+                  }}></div>
+              </div>
+            </div>
             <div className="productDescriptionAndPriceAndButton">
               <div className="productName  bigScreenVisible">{product.name}</div>
               <div className="productDescription">{product.description}</div>
@@ -185,48 +180,30 @@ function ProductsPage() {
         </div>
       );
     });
-
     return (
       <>
-        <div className="productTypeWrapper">
-          <div className="responsiveProtector">
-            <div className="productType">{productType}s</div>
-            <div className="openProductsButton"></div>{" "}
-          </div>
-          <ul className="animationProductList">
-            {animationProducts.map((product, index) => (
-              <li
-                key={index}
-                onClick={() => {
-                  handleScrollTo(product.id);
-                }}>
-                {product.name}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="productsTileWrapper">{animationProductTemplates}</div>
+        <div className="productsTileWrapper">{colorProductTemplates}</div>
       </>
     );
   };
 
-  const SmallProducts = () => {
+  const ShapeProducts = () => {
     const [productType, setProductType] = useState("");
     useEffect(() => {
-      if (smallProducts.length > 0 && productType === "") {
-        setProductType(smallProducts[0].type);
+      if (shapeProducts.length > 0 && productType === "") {
+        setProductType(shapeProducts[0].type);
       }
-    }, [smallProducts, productType]);
-    const smallProductTemplates = smallProducts.map((product, index) => {
+    }, [shapeProducts, productType]);
+    const shapeProductTemplates = shapeProducts.map((product, index) => {
       const imageUrl = imageUrls[index + 4]; // Access image URL based on the index
 
       return (
         <div key={product.id} className="product-template" id={product.id}>
           <div className="productAligner">
             <div className="productName smallScreenVisible">{product.name}</div>
-            <a href={product.link} target="_blank" className="reactRouterLinks">
+            <div className="reactRouterLinks">
               {imageUrl && <img src={imageUrl} alt={product.name} className="productImage" />}
-            </a>
+            </div>
             <div className="productDescriptionAndPriceAndButton">
               <div className="productName bigScreenVisible">{product.name}</div>
               <div className="productDescription">{product.description}</div>
@@ -247,37 +224,18 @@ function ProductsPage() {
     });
     return (
       <>
-        <div className="productTypeWrapper">
-          <div className="responsiveProtector">
-            <div className="productType">{productType}s</div>{" "}
-            <div className="openProductsButton"></div>
-          </div>
-          <ul className="animationProductList">
-            {smallProducts.map((product, index) => (
-              <li
-                key={index}
-                onClick={() => {
-                  handleScrollTo(product.id);
-                }}>
-                {product.name}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="productsTileWrapper">{smallProductTemplates}</div>
+        <div className="productsTileWrapper">{shapeProductTemplates}</div>
       </>
     );
   };
 
   return (
     <>
-      <div onClick={scrollToTop}>
-        <div className="toTop"></div>
-        <div className="secondToTop"></div>
+      <div className="toTop" onClick={scrollToTop}>
+        ⇪<div className="toTopText">to the top</div>
       </div>
-
-      <AnimationProducts />
-      <SmallProducts />
+      <ColorProducts />
+      <ShapeProducts />
     </>
   );
 }

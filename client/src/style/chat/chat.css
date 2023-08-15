@@ -6,7 +6,7 @@
   right: 0;
   min-width: 300px;
   border-bottom: 0px;
-  border-radius: 10px 10px 0px 0px;
+  /* border-radius: 10px 10px 0px 0px; */
   background-color: white;
   z-index: 1;
 }
@@ -17,7 +17,7 @@ header {
   height: 2.5vh;
   min-height: 30px;
   align-items: center;
-  border-radius: 10px 10px 0px 0px;
+  /* border-radius: 10px 10px 0px 0px; */
 }
 .headerText {
   width: 100%;

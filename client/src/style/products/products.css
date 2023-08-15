@@ -30,10 +30,11 @@ img {
 }
 .productName {
   height: 20%;
-  text-align: center;
+  text-align: left;
   color: rgb(215, 215, 215);
-  font-size: 2em;
+  font-size: 1.6em;
   margin-bottom: 25px;
+  /* text-transform: uppercase; */
 }
 .smallScreenVisible {
   visibility: hidden;
@@ -45,112 +46,35 @@ img {
   height: auto;
   width: auto;
 }
-.productTypeWrapper {
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  width: 30%;
-  left: 15%;
-  padding: 15px 15px 0px 15px;
-  border-bottom: 1px solid white;
-}
-
-.productType {
-  color: white;
-  text-transform: uppercase;
-}
-.responsiveProtector {
-  display: flex;
-}
-.openProductsButton {
-  border-radius: 50px;
-  margin: 5px 25px auto 25px;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 10px 10px 0 10px;
-  border-color: rgba(255, 255, 255, 1) transparent transparent transparent;
-}
-.animationProductList {
-  padding-top: 0px;
-  padding-bottom: 0px;
-  margin: auto;
-  margin-bottom: 2vh;
-  visibility: hidden;
-  height: 0px;
-  transition: 0.4s ease-in-out;
-  color: black;
-}
-.animationProductList:hover {
-  color: white;
-}
-.productTypeWrapper:hover .animationProductList {
-  padding-top: 15px;
-  padding-bottom: 15px;
-  visibility: visible;
-  height: auto;
-  color: rgba(255, 255, 255, 0.6);
-}
-.productTypeWrapper:hover .openProductsButton {
-  border-width: 0 10px 10px 10px;
-  margin: 5px 25px auto 25px;
-  border-color: transparent transparent white transparent;
-}
-ul li {
-  margin: 0px;
-  list-style-type: none;
-  padding: 7.5px 0px 7.5px 20px;
-}
-li:hover {
-  color: white;
-}
 
 .toTop {
+  width: 50px;
   position: fixed;
-  left: 30px;
-  bottom: 30px;
-  background-color: transparent;
-  border: solid black;
-  border-width: 0 3px 3px 0;
-  display: inline-block;
-  padding: 10px;
-  transform: rotate(-135deg);
-  -webkit-transform: rotate(-135deg);
-  cursor: pointer;
-  z-index: 1;
+  bottom: 0px;
+  left: 0px;
+  padding-left: 20px;
+  padding-bottom: 25px;
+  font-size: 120%;
+  color: rgba(255, 255, 255, 0.6);
   transition: ease-in-out;
   transition-duration: 0.2s;
-}
-.toTop:hover {
-  background-color: white;
-  bottom: 40px;
-  left: 27.5px;
-  padding: 15px;
-}
-
-.secondToTop {
-  position: fixed;
-  left: 30px;
-  bottom: 35px;
-  border: solid black;
-  border-width: 0px 3px 3px 0px;
-  display: inline-block;
-  padding: 10px;
-  transform: rotate(-135deg);
-  -webkit-transform: rotate(-135deg);
   cursor: pointer;
+}
 
-  background-color: rgba(255, 255, 255, 0.6);
-  z-index: 0;
+.toTopText {
+  height: 0px;
+  width: 0px;
+  visibility: hidden;
+  overflow: hidden; /* Add this line to hide overflowing content */
   transition: ease-in-out;
   transition-duration: 0.2s;
 }
 
-.toTop:hover ~ .secondToTop {
-  background-color: white;
-  bottom: 45px;
-  left: 27.5px;
-  padding: 15px;
+.toTop:hover .toTopText {
+  height: auto;
+  width: auto;
+  visibility: visible;
+  padding: 5px;
 }
 
 .productDescriptionAndPriceAndButton {
@@ -170,8 +94,6 @@ li:hover {
   margin-top: 50px;
   margin-left: 0%;
   display: flex;
-  /* background-color: red; */
-
 }
 .reactRouterLinks {
   margin-left: 0%;
@@ -206,13 +128,34 @@ li:hover {
   background-color: rgba(78, 170, 224, 0.846);
   border: 1px solid white;
 }
+.lightWrapper {
+  padding: 20% 20% 20% 50%;
+  align-items: center;
+}
+
+.lightWrapper:hover .backgroundLight {
+  animation: circleLamp 3s linear infinite;
+}
+
+.backgroundLight {
+  position: absolute;
+  border-radius: 50%;
+  transform: rotate(0deg) translateX(20%) rotate(0deg);
+}
+
+@keyframes circleLamp {
+  0% {
+    transform: translate(-50%, -50%) scale(1); /* Keep the element centered and at its original size */
+  }
+  25% {
+    transform: translate(-50%, -50%) scale(1.5); /* Keep the element centered and increase its size */
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1); /* Back to original size */
+  }
+}
 
 @media screen and (max-width: 800px) {
-  .productTypeWrapper {
-    width: 70%;
-    left: 15%;
-    flex-direction: column;
-  }
   .productAligner {
     flex-direction: column;
   }
@@ -233,7 +176,6 @@ li:hover {
   }
   .productImage {
     padding-left: 20vw;
-  
   }
   .productDescription {
     width: 100%;
@@ -246,29 +188,5 @@ li:hover {
     width: 100%;
     padding-right: 0%;
     padding-bottom: 5vh;
-  }
-  .toTop {
-    left: 0.75em;
-    bottom: 0.75em;
-    padding: 10px;
-  }
-  .toTop:hover {
-    background-color: white;
-    bottom: 40px;
-    left: 27.5px;
-    padding: 15px;
-  }
-
-  .secondToTop {
-    left: 0.75em;
-    bottom: calc(0.75em + 5px);
-    padding: 10px;
-  }
-
-  .toTop:hover ~ .secondToTop {
-    background-color: white;
-    bottom: 45px;
-    left: 27.5px;
-    padding: 15px;
   }
 }

@@ -9,8 +9,8 @@ export const WebshopProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [priceSum, setPriceSum] = useState(0);
   const [uid, setUid] = useState();
-  const [animationProducts, setAnimationProducts] = useState([]);
-  const [smallProducts, setSmallProducts] = useState([]);
+  const [colorProducts, setColorProducts] = useState([]);
+  const [shapeProducts, setShapeProducts] = useState([]);
 
   const [openMenu, setOpenMenu] = useState(false);
   const [openCart, setOpenCart] = useState(false);
@@ -36,10 +36,10 @@ export const WebshopProvider = ({ children }) => {
         setUid,
         chatWindowVisible,
         setChatWindowVisible,
-        animationProducts,
-        setAnimationProducts,
-        smallProducts,
-        setSmallProducts,
+        colorProducts,
+        setColorProducts,
+        shapeProducts,
+        setShapeProducts,
         openMenu,
         setOpenMenu,
         openCart,

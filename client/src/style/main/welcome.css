@@ -22,30 +22,13 @@
   color: rgba(252, 191, 38, 0.8);
   color: rgb(121, 154, 184);
   text-transform: uppercase;
-  letter-spacing: 1.2em;
+  /* letter-spacing: 1.1em; */
   line-height: 1.5em;
   transition: transform 0.5s;
+  /* padding-left: 1.2em; */
 
   color: rgba(198, 137, 252, 0.8);
 }
-.firstLine {
-  padding-left: 1.2em;
-}
-.portfolio {
-  padding-left: 1.2em;
-}
-.webshop {
-  padding-left: 1.2em;
-}
-/* .firstLine:hover {
-  background-color: aliceblue;
-}
-.portfolio:hover {
-  background-color: grey;
-}
-.webshop:hover {
-  background-color: white;
-} */
 .welcomeIntruduction {
   padding: 15% 15% 0% 15%;
   color: rgb(201, 229, 254);

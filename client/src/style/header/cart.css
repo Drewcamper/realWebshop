@@ -57,25 +57,29 @@
 .sum {
   margin: auto;
   padding-top: 5vh;
+  padding-left: 1vw;
   width: 100%;
   min-height: 30px;
   height: 4vh;
-  text-align: center;
+  text-align: left;
   font-size: 100%;
-  color: rgb(45, 58, 70);
+  /* color: rgb(45, 58, 70); */
+  color: rgba(255, 255, 255, 0.6);
+
 }
 .purchaseLink {
   width: 100%;
   padding: 2vh 0px 2vh 0px;
   text-align: center;
   text-decoration: none;
-  border-left: 1px solid transparent;
-  border-right: 1px solid transparent;
   letter-spacing: 1px;
-  color: rgb(10, 37, 64);
+  /* color: rgb(10, 37, 64); */
+  color: rgba(255, 255, 255, 0.6);
 }
 .purchaseLink:hover {
-  border-color: white;
+  border-right: 1px solid white;
+  border-left: 1px solid white;
+  color: white;
 }
 .emptyCartText {
   width: 80%;
@@ -127,7 +131,7 @@ p {
 
 @media screen and (max-width: 800px) {
   .cartWrapper {
-height: 0px;
+    height: 0px;
   }
   .closedCart {
     top: 0px;

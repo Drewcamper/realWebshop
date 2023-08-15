@@ -3,7 +3,6 @@
   height: 50vh;
   position: fixed;
   z-index: 2;
-  
 }
 .closedMenu {
   color: rgba(255, 255, 255, 0.6);
@@ -11,7 +10,6 @@
   bottom: 85vh;
   left: -50px;
   transform: rotateZ(270deg);
-  
 }
 .rotatedMenu {
   position: relative;
@@ -22,46 +20,94 @@
   background-color: rgb(91, 91, 91);
   width: 20vw;
   height: 100vh;
-
 }
-.menuPorudctNameWrapper{
+.menuPorudctNameWrapper {
   padding-top: 5vh;
-}
-.menuProductName {
-  font-size: 120%;
-  text-align: left;
-  color: rgb(215, 215, 215);
-  padding-top: 2.5vh;
-  padding-bottom: 2.5vh;
-  padding-left: 2vw;
-  cursor: pointer;
-}
-.menuProductName:hover {
-  border-right: 1px solid white;
-  border-left: 1px solid white;
 }
 
 .menuButton {
   background-color: red;
 }
-@media screen and (max-width: 800px) {
 
+.productTypeWrapper {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 15px 15px 5px 15px;
+  /* border-bottom: 1px solid white; */
+}
+.productTypeWrapper:hover .animationProductList {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  visibility: visible;
+  height: auto;
+  color: rgba(255, 255, 255, 0.6);
+}
+.productTypeWrapper:hover .openProductsButton {
+  border-width: 0 10px 10px 10px;
+  margin: 5px 25px auto 25px;
+  border-color: transparent transparent white transparent;
+}
+.responsiveProtector {
+  display: flex;
+}
+.productType {
+  color: white;
+  text-transform: uppercase;
+}
+
+.openProductsButton {
+  border-radius: 50px;
+  margin: 5px 25px auto 25px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 10px 10px 0 10px;
+  border-color: rgba(255, 255, 255, 1) transparent transparent transparent;
+}
+ul li {
+  margin: 0px;
+  list-style-type: none;
+  padding: 7.5px 0px 7.5px 20px;
+}
+li:hover {
+  color: white;
+}
+.animationProductList {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin: auto;
+  margin-bottom: 2vh;
+  visibility: hidden;
+  height: 0px;
+  transition: 0.4s ease-in-out;
+  color: black;
+}
+.animationProductList:hover {
+  color: white;
+}
+
+@media screen and (max-width: 800px) {
   .closedMenu {
     top: 0px;
     bottom: 92vh;
     left: 0px;
     padding-left: 30px;
     padding-top: 20px;
-    padding-bottom: 20px ;
+    padding-bottom: 20px;
     width: calc(50% - 11px);
     transform: rotateZ(0deg);
     background-color: rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(8px);
     border-right: 1px solid rgba(255, 255, 255, 0.466);
     align-items: center;
-
   }
   .openedMenu {
     width: 100vw;
+  }
+  .productTypeWrapper {
+    width: 70%;
+    left: 15%;
+    flex-direction: column;
   }
 }

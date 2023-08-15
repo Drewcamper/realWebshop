@@ -4,8 +4,8 @@ import "../../style/header/menu.css";
 import Auth from "./Auth";
 const Menu = () => {
   const {
-    animationProducts,
-    smallProducts,
+    colorProducts,
+    shapeProducts,
     openMenu,
     setOpenMenu,
     openCart,
@@ -15,53 +15,50 @@ const Menu = () => {
 
   const handleScrollTo = (id) => {
     setCurrentWindowLocation(id);
-    console.log({ id: id });
   };
   const AnimationProductNames = () => {
-    const productType = animationProducts[0].type;
+    const productType = colorProducts[0].type;
 
     return (
-      <div
-        className="menuProductName"
-        onClick={() => {
-          const targetElement = document.getElementById(animationProducts[0].id);
-          if (targetElement) {
-            const offset = -window.innerHeight * 0.4; // 20% of the viewport height
-            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset + offset;
-        
-            window.scrollTo({
-              top: targetPosition,
-              behavior: 'smooth', // Optional: Add smooth scrolling behavior
-            });
-          }
-        }}
-        >
-        {productType}s
+      <div className="productTypeWrapper">
+        <div className="responsiveProtector">
+          <div className="productType">{productType}s</div>
+          <div className="openProductsButton"></div>{" "}
+        </div>
+        <ul className="animationProductList">
+          {colorProducts.map((product, index) => (
+            <li
+              key={index}
+              onClick={() => {
+                handleScrollTo(product.id);
+              }}>
+              {product.name}
+            </li>
+          ))}
+        </ul>
       </div>
     );
   };
 
   const SmallProductNames = () => {
-    const productType = smallProducts[0].type;
+    const productType = shapeProducts[0].type;
     return (
-      <div
-        className="menuProductName"
-        onClick={() => {
-          const targetElement = document.getElementById(smallProducts[0].id);
-          if (targetElement) {
-            const offset = -window.innerHeight * 0.4; // 20% of the viewport height
-            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset + offset;
-        
-            window.scrollTo({
-              top: targetPosition,
-              behavior: 'smooth', // Optional: Add smooth scrolling behavior
-            });
-          }
-        }}
-        
-        
-        >
-        {productType}s
+      <div className="productTypeWrapper">
+        <div className="responsiveProtector">
+          <div className="productType">{productType}s</div>{" "}
+          <div className="openProductsButton"></div>
+        </div>
+        <ul className="animationProductList">
+          {shapeProducts.map((product, index) => (
+            <li
+              key={index}
+              onClick={() => {
+                handleScrollTo(product.id);
+              }}>
+              {product.name}
+            </li>
+          ))}
+        </ul>
       </div>
     );
   };

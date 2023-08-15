@@ -93,7 +93,7 @@ function Cart() {
         <div className="sum">total: ${priceSum}</div>
         <div className="purchaseWrapper">
           <Link to="/payment" className="purchaseLink">
-            purchase
+            Purchase
           </Link>
         </div>
       </div>
