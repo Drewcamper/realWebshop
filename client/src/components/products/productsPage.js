@@ -158,7 +158,6 @@ function ProductsPage() {
                   className="backgroundLight"
                   style={{
                     boxShadow: product.boxShadow,
-                    // backgroundColor: product.backgroundColor,
                   }}></div>
               </div>
             </div>
@@ -187,22 +186,58 @@ function ProductsPage() {
     );
   };
 
+  const generateShapeStyles = (product) => {
+    const shapeStyles = {};
+
+    if (product.width !== undefined) {
+      shapeStyles.width = product.width;
+    }
+
+    if (product.height !== undefined) {
+      shapeStyles.height = product.height;
+    }
+    if (product.border !== undefined) {
+      shapeStyles.border = product.border;
+    }
+    if (product.borderRadius !== undefined) {
+      shapeStyles.borderRadius = product.borderRadius;
+    }
+    if (product.borderLeft !== undefined) {
+      shapeStyles.borderLeft = product.borderLeft;
+    }
+    if (product.borderRight !== undefined) {
+      shapeStyles.borderRight = product.borderRight;
+    }
+    if (product.borderBottom !== undefined) {
+      shapeStyles.borderBottom = product.borderBottom;
+    }
+    if (product.backgroundColor !== undefined) {
+      shapeStyles.backgroundColor = product.backgroundColor;
+    }
+    if (product.clipPath !== undefined) {
+      shapeStyles.clipPath = product.clipPath;
+    }
+    return shapeStyles;
+  };
   const ShapeProducts = () => {
     const [productType, setProductType] = useState("");
+
     useEffect(() => {
       if (shapeProducts.length > 0 && productType === "") {
         setProductType(shapeProducts[0].type);
       }
     }, [shapeProducts, productType]);
     const shapeProductTemplates = shapeProducts.map((product, index) => {
-      const imageUrl = imageUrls[index + 4]; // Access image URL based on the index
+      const shapeStyles = generateShapeStyles(product);
 
       return (
         <div key={product.id} className="product-template" id={product.id}>
           <div className="productAligner">
             <div className="productName smallScreenVisible">{product.name}</div>
             <div className="reactRouterLinks">
-              {imageUrl && <img src={imageUrl} alt={product.name} className="productImage" />}
+              <div className="shapeWrapper">
+                <div className="shapeProducts" style={shapeStyles}></div>
+              </div>
             </div>
             <div className="productDescriptionAndPriceAndButton">
               <div className="productName bigScreenVisible">{product.name}</div>
@@ -217,7 +252,7 @@ function ProductsPage() {
                   {isProductInCart(product) ? "Remove from cart" : "Add to cart"}
                 </button>
               </div>
-            </div>{" "}
+            </div>
           </div>
         </div>
       );

@@ -143,14 +143,41 @@ img {
   transform: rotate(0deg) translateX(20%) rotate(0deg);
 }
 
+.shapeWrapper {
+  width: 50%;
+  margin-top: 50px;
+  margin-left: 25%;
+}
+.shapeProducts {
+  margin: auto;
+}
+
+.shapeWrapper:hover .shapeProducts {
+  animation: shapeAnimation 3s linear infinite;
+}
+
+@keyframes shapeAnimation {
+  0% {
+    transform: scale(1); /* Keep the element centered and at its original size */
+  }
+  15% {
+    transform: scale(1.5); /* Keep the element centered and increase its size */
+  }
+
+  90% {
+    transform: scale(1); /* Back to original size */
+  }
+}
+
 @keyframes circleLamp {
   0% {
     transform: translate(-50%, -50%) scale(1); /* Keep the element centered and at its original size */
   }
-  25% {
+  15% {
     transform: translate(-50%, -50%) scale(1.5); /* Keep the element centered and increase its size */
   }
-  100% {
+
+  90% {
     transform: translate(-50%, -50%) scale(1); /* Back to original size */
   }
 }
@@ -188,5 +215,8 @@ img {
     width: 100%;
     padding-right: 0%;
     padding-bottom: 5vh;
+  }
+  .shapeWrapper {
+    margin-top: 25px;
   }
 }
