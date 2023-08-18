@@ -4,8 +4,17 @@ import { WebshopContext } from "../../context/context";
 import { Link } from "react-router-dom";
 
 function Cart() {
-  const { cart, setCart, priceSum, setPriceSum, openCart, setOpenCart, openMenu, setOpenMenu } =
-    useContext(WebshopContext);
+  const {
+    cart,
+    setCart,
+    priceSum,
+    setPriceSum,
+    openCart,
+    setOpenCart,
+    openMenu,
+    setOpenMenu,
+    setAlertMessage,
+  } = useContext(WebshopContext);
 
   useEffect(() => {
     const savedCart = localStorage.getItem("cart") || []; //setCart is async --> [] ensures the state is correctly updated even if there is a delay.
@@ -84,18 +93,27 @@ function Cart() {
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
+  const noItems = () => {
+    setAlertMessage("You have not choosen any products.");
+  };
   const OpenedCart = () => {
-    const isMobile = window.innerWidth < 800;
-
     return (
       <div className="openedCart">
         <div className="sum">total: ${priceSum}</div>
         <ChoosenProducts />
-
         <div className="purchaseWrapper">
-          <Link to="/payment" className="purchaseLink">
+          {/* <Link to="/payment" className="purchaseLink">
             Purchase
-          </Link>
+          </Link> */}
+          {priceSum > 0 ? (
+            <Link to="/payment" className="purchaseLink">
+              Purchase
+            </Link>
+          ) : (
+            <div className="purchaseLink" onClick={noItems}>
+              Purchase
+            </div>
+          )}
         </div>
       </div>
     );

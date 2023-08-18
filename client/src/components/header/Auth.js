@@ -6,7 +6,7 @@ import { signInWithPopup, signOut } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
 
 function Auth() {
-  const { setUsername, setEmail, setIsAuth, setAlertMessage, profileIsOpen, setProfileIsOpen } =
+  const { setUsername, setEmail, setIsAuth, setAlertMessage, } =
     useContext(WebshopContext);
 
   const [buttonText, setButtonText] = useState("Log In");
