@@ -8,16 +8,18 @@
   bottom: 1em;
   right: 1em;
   z-index: 2;
-  padding-left: 15px;
+  width: auto;
+  margin: auto;
 }
 .appearingText {
   color: white;
   margin: auto;
-  opacity: 0;
-  transition: opacity 0.3s;
+  animation: fadeIn 0.5s forwards; 
   backdrop-filter: blur(10px);
-padding: 15px;
-border-radius: 10px;
+  padding: 15px;
+  border-radius: 10px;
+
+  text-align: center;
 }
 .miniChatWrapper {
   margin: 0;
@@ -39,14 +41,19 @@ border-radius: 10px;
   color: rgba(255, 255, 255, 0.6);
   border-radius: 15%;
 }
-.miniChatWrapper:hover{
+.miniChatWrapper:hover {
   border-color: white;
 }
-.miniChatWrapper:hover .loadingWrapper{
+.miniChatWrapper:hover .loadingWrapper {
   color: white;
 }
-.appearingText.hovered {
-  opacity: 1;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 @media screen and (max-width: 800px) {
   .miniChatWrapper {

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { WebshopContext } from "../../context/context";
 import "../../style/header/menu.css";
 import Auth from "./Auth";
@@ -16,16 +16,46 @@ const Menu = () => {
   const handleScrollTo = (id) => {
     setCurrentWindowLocation(id);
   };
-  const AnimationProductNames = () => {
+
+  // const ColorProductNames = () => {
+  //   const productType = colorProducts[0].type;
+
+  //   return (
+  //     <div className="productTypeWrapper">
+  //       <div className="responsiveProtector">
+  //         <div className="productType">{productType}s</div>
+  //         <div className="openProductsButton"></div>{" "}
+  //       </div>
+  //       <ul className="productList">
+  //         {colorProducts.map((product, index) => (
+  //           <li
+  //             key={index}
+  //             onClick={() => {
+  //               handleScrollTo(product.id);
+  //             }}>
+  //             {product.name}
+  //           </li>
+  //         ))}
+  //       </ul>
+  //     </div>
+  //   );
+  // };
+
+  const ColorProductNames = () => {
     const productType = colorProducts[0].type;
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggleOpen = (e) => {
+      setIsOpen(!isOpen);
+    };
 
     return (
-      <div className="productTypeWrapper">
-        <div className="responsiveProtector">
+      <div className={`productTypeWrapper ${isOpen ? "open" : ""}`} onClick={toggleOpen}>
+        <div className="responsiveProtector" onClick={(e) => e.stopPropagation()}>
           <div className="productType">{productType}s</div>
-          <div className="openProductsButton"></div>{" "}
+          <div className={`openProductsButton ${isOpen ? "open" : ""}`}></div>
         </div>
-        <ul className="animationProductList">
+        <ul className={`productList ${isOpen ? "open" : ""}`}>
           {colorProducts.map((product, index) => (
             <li
               key={index}
@@ -40,15 +70,48 @@ const Menu = () => {
     );
   };
 
-  const SmallProductNames = () => {
+  // const ShapeProductNames = () => {
+  //   const productType = shapeProducts[0].type;
+  //   return (
+  //     <div className="productTypeWrapper">
+  //       <div className="responsiveProtector">
+  //         <div className="productType">{productType}s</div>{" "}
+  //         <div className="openProductsButton"></div>
+  //       </div>
+  //       <ul className="productList">
+  //         {shapeProducts.map((product, index) => (
+  //           <li
+  //             key={index}
+  //             onClick={() => {
+  //               handleScrollTo(product.id);
+  //             }}>
+  //             {product.name}
+  //           </li>
+  //         ))}
+  //       </ul>
+  //     </div>
+  //   );
+  // };
+
+
+
+
+
+  const ShapeProductNames = () => {
     const productType = shapeProducts[0].type;
+    const [isOpen, setIsOpen] = useState(false);
+  
+    const toggleOpen = (e) => {
+      setIsOpen(!isOpen);
+    };
+  
     return (
-      <div className="productTypeWrapper">
-        <div className="responsiveProtector">
+      <div className={`productTypeWrapper ${isOpen ? "open" : ""}`} onClick={toggleOpen}>
+        <div className="responsiveProtector" onClick={(e) => e.stopPropagation()}>
           <div className="productType">{productType}s</div>{" "}
-          <div className="openProductsButton"></div>
+          <div className={`openProductsButton ${isOpen ? "open" : ""}`}></div>
         </div>
-        <ul className="animationProductList">
+        <ul className={`productList ${isOpen ? "open" : ""}`}>
           {shapeProducts.map((product, index) => (
             <li
               key={index}
@@ -62,6 +125,7 @@ const Menu = () => {
       </div>
     );
   };
+  
 
   const handleMenuToggleByHover = () => {
     setOpenMenu((prevOpenMenu) => !prevOpenMenu);
@@ -91,8 +155,8 @@ const Menu = () => {
   const OpenedMenu = () => (
     <div className="openedMenu">
       <div className="menuPorudctNameWrapper">
-        <AnimationProductNames />
-        <SmallProductNames />
+        <ColorProductNames />
+        <ShapeProductNames />
       </div>
       <Auth />
     </div>

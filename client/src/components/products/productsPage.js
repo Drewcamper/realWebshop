@@ -17,7 +17,6 @@ function ProductsPage() {
     currentWindowLocation,
   } = useContext(WebshopContext);
 
-
   useEffect(() => {
     const fetchProducts = async (productType, setProducts) => {
       const q = query(
@@ -235,7 +234,6 @@ function ProductsPage() {
     return (
       <>
         <div className="productsTileWrapper">{shapeProductTemplates}</div>
-        
       </>
     );
   };
@@ -247,7 +245,6 @@ function ProductsPage() {
       </div>
       <ColorProducts />
       <ShapeProducts />
-
     </>
   );
 }

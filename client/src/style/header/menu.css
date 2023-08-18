@@ -34,7 +34,7 @@
   cursor: pointer;
   padding: 15px 0px 5px 0px;
 }
-.productTypeWrapper:hover .animationProductList {
+.productTypeWrapper:hover .productList {
   padding-top: 15px;
   padding-bottom: 15px;
   visibility: visible;
@@ -71,7 +71,7 @@ ul li {
 li:hover {
   color: white;
 }
-.animationProductList {
+.productList {
   padding-top: 0px;
   padding-bottom: 0px;
   margin: auto;
@@ -81,9 +81,57 @@ li:hover {
   transition: 0.4s ease-in-out;
   color: black;
 }
-.animationProductList:hover {
+.productList:hover {
   color: white;
 }
+
+
+
+
+
+
+/* Remove :hover styles from .productTypeWrapper */
+.productTypeWrapper.open .productList,
+.productTypeWrapper.open .openProductsButton {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  visibility: visible;
+  height: auto;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.productTypeWrapper.open .openProductsButton {
+  border-width: 0 10px 10px 10px;
+  margin: 5px 25px auto 25px;
+  border-color: transparent transparent white transparent;
+}
+
+.productTypeWrapper.open .productType {
+  color: white;
+}
+
+.productTypeWrapper.open ul li:hover {
+  color: white;
+}
+
+.productTypeWrapper.open .productList {
+  color: black;
+}
+
+.productTypeWrapper.open .productList:hover {
+  color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 @media screen and (max-width: 800px) {
 

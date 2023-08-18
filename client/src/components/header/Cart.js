@@ -35,6 +35,7 @@ function Cart() {
       }
       setCart(newCart);
     }
+    setAlertMessage("Item removed from your cart");
   };
   useEffect(() => {
     const sum = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);

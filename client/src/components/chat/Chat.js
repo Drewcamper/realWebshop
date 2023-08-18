@@ -24,7 +24,10 @@ const Sphere = () => {
 
   return (
     <div className="sphereWrapper" onClick={openChat}>
-      <div className={`appearingText ${isHovered ? "hovered" : ""}`}>How can I help you?</div>
+    {isHovered && (
+      <div className='appearingText' >How can I help you?</div>
+
+    )}
       <div
         className="miniChatWrapper"
         onMouseEnter={handleMouseEnter}

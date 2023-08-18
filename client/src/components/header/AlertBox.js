@@ -23,14 +23,13 @@ function AlertBox() {
   if (displayAlert && alertMessage !== undefined) {
     return (
       <div className="alertBox">
-          <div className="alertMessage">{alertMessage}</div>
-          <div
-            className="alertExit"
-            onClick={() => {
-              setAlertMessage(undefined);
-            }}>
-            <div className="alertExitText">x</div>
-          </div>
+        <div
+          className="alertMessage"
+          onClick={() => {
+            setAlertMessage(undefined);
+          }}>
+          {alertMessage}
+        </div>
       </div>
     );
   }

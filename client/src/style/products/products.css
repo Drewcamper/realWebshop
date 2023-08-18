@@ -178,6 +178,9 @@ body {
 }
 
 @media screen and (max-width: 800px) {
+    .productsTileWrapper {
+    margin: 10% auto; /* Center horizontally */
+  }
   .productAligner {
     flex-direction: column;
   }

@@ -6,38 +6,21 @@
   position: fixed;
   border-radius: 10px;
   background-color: black;
-  box-shadow: 0px 0px 15px 1px rgb(238, 172, 172);
-  z-index: 4;display: flex;
+  z-index: 4;
+  display: flex;
+  cursor: pointer;
+  box-shadow: 0px 0px 5px 1px rgb(212, 222, 255);
 }
 
 .alertMessage {
   background-color: rgba(255, 255, 255, 0.6);
   color: black;
   padding: 15px;
-  border-radius: 10px 0px 0px 10px;
-  width: 95%;
+  border-radius: 10px ;
+  width: 100%;
 }
-.alertExit {
-  width: 5%;
-  right: 0px;
-  /* height: 100%; */
-  background-color: rgba(255, 255, 255, 0.6);
-  border-radius: 0px 10px 10px 0px;
-  padding: 15px;
-  cursor: pointer;
-  align-items: center;
-  margin: auto;
-}
-.alertExitText {
-  text-align: center;
-  color: black;
-  margin: auto;
-}
-.alertExit:hover {
-  background-color: rgba(255, 255, 255, 0.3);
-}
-.alertExit:hover .alertExitText {
-  color: rgba(255, 255, 255, 0.6);
+.alertBox:hover{
+  box-shadow: 0px 0px 15px 1px rgb(238, 172, 172);
 }
 @media screen and (max-width: 800px) {
   .alertBox {
@@ -45,6 +28,5 @@
     width: 90vw;
     top: 15px;
     left: 5%;
- 
   }
 }
