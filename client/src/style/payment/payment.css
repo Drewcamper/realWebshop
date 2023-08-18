@@ -1,26 +1,6 @@
 body {
   justify-content: center;
 }
-h4{
-  color: rgb(13, 50, 89);
-  top: 30vh;
-  left: 55vw;
-  width: 30vw;
-  text-align: center;
-  position: relative;
-  text-align: justify;
-  letter-spacing: .8px;
-}
-h5{
-  color: rgb(13, 50, 89);
-  top: 30vh;
-  left: 55vw;
-  width: 30vw;
-  text-align: center;
-  position: relative;
-  text-align: justify;
-  letter-spacing: 1.2px;
-}
 .paymentWrapper {
   background-color: white;
   width: 100vw;
@@ -29,12 +9,33 @@ h5{
   left: 0px;
   position: fixed;
 }
+.paymentTextWrapper {
+  width: 40%;
+  top: 30vh;
+  left: calc(50% + 40px);
+  position: relative;
+  color: rgb(13, 50, 89);
+}
+h1{
+  color:rgba(255, 255, 255,0.8)
+}
+h4 {
+  text-align: center;
+  text-align: justify;
+  letter-spacing: 0.8px;
+}
+h5 {
+  text-align: center;
+  text-align: justify;
+  letter-spacing: 1.2px;
+}
+
 .paymentForm {
   background-color: white;
   position: fixed;
   top: 25vh;
-  left: 15vw;
-  width: 25vw;
+  left: 10%;
+  width: 30%;
 }
 .backToHome {
   background-color: transparent;
@@ -45,12 +46,28 @@ h5{
   padding: 8px 14px 8px 11px;
   border: 1px solid transparent;
   border-radius: 1px 15px 15px 1px;
-  color: white;
+  color: black;
 }
 .backToHome:hover {
-  border-color: white;
+  border-color: black;
   transition: 0.15s ease-in-out;
 }
-button {
-  color: white;
+
+@media screen and (max-width: 800px) {
+  .paymentForm {
+    background-color: white;
+    position: relative;
+    top: 10vh;
+    left: 5%;
+
+    width: calc(90% - 40px);
+    margin: auto;
+  }
+  .paymentTextWrapper {
+    width: calc(90% - 40px);
+    top: 15vh;
+    left: calc( 5% + 20px );
+    position: relative;
+    color: rgb(13, 50, 89);
+  }
 }

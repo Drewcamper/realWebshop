@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import "../../style/products/products.css";
 import { WebshopContext } from "../../context/context";
-import { db, storage } from "../../firebase-config";
+import { db } from "../../firebase-config";
 import { collection, query, where, onSnapshot, orderBy } from "firebase/firestore";
-import { ref, getDownloadURL, listAll } from "firebase/storage";
 import _ from "lodash";
 function ProductsPage() {
   const {
@@ -17,22 +16,7 @@ function ProductsPage() {
     setAlertMessage,
     currentWindowLocation,
   } = useContext(WebshopContext);
-  const [imageUrls, setImageUrls] = useState([]);
-  const imagesListRef = ref(storage, "productImages/");
 
-  useEffect(() => {
-    const fetchImageUrls = async () => {
-      const response = await listAll(imagesListRef);
-      const urls = await Promise.all(response.items.map((item) => getDownloadURL(item)));
-      setImageUrls(urls);
-    };
-
-    fetchImageUrls();
-  }, []); //load images
-
-  useEffect(() => {
-    console.log({ colorProducts: colorProducts, shapeProducts: shapeProducts });
-  }, [colorProducts, shapeProducts]);
 
   useEffect(() => {
     const fetchProducts = async (productType, setProducts) => {
@@ -149,10 +133,10 @@ function ProductsPage() {
 
     const colorProductTemplates = colorProducts.map((product, index) => {
       return (
-        <div key={product.id} className="product-template" id={product.id}>
+        <div key={product.id} className="productTemplate" id={product.id}>
           <div className="productAligner">
             <div className="productName smallScreenVisible">{product.name}</div>
-            <div className="reactRouterLinks">
+            <div className="productDemoWrapper">
               <div className="lightWrapper">
                 <div
                   className="backgroundLight"
@@ -202,15 +186,6 @@ function ProductsPage() {
     if (product.borderRadius !== undefined) {
       shapeStyles.borderRadius = product.borderRadius;
     }
-    if (product.borderLeft !== undefined) {
-      shapeStyles.borderLeft = product.borderLeft;
-    }
-    if (product.borderRight !== undefined) {
-      shapeStyles.borderRight = product.borderRight;
-    }
-    if (product.borderBottom !== undefined) {
-      shapeStyles.borderBottom = product.borderBottom;
-    }
     if (product.backgroundColor !== undefined) {
       shapeStyles.backgroundColor = product.backgroundColor;
     }
@@ -231,10 +206,10 @@ function ProductsPage() {
       const shapeStyles = generateShapeStyles(product);
 
       return (
-        <div key={product.id} className="product-template" id={product.id}>
+        <div key={product.id} className="productTemplate" id={product.id}>
           <div className="productAligner">
             <div className="productName smallScreenVisible">{product.name}</div>
-            <div className="reactRouterLinks">
+            <div className="productDemoWrapper">
               <div className="shapeWrapper">
                 <div className="shapeProducts" style={shapeStyles}></div>
               </div>
@@ -260,6 +235,7 @@ function ProductsPage() {
     return (
       <>
         <div className="productsTileWrapper">{shapeProductTemplates}</div>
+        
       </>
     );
   };
@@ -271,6 +247,7 @@ function ProductsPage() {
       </div>
       <ColorProducts />
       <ShapeProducts />
+
     </>
   );
 }

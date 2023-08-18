@@ -25,16 +25,14 @@
   padding-top: 5vh;
 }
 
-.menuButton {
-  background-color: red;
-}
 
 .productTypeWrapper {
+  width: 80%;
+  margin-left: 10%;
   position: relative;
   overflow: hidden;
   cursor: pointer;
-  padding: 15px 15px 5px 15px;
-  /* border-bottom: 1px solid white; */
+  padding: 15px 0px 5px 0px;
 }
 .productTypeWrapper:hover .animationProductList {
   padding-top: 15px;
@@ -88,6 +86,7 @@ li:hover {
 }
 
 @media screen and (max-width: 800px) {
+
   .closedMenu {
     top: 0px;
     bottom: 92vh;
@@ -104,10 +103,6 @@ li:hover {
   }
   .openedMenu {
     width: 100vw;
-  }
-  .productTypeWrapper {
-    width: 70%;
-    left: 15%;
-    flex-direction: column;
+    z-index: 5;
   }
 }

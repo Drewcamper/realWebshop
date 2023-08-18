@@ -12,17 +12,15 @@ body {
   background: var(--bg);
   place-items: center;
 }
-img {
-  width: 100%;
-}
+
 .productsTileWrapper {
-  width: 70%;
-  margin: 10% 0% 0px 15%;
+  width: 75%;
+  margin: 10% 0% 0px 10%;
 }
-.product-template {
-  padding: 0;
+.productTemplate {
   margin-bottom: 30vh;
   width: 100%;
+ 
 }
 .productAligner {
   display: flex;
@@ -78,7 +76,7 @@ img {
 }
 
 .productDescriptionAndPriceAndButton {
-  width: 47.5%;
+  width: 57.5%;
   padding-left: 2.5%;
 }
 .productDescription {
@@ -95,15 +93,12 @@ img {
   margin-left: 0%;
   display: flex;
 }
-.reactRouterLinks {
+.productDemoWrapper {
   margin-left: 0%;
   text-decoration: none;
-  width: 47.5%;
+  width: 37.5%;
   padding-right: 2.5%;
   padding-bottom: 0vh;
-}
-.productImage {
-  width: 30vw;
 }
 
 .productPrice {
@@ -158,27 +153,27 @@ img {
 
 @keyframes shapeAnimation {
   0% {
-    transform: scale(1); /* Keep the element centered and at its original size */
+    transform: scale(1);
   }
   15% {
-    transform: scale(1.5); /* Keep the element centered and increase its size */
+    transform: scale(1.5);
   }
 
   90% {
-    transform: scale(1); /* Back to original size */
+    transform: scale(1); 
   }
 }
 
 @keyframes circleLamp {
   0% {
-    transform: translate(-50%, -50%) scale(1); /* Keep the element centered and at its original size */
+    transform: translate(-50%, -50%) scale(1); 
   }
   15% {
-    transform: translate(-50%, -50%) scale(1.5); /* Keep the element centered and increase its size */
+    transform: translate(-50%, -50%) scale(1.5); 
   }
 
   90% {
-    transform: translate(-50%, -50%) scale(1); /* Back to original size */
+    transform: translate(-50%, -50%) scale(1); 
   }
 }
 
@@ -209,7 +204,7 @@ img {
     margin-right: 0%;
     margin-top: 25px;
   }
-  .reactRouterLinks {
+  .productDemoWrapper {
     margin-left: 0%;
     text-decoration: none;
     width: 100%;

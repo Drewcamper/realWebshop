@@ -33,7 +33,7 @@ function Auth() {
       setButtonText("Log Out");
       localStorage.setItem("username", auth.currentUser.displayName);
       localStorage.setItem("email", auth.currentUser.email);
-      setAlertMessage(<ProfilePhotoAndName />);
+      setAlertMessage(<UserProfile />);
     } catch (err) {
       setAlertMessage(err);
     }
@@ -65,7 +65,6 @@ function Auth() {
         <div className="profileWrapper">
           <img
             src={auth.currentUser.photoURL}
-            // referrerpolicy="no-referrer"
             className="profilePhoto"></img>
           <div className="profileName">Welcome {auth.currentUser.displayName}</div>
         </div>

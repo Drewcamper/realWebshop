@@ -88,7 +88,6 @@ select {
 }
 
 #messages {
-  /* font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New"; */
   display: none;
   background-color: #0a253c;
   color: #00d924;

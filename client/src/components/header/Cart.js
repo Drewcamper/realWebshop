@@ -89,8 +89,9 @@ function Cart() {
 
     return (
       <div className="openedCart">
-        <ChoosenProducts />
         <div className="sum">total: ${priceSum}</div>
+        <ChoosenProducts />
+
         <div className="purchaseWrapper">
           <Link to="/payment" className="purchaseLink">
             Purchase

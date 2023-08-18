@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { WebshopProvider, WebshopContext } from "../context/context";
 import ProductsPage from "./products/productsPage";
 

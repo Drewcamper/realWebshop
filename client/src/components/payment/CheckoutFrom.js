@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
 import { PaymentElement } from "@stripe/react-stripe-js";
 import "../../style/payment/payment.css";
-import { auth } from "../../firebase-config";
 
 export default function CheckoutForm() {
   const stripe = useStripe();
@@ -30,6 +29,7 @@ export default function CheckoutForm() {
       setMessage(error.message);
     } else if (paymentIntent && paymentIntent.status === "succeeded") {
       setMessage("Payment stataus: " + paymentIntent.status);
+      window.location.href = `${window.location.origin}/completion`
     } else {
       setMessage("Unexpected state");
     }
@@ -47,15 +47,17 @@ export default function CheckoutForm() {
         {/* Show any error or success messages */}
         {message && <div id="payment-message">{message}</div>}
       </form>
-      <h4>Welcome to the demo version!</h4>
-      <h5>
-        Please note that this is a simulated environment and no actual money will be transferred. To
-        simulate a payment, you may need to enter the numbers 4 and 2 multiple times until all
-        fields are filled.
-      </h5>
-      <h4>Card Number: 4242 4242 4242 4242</h4>
-      <h4>Expiry: 424 (formatted as 04/24)</h4>
-      <h4>CVC: 242</h4>
+      <div className="paymentTextWrapper">
+        <h4>Welcome to the demo version!</h4>
+        <h5>
+          Please note that this is a simulated environment and no actual money will be transferred.
+          To simulate a payment, you may need to enter the numbers 4 and 2 multiple times until all
+          fields are filled.
+        </h5>
+        <h4>Card Number: 4242 4242 4242 4242</h4>
+        <h4>Expiry: 424 (formatted as 04/24)</h4>
+        <h4>CVC: 242</h4>
+      </div>
     </div>
   );
 }

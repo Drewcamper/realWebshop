@@ -48,13 +48,7 @@ button {
   border-radius: 10px;
   border: 3px solid transparent;
 }
-.sent-message {
-  display: inline-block;
-  word-wrap: break-word;
-  text-align: right;
-  width: 65%;
-  padding-left: 35%;
-}
+
 
 .inputWrapper {
   display: flex;
@@ -83,24 +77,15 @@ button {
   outline: 0px solid transparent;
 }
 .sendButton {
-  width: 20%;
   height: 100%;
-  padding: 10px 10px;
-  text-align: center;
-  margin: 1px;
-
-  border-radius: 5px;
+  padding: 10px;
+  margin: auto;
   background-color: white;
-  color: black;
-  border: 1px solid rgb(68, 129, 195);
-
   cursor: pointer;
-}
-.sendButton:hover {
-  background-color: rgb(53, 102, 154);
+  clip-path: polygon(0 0, 0 100%, 100% 50%);
   background-color: rgb(68, 129, 195);
-  color: white;
 }
+
 
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;1,200&display=swap");
 

@@ -8,29 +8,29 @@ import "../../style/chat/chatSphere.css";
 
 const Sphere = () => {
   const { setChatWindowVisible } = useContext(WebshopContext);
-  const [buttonText, setButtonText] = useState("Hey");
+  const [isHovered, setIsHovered] = useState(false);
 
   const openChat = useCallback(() => {
     setChatWindowVisible(true);
   }, [setChatWindowVisible]);
 
   const handleMouseEnter = () => {
-    setButtonText("How can I help you?");
+    setIsHovered(true);
   };
 
   const handleMouseLeave = () => {
-    setButtonText("Hey");
+    setIsHovered(false);
   };
 
   return (
-    <div className="miniChatWrapper">
-      <button
-        className="loadingWrapper"
-        onClick={openChat}
+    <div className="sphereWrapper" onClick={openChat}>
+      <div className={`appearingText ${isHovered ? "hovered" : ""}`}>How can I help you?</div>
+      <div
+        className="miniChatWrapper"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}>
-        {buttonText}
-      </button>
+        <button className="loadingWrapper">hey</button>
+      </div>
     </div>
   );
 };
@@ -150,8 +150,8 @@ function Chat() {
 
   useEffect(() => {
     if (!isOnline) {
-      setAlertMessage(`You are offline. Please check your internet connection.`)
-    } 
+      setAlertMessage(`You are offline. Please check your internet connection.`);
+    }
 
     window.addEventListener("online", handleConnectionChange);
     window.addEventListener("offline", handleConnectionChange);
@@ -231,9 +231,7 @@ function Chat() {
           onKeyDown={handleEnterKeyPress}
           placeholder="Type here.."
         />
-        <div type="submit" onClick={sendMessage} className="sendButton" disabled={!isOnline}>
-          Send
-        </div>
+        <div type="submit" onClick={sendMessage} className="sendButton" disabled={!isOnline}></div>
       </div>
     </div>
   );

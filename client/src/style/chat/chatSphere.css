@@ -2,11 +2,24 @@
   --lightColor: rgba(133, 147, 152, 0.5);
   --darkColor: rgba(40, 48, 72, 0.5);
 }
-.miniChatWrapper {
+.sphereWrapper {
   position: fixed;
   display: flex;
   bottom: 1em;
   right: 1em;
+  z-index: 2;
+  padding-left: 15px;
+}
+.appearingText {
+  color: white;
+  margin: auto;
+  opacity: 0;
+  transition: opacity 0.3s;
+  backdrop-filter: blur(10px);
+padding: 15px;
+border-radius: 10px;
+}
+.miniChatWrapper {
   margin: 0;
   align-items: center;
   border-radius: 15%;
@@ -26,39 +39,14 @@
   color: rgba(255, 255, 255, 0.6);
   border-radius: 15%;
 }
-
-.miniChatWrapper:hover {
-  border-color: transparent;
-}
-.miniChatWrapper:hover .loadingWrapper {
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 30%;
-  color: rgba(255, 255, 255, 0.8);
-  height: 8em;
-  width: 8em;
-  background-image: linear-gradient(
-    rgba(40, 48, 72, 0.5),
-    rgba(133, 147, 152, 0.5),
-    rgba(40, 48, 72, 0.5),
-    rgba(133, 147, 152, 0.5),
-    rgba(40, 48, 72, 0.5),
-    rgba(133, 147, 152, 0.5),
-    rgba(40, 48, 72, 0.5),
-    rgba(133, 147, 152, 0.5),
-    rgba(40, 48, 72, 0.5),
-    rgba(133, 147, 152, 0.5),
-    rgba(40, 48, 72, 0.5),
-    rgba(133, 147, 152, 0.5),
-    rgba(40, 48, 72, 0.5),
-    rgba(133, 147, 152, 0.5),
-    rgba(40, 48, 72, 0.5),
-    rgba(133, 147, 152, 0.5)
-  );
+.appearingText.hovered {
+  opacity: 1;
 }
 @media screen and (max-width: 800px) {
   .miniChatWrapper {
     bottom: 0.5em;
     right: 0.5em;
+    margin: auto;
   }
   .loadingWrapper {
     height: 3em;

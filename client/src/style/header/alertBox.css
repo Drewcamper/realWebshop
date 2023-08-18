@@ -7,11 +7,9 @@
   border-radius: 10px;
   background-color: black;
   box-shadow: 0px 0px 15px 1px rgb(238, 172, 172);
-  z-index: 4;
+  z-index: 4;display: flex;
 }
-.alertMessageWrapper {
-  display: flex;
-}
+
 .alertMessage {
   background-color: rgba(255, 255, 255, 0.6);
   color: black;

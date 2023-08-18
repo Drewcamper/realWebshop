@@ -7,6 +7,7 @@ import { WebshopContext } from "../../context/context";
 import { db } from "../../firebase-config";
 import { collection, query, where, onSnapshot } from "firebase/firestore";
 import { Link } from "react-router-dom";
+import '../../style/payment/payment.css'
 
 function Payment() {
   const [stripePromise, setStripePromise] = useState(null);
@@ -14,8 +15,6 @@ function Payment() {
   const [totalAmount, setTotalAmount] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const [localStorageAmount, setLocalStorageAmount] = useState();
-  const [dbAmount, setDbAmount] = useState();
 
   const { cart } = useContext(WebshopContext);
 
@@ -33,7 +32,7 @@ function Payment() {
         const cartItem = cartItemsFromLocalStorage.find((item) => item.name === product.name);
         if (cartItem) {
           sum += product.price * cartItem.quantity;
-          setDbAmount(sum);
+
         }
       });
 
@@ -44,15 +43,11 @@ function Payment() {
         setErrorMessage("The price has been changed in the meantime.");
       }
     });
-    setLocalStorageAmount(localSum);
     return () => {
       unsubscribe();
     };
   }, []);
 
-  useEffect(() => {
-    console.log(errorMessage);
-  }, [errorMessage]);
 
   useEffect(() => {
     fetch("/config").then(async (r) => {

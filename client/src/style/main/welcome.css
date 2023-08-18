@@ -1,5 +1,5 @@
 .welcomeWrapper {
-  height: 100vh;
+  height: 80vh;
   padding-top: 20vh;
   position: relative;
   overflow: hidden;
@@ -19,24 +19,18 @@
   text-align: center;
   width: 100%;
   font-size: 200%;
-  color: rgba(252, 191, 38, 0.8);
   color: rgb(121, 154, 184);
   text-transform: uppercase;
-  /* letter-spacing: 1.1em; */
   line-height: 1.5em;
   transition: transform 0.5s;
-  /* padding-left: 1.2em; */
-
-  color: rgba(198, 137, 252, 0.8);
 }
 .welcomeIntruduction {
   padding: 15% 15% 0% 15%;
   color: rgb(201, 229, 254);
   text-align: center;
-  animation: delayedFadeInUp 3s forwards;
+  animation: delayedFadeInUp 1s forwards;
 }
-@media screen and (max-width: 800px) {
-}
+
 
 .welcomeTextWrapper > div {
   opacity: 0;
@@ -48,7 +42,7 @@
     opacity: 0;
     transform: translateY(20px);
   }
-  70% {
+  50% {
     opacity: 0;
     transform: translateY(20px);
   }
@@ -73,10 +67,4 @@
   animation-delay: 0.5s;
 }
 
-.welcome.portfolio {
-  animation-delay: 1s;
-}
 
-.welcome.webshop {
-  animation-delay: 1.5s;
-}

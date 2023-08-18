@@ -7,15 +7,11 @@ function Welcome() {
       <div className="welcomeWrapper">
         <div className="welcomeTextWrapper">
           <div className="welcomeFlexbox">
-            <div className="welcome firstLine">Welcome to my webshop!</div>{" "}
+            <div className="welcome">Welcome to my webshop</div>
           </div>
-          {/* <div className="welcome portfolio">portfolio </div> */}
-          {/* <div className="welcome webshop">Webshop!</div> */}
         </div>
         <div className="welcomeIntruduction">
-          Explore a collection that brings my web development journey to life. Dive into dynamic
-          user interfaces and interactive applications, each showcasing my dedication to creating
-       
+        Explore a collection of shapes and colors that serve as fictive products.
         </div>
       </div>
     </>

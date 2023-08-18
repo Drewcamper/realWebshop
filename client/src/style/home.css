@@ -1,6 +1,5 @@
 :root {
   /* --homeBg: rgb(27, 122, 177); */
-  /* --homeBg: rgba(242, 194, 72, 0.1); */
   --homeBg: black;
 
 }
@@ -8,9 +7,4 @@
 .home {
   width: 100vw;
   background-color: var(--homeBg);
-}
-.productsTitle {
-  cursor: pointer;
-  color: #000;
-  font-size: 2rem;
 }

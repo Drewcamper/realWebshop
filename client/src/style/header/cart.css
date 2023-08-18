@@ -9,19 +9,6 @@
   z-index: 2;
 }
 
-/* .closedCart {
-  position: fixed;
-  bottom: calc(85vh - 30px);
-  right: -37.5px;
-  transform: rotateZ(270deg);
-}
-.rotatedCart {
-  position: relative;
-  color: rgba(255, 255, 255, 0.6);
-  letter-spacing: 30px;
-  text-align: center;
-  transform: rotateZ(180deg);
-} */
 .closedCart {
   color: rgba(255, 255, 255, 0.6);
   position: fixed;
@@ -34,10 +21,7 @@
   letter-spacing: 30px;
   text-align: right;
 }
-.cartSum {
-  color: grey;
-  font-size: 0.5em;
-}
+
 .openedCart {
   background-color: rgb(91, 91, 91);
   width: 20vw;
@@ -63,9 +47,7 @@
   height: 4vh;
   text-align: left;
   font-size: 100%;
-  /* color: rgb(45, 58, 70); */
   color: rgba(255, 255, 255, 0.6);
-
 }
 .purchaseLink {
   width: 100%;
@@ -73,7 +55,6 @@
   text-align: center;
   text-decoration: none;
   letter-spacing: 1px;
-  /* color: rgb(10, 37, 64); */
   color: rgba(255, 255, 255, 0.6);
 }
 .purchaseLink:hover {
@@ -84,7 +65,8 @@
 .emptyCartText {
   width: 80%;
   margin-left: 10%;
-  padding-top: 30%;
+  margin-top: 30%;
+  padding: 1%;
   text-align: center;
 }
 
@@ -159,6 +141,9 @@ p {
   .choosenProducts {
     width: 100vw;
   }
+  .sum {
+    margin-left: 10vw;
+  }
   .productWrapper {
     width: 100vw;
   }
@@ -167,7 +152,6 @@ p {
     padding-left: 10vw;
   }
   .deleteProduct {
-    /* background-color: red; */
     width: 10vw;
     text-align: center;
   }
