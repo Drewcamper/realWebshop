@@ -17,10 +17,12 @@ function Cart() {
   } = useContext(WebshopContext);
 
   useEffect(() => {
-    const savedCart = localStorage.getItem("cart") || []; //setCart is async --> [] ensures the state is correctly updated even if there is a delay.
-    const updatedCart = savedCart ? JSON.parse(savedCart) : [];
-    if (updatedCart) {
-      setCart(updatedCart);
+    const savedCart = localStorage.getItem("cart");
+    if (savedCart) {
+      const updatedCart = JSON.parse(savedCart);
+      if (Array.isArray(updatedCart)) {
+        setCart(updatedCart);
+      }
     }
   }, []);
 
