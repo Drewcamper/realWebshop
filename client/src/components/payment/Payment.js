@@ -7,14 +7,13 @@ import { WebshopContext } from "../../context/context";
 import { db } from "../../firebase-config";
 import { collection, query, where, onSnapshot } from "firebase/firestore";
 import { Link } from "react-router-dom";
-import '../../style/payment/payment.css'
+import "../../style/payment/payment.css";
 
 function Payment() {
   const [stripePromise, setStripePromise] = useState(null);
   const [clientSecret, setClientSecret] = useState("");
   const [totalAmount, setTotalAmount] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
-
 
   const { cart } = useContext(WebshopContext);
 
@@ -32,7 +31,6 @@ function Payment() {
         const cartItem = cartItemsFromLocalStorage.find((item) => item.name === product.name);
         if (cartItem) {
           sum += product.price * cartItem.quantity;
-
         }
       });
 
@@ -47,7 +45,6 @@ function Payment() {
       unsubscribe();
     };
   }, []);
-
 
   useEffect(() => {
     fetch("/config").then(async (r) => {

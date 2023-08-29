@@ -3,7 +3,6 @@ import "../../style/products/products.css";
 import { WebshopContext } from "../../context/context";
 import { db } from "../../firebase-config";
 import { collection, query, where, onSnapshot, orderBy } from "firebase/firestore";
-import _ from "lodash";
 function ProductsPage() {
   const {
     cart,
@@ -46,7 +45,7 @@ function ProductsPage() {
 
   useEffect(() => {
     const savedCart = JSON.parse(localStorage.getItem("cart")) || []; //setCart is async --> [] ensures the state is correctly updated even if there is a delay.
-    if (savedCart !== []) {
+    if (savedCart.length !== 0) {
       setCart(savedCart);
     }
   }, []); //if there are products in the cart, loads from local storage
@@ -54,7 +53,7 @@ function ProductsPage() {
   useEffect(() => {
     const sum = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
     setPriceSum(sum);
-    if (cart !== 0) {
+    if (cart.length !== 0) {
       localStorage.setItem("cart", JSON.stringify(cart));
     }
   }, [cart]); //updates the cart when there is change
@@ -63,35 +62,32 @@ function ProductsPage() {
     return cart.some((item) => item.id === product.id);
   };
 
-  const addToCart = (product, quantity) => {
+  const modifyCart = (product, quantity) => {
     const itemIndex = cart.findIndex((item) => item.id === product.id);
-    if (itemIndex === -1 && quantity > 0) {
-      setCart([...cart, { ...product, quantity: 1 }]);
-    } else if (itemIndex !== -1) {
-      const newCart = [...cart];
-      newCart[itemIndex].quantity = Math.max(quantity, 1);
-      setCart(newCart);
-    }
-  };
 
-  const removeFromCart = (product, quantity) => {
-    const itemIndex = cart.findIndex((item) => item.id === product.id);
-    if (itemIndex !== -1 && quantity > 0) {
-      const newCart = [...cart];
-      newCart[itemIndex].quantity = Math.max(newCart[itemIndex].quantity - quantity, 0);
-      if (newCart[itemIndex].quantity === 0) {
+    if (quantity === 0) {
+      if (itemIndex !== -1) {
+        const newCart = [...cart];
         newCart.splice(itemIndex, 1);
+        setCart(newCart);
       }
-      setCart(newCart);
+    } else {
+      if (itemIndex === -1) {
+        setCart([...cart, { ...product, quantity: 1 }]);
+      } else {
+        const newCart = [...cart];
+        newCart[itemIndex].quantity = Math.max(quantity, 1);
+        setCart(newCart);
+      }
     }
   };
 
   const handleCartToggle = (product) => {
     if (isProductInCart(product)) {
-      removeFromCart(product, 1);
+      modifyCart(product, 0); // Remove from cart
       setAlertMessage("Item removed from your cart");
     } else {
-      addToCart(product, 1);
+      modifyCart(product, 1); // Add to cart
       setAlertMessage("Item added to your cart");
     }
   };
