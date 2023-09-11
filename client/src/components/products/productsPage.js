@@ -92,6 +92,9 @@ function ProductsPage() {
     }
   };
 
+
+
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -105,7 +108,6 @@ function ProductsPage() {
       if (targetElement) {
         const viewportHeight = window.innerHeight;
         const offset = -viewportHeight * 0.15;
-
         const targetPosition =
           targetElement.getBoundingClientRect().top + window.pageYOffset + offset;
 
@@ -117,6 +119,9 @@ function ProductsPage() {
     }
   }, [currentWindowLocation]);
 
+
+
+
   const ColorProducts = () => {
     const [productType, setProductType] = useState("");
 
@@ -126,7 +131,7 @@ function ProductsPage() {
       }
     }, [colorProducts, productType]);
 
-    const colorProductTemplates = colorProducts.map((product, index) => {
+    const colorProductTemplates = colorProducts.map((product) => {
       return (
         <div key={product.id} className="productTemplate" id={product.id}>
           <div className="productAligner">
@@ -171,7 +176,6 @@ function ProductsPage() {
     if (product.width !== undefined) {
       shapeStyles.width = product.width;
     }
-
     if (product.height !== undefined) {
       shapeStyles.height = product.height;
     }
@@ -189,6 +193,7 @@ function ProductsPage() {
     }
     return shapeStyles;
   };
+
   const ShapeProducts = () => {
     const [productType, setProductType] = useState("");
 
@@ -197,7 +202,7 @@ function ProductsPage() {
         setProductType(shapeProducts[0].type);
       }
     }, [shapeProducts, productType]);
-    const shapeProductTemplates = shapeProducts.map((product, index) => {
+    const shapeProductTemplates = shapeProducts.map((product) => {
       const shapeStyles = generateShapeStyles(product);
 
       return (

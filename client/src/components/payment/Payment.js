@@ -47,14 +47,14 @@ function Payment() {
   }, []);
 
   useEffect(() => {
-    fetch("/config").then(async (r) => {
+    fetch("https://stripeconfig-douetugynq-uc.a.run.app").then(async (r) => {
       const { publishableKey } = await r.json();
       setStripePromise(loadStripe(publishableKey));
     });
   }, []);
 
   useEffect(() => {
-    fetch("/create-payment-intent", {
+    fetch("https://createpaymentintent-douetugynq-uc.a.run.app", {
       method: "POST",
       body: JSON.stringify({ amount: totalAmount }),
     }).then(async (result) => {
